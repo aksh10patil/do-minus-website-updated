@@ -215,7 +215,7 @@ export default function HeroSection() {
             </AnimatePresence>
 
             {/* LEFT COLUMN */}
-            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#050505] p-6 md:p-12 lg:p-16 flex flex-col justify-between z-10">
+            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#050505] p-6 md:p-12 lg:p-16 flex flex-col justify-between z-30">
 
                 <div className="flex justify-between items-start w-full">
                     <button
@@ -239,7 +239,7 @@ export default function HeroSection() {
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-6xl md:text-8xl lg:text-[100px] tracking-tight font-light mb-6 flex items-center"
+                        className="text-[70px] sm:text-[90px] md:text-[100px] lg:text-[150px] xl:text-[185px] tracking-tight font-light mb-6 flex items-center whitespace-nowrap"
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
@@ -251,7 +251,7 @@ export default function HeroSection() {
                             variants={cursorPulse}
                             initial="hidden"
                             animate="visible"
-                            className="inline-block w-[3px] h-[60px] md:h-[80px] lg:h-[100px] bg-[#bba371] ml-4 opacity-50"
+                            className="inline-block w-[3px] h-[60px] sm:h-[80px] md:h-[100px] lg:h-[140px] xl:h-[180px] bg-[#bba371] ml-4 md:ml-6 opacity-50"
                         />
                     </motion.h1>
 
