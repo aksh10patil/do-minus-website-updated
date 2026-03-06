@@ -228,7 +228,7 @@ export default function HeroSection() {
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-[70px] sm:text-[90px] md:text-[110px] lg:text-[140px] xl:text-[195px] tracking-tighter font-light flex items-center whitespace-nowrap text-[#d6cdb7]"
+                        className="text-[70px] md:text-[195px] tracking-tighter font-light flex items-center whitespace-nowrap text-[#d6cdb7]"
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
