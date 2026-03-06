@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 // --- Mock Data ---
 const immersionData = {
@@ -26,7 +26,7 @@ const immersionData = {
 };
 
 // --- Animation Variants ---
-const textFadeUp = {
+const textFadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -35,7 +35,7 @@ const textFadeUp = {
   },
 };
 
-const staggerHeader = {
+const staggerHeader: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -43,7 +43,7 @@ const staggerHeader = {
   },
 };
 
-const imageReveal = (delay: number) => ({
+const imageReveal = (delay: number): Variants => ({
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
@@ -52,7 +52,7 @@ const imageReveal = (delay: number) => ({
   },
 });
 
-const imageInnerScale = (delay: number) => ({
+const imageInnerScale = (delay: number): Variants => ({
   hidden: { scale: 1.15 },
   visible: {
     scale: 1,
@@ -63,12 +63,12 @@ const imageInnerScale = (delay: number) => ({
 export default function CuratedImmersion() {
   return (
     <section
-      className="relative w-full h-full bg-[#050505] text-[#f4f4f0] py-4 md:py-16 px-6 md:px-12 lg:px-20 flex flex-col items-center justify-center overflow-hidden"
+      className="relative w-full min-h-screen bg-[#050505] text-[#f4f4f0] py-20 px-6 md:px-12 lg:px-20 flex flex-col items-center justify-center overflow-hidden"
       style={{ fontFamily: '"Courier New", Courier, monospace' }}
     >
       {/* Header Section */}
       <motion.div
-        className="flex flex-col items-center mb-6 md:mb-12 text-center z-10 shrink-0"
+        className="flex flex-col items-center mb-6 md:mb-10 text-center z-10 shrink-0"
         variants={staggerHeader}
         initial="hidden"
         whileInView="visible"
@@ -83,14 +83,14 @@ export default function CuratedImmersion() {
 
         <motion.h2
           variants={textFadeUp}
-          className="text-4xl md:text-5xl lg:text-6xl tracking-tight font-light"
+          className="text-3xl md:text-4xl lg:text-5xl tracking-tight font-light"
         >
           Curated Immersion
         </motion.h2>
       </motion.div>
 
       {/* Bento-style Layout */}
-      <div className="w-full max-w-[1400px] flex-1 min-h-0 flex flex-col gap-4 md:gap-6">
+      <div className="w-full max-w-[70rem] h-[60vh] md:h-[65vh] lg:h-[70vh] min-h-[450px] flex flex-col gap-4 md:gap-6">
 
         {/* Top Row: Spa (Left, Wider) & Dining (Right, Narrower) */}
         <div className="flex flex-row gap-4 md:gap-6 h-[45%] md:h-[50%]">

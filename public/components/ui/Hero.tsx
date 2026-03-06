@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import { Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
 
 // --- Types ---
 interface Property {
@@ -32,10 +32,22 @@ const properties: Property[] = [
         type: "Alpine Lodge",
         imageUrl: "/Do-Minus/Ca Spontoi/ca_spontoi_v1.avif",
     },
+    {
+        id: 4,
+        name: "Ca Negra",
+        type: "Secluded Villa",
+        imageUrl: "/Do-Minus/Ca Negra/ca_negra_v1.avif",
+    },
+    {
+        id: 5,
+        name: "Barca Winga",
+        type: "Riverside Escape",
+        imageUrl: "/Do-Minus/Barca Winga/barca_winga.avif",
+    },
 ];
 
 // --- Animation Variants ---
-const staggerContainer = {
+const staggerContainer: Variants = {
     hidden: { opacity: 0 },
     visible: {
         opacity: 1,
@@ -43,13 +55,13 @@ const staggerContainer = {
     },
 };
 
-const fadeUpVariants = {
+const fadeUpVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.2, 0.65, 0.3, 0.9] } },
 };
 
 // --- Luxury Typewriter Variants ---
-const luxuryTypewriterContainer = {
+const luxuryTypewriterContainer: Variants = {
     hidden: { opacity: 1 },
     visible: {
         opacity: 1,
@@ -133,6 +145,26 @@ export default function HeroSection() {
         }, 6000);
         return () => clearInterval(timer);
     }, []);
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "ArrowRight") {
+                setCurrentIndex((prev) => (prev === properties.length - 1 ? 0 : prev + 1));
+            } else if (e.key === "ArrowLeft") {
+                setCurrentIndex((prev) => (prev === 0 ? properties.length - 1 : prev - 1));
+            }
+        };
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, []);
+
+    const nextSlide = () => {
+        setCurrentIndex((prev) => (prev === properties.length - 1 ? 0 : prev + 1));
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prev) => (prev === 0 ? properties.length - 1 : prev - 1));
+    };
 
     const currentProperty = properties[currentIndex];
 
@@ -245,36 +277,57 @@ export default function HeroSection() {
             </div>
 
             {/* RIGHT COLUMN: Slideshow */}
-            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#050505]">
-                <AnimatePresence mode="popLayout">
+            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#050505] overflow-hidden">
+                <AnimatePresence mode="wait">
                     <motion.div
                         key={currentProperty.id}
-                        initial={{ opacity: 0, scale: 1.05 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 1.2, ease: "easeInOut" }}
+                        initial={{ opacity: 0, filter: "blur(8px)", scale: 1.05 }}
+                        animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+                        exit={{ opacity: 0, filter: "blur(8px)", scale: 0.95 }}
+                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                         className="absolute inset-0 w-full h-full"
                     >
-                        <img
+                        <motion.img
                             src={currentProperty.imageUrl}
                             alt={currentProperty.name}
                             className="object-cover w-full h-full"
+                            initial={{ scale: 1 }}
+                            animate={{ scale: 1.1 }}
+                            transition={{ duration: 10, ease: "linear" }}
                         />
-                        <div className="absolute inset-0 bg-black/20" />
                     </motion.div>
                 </AnimatePresence>
 
-                <div className="absolute bottom-8 right-8 text-right z-20">
-                    <p className="text-sm tracking-widest opacity-90 mb-1">
-                        {String(currentIndex + 1).padStart(2, '0')}/{String(properties.length).padStart(2, '0')}
-                    </p>
-                    <p className="text-lg tracking-wider">
-                        {currentProperty.name}
-                    </p>
-                    <p className="text-sm opacity-80 tracking-widest">
-                        {currentProperty.type}
-                    </p>
+                {/* Left/Right Overlays for Screen Control */}
+                <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex space-x-2 md:space-x-4 z-20">
+                    <button onClick={prevSlide} className="p-2 text-white/50 hover:text-white transition-all flex items-center justify-center hover:-translate-x-1 duration-300">
+                        <ChevronLeft size={36} strokeWidth={1} className="md:w-10 md:h-10" />
+                    </button>
+                    <button onClick={nextSlide} className="p-2 text-white/50 hover:text-white transition-all flex items-center justify-center hover:translate-x-1 duration-300">
+                        <ChevronRight size={36} strokeWidth={1} className="md:w-10 md:h-10" />
+                    </button>
                 </div>
+
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={currentProperty.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-right z-20 pointer-events-none"
+                    >
+                        <p className="text-xs md:text-sm tracking-[0.2em] opacity-80 mb-2 font-medium">
+                            {String(currentIndex + 1).padStart(2, '0')}/{String(properties.length).padStart(2, '0')}
+                        </p>
+                        <p className="text-xl md:text-3xl lg:text-4xl tracking-[0.15em] mb-2 font-light uppercase text-white/95">
+                            {currentProperty.name}
+                        </p>
+                        <p className="text-sm md:text-base lg:text-lg opacity-70 tracking-[0.2em] font-light text-white">
+                            {currentProperty.type}
+                        </p>
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </section>
     );

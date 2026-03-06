@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 // --- Types ---
 interface GridItem {
@@ -40,7 +40,7 @@ const gridData = {
 };
 
 // --- Animation Variants ---
-const textFadeUp = {
+const textFadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -49,7 +49,7 @@ const textFadeUp = {
   },
 };
 
-const staggerHeader = {
+const staggerHeader: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -57,7 +57,7 @@ const staggerHeader = {
   },
 };
 
-const imageReveal = (delay: number) => ({
+const imageReveal = (delay: number): Variants => ({
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
@@ -66,7 +66,7 @@ const imageReveal = (delay: number) => ({
   },
 });
 
-const imageInnerScale = (delay: number) => ({
+const imageInnerScale = (delay: number): Variants => ({
   hidden: { scale: 1.15 },
   visible: {
     scale: 1,
@@ -90,23 +90,24 @@ const SanctuaryCard = ({ item }: { item: GridItem }) => (
       className="object-cover w-full h-full transition-transform duration-[2000ms] ease-out group-hover:scale-110"
     />
     {/* Gradient Overlay for text readability */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 transition-opacity duration-500 group-hover:opacity-80" />
+    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/0 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
 
-    <h3 className="absolute bottom-6 left-6 text-xl md:text-2xl font-bold tracking-wide text-white drop-shadow-lg z-10">
+    <h3 className="absolute top-6 left-6 text-xl md:text-2xl font-bold tracking-wide text-white drop-shadow-lg z-10">
       {item.title}
     </h3>
   </motion.div>
 );
 
+
 export default function OurSanctuaries() {
   return (
     <section
-      className="relative w-full h-full bg-[#0a0a0a] text-[#f4f4f0] py-4 md:py-16 px-6 md:px-12 lg:px-20 flex flex-col items-center justify-center"
+      className="relative w-full min-h-screen bg-[#0a0a0a] text-[#f4f4f0] py-20 px-6 md:px-12 lg:px-20 flex flex-col items-center justify-center"
       style={{ fontFamily: '"Courier New", Courier, monospace' }}
     >
       {/* Header Section */}
       <motion.div
-        className="flex flex-col items-center mb-8 md:mb-16 text-center z-10 shrink-0"
+        className="flex flex-col items-center mb-8 md:mb-10 text-center z-10 shrink-0"
         variants={staggerHeader}
         initial="hidden"
         whileInView="visible"
@@ -121,7 +122,7 @@ export default function OurSanctuaries() {
 
         <motion.h2
           variants={textFadeUp}
-          className="text-4xl md:text-5xl lg:text-6xl tracking-tight font-light mb-8"
+          className="text-3xl md:text-4xl lg:text-5xl tracking-tight font-light mb-6"
         >
           The Architecture of Stillness
         </motion.h2>
@@ -136,7 +137,7 @@ export default function OurSanctuaries() {
       </motion.div>
 
       {/* Grid Layout */}
-      <div className="w-full max-w-[1400px] flex-1 min-h-0 flex md:grid md:grid-cols-3 gap-6 md:gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scrollbar-hide pb-4 md:pb-0">
+      <div className="w-full max-w-[70rem] h-[55vh] md:h-[60vh] lg:h-[65vh] min-h-[400px] flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scrollbar-hide pb-4 md:pb-0">
 
         {/* Left Column (Full Height) */}
         <div className="h-full w-[85vw] flex-shrink-0 md:w-auto md:flex-shrink snap-center">
@@ -149,7 +150,7 @@ export default function OurSanctuaries() {
         </div>
 
         {/* Right Column (Split Height) */}
-        <div className="h-full w-[85vw] flex-shrink-0 md:w-auto md:flex-shrink snap-center flex flex-col gap-6 md:gap-6 pb-2 md:pb-0">
+        <div className="h-full w-[85vw] flex-shrink-0 md:w-auto md:flex-shrink snap-center flex flex-col gap-4 md:gap-6 pb-2 md:pb-0">
           <div className="flex-1 min-h-0">
             <SanctuaryCard item={gridData.rightTop} />
           </div>
