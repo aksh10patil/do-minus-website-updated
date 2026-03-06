@@ -16,7 +16,7 @@ interface Property {
 const properties: Property[] = [
     {
         id: 1,
-        name: "Ca'Pedrot",
+        name: "Ca' Pedrotti",
         type: "Mountain Retreat",
         imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_v2.avif",
     },
@@ -158,14 +158,6 @@ export default function HeroSection() {
         return () => window.removeEventListener("keydown", handleKeyDown);
     }, []);
 
-    const nextSlide = () => {
-        setCurrentIndex((prev) => (prev === properties.length - 1 ? 0 : prev + 1));
-    };
-
-    const prevSlide = () => {
-        setCurrentIndex((prev) => (prev === 0 ? properties.length - 1 : prev - 1));
-    };
-
     const currentProperty = properties[currentIndex];
 
     return (
@@ -215,64 +207,35 @@ export default function HeroSection() {
             </AnimatePresence>
 
             {/* LEFT COLUMN */}
-            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#050505] p-6 md:p-12 lg:p-16 flex flex-col justify-between z-30">
-
-                <div className="flex justify-between items-start w-full">
-                    <button
-                        onClick={() => setIsMenuOpen(true)}
-                        className="p-2 -ml-2 hover:opacity-70 transition-opacity"
-                    >
-                        <Menu strokeWidth={1} size={32} />
-                    </button>
-
-                    <div className="text-right text-sm leading-relaxed tracking-wider opacity-80">
-                        <p>Wellness</p>
-                        <p>Nature</p>
-                        <p>Design</p>
-                    </div>
+            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#1b1a19] p-6 md:p-12 lg:p-16 flex flex-col justify-between z-30">
+                {/* Top Left Links */}
+                <div className="flex flex-col space-y-6 text-xs md:text-sm tracking-widest opacity-80 mt-8 text-[#d4d4d4]">
+                    <p className="cursor-pointer hover:opacity-100 transition-opacity">Properties</p>
+                    <p className="cursor-pointer hover:opacity-100 transition-opacity">Philosophy</p>
+                    <p className="cursor-pointer hover:opacity-100 transition-opacity">Experiences</p>
                 </div>
 
-                {/* Main Content Area */}
-                <div className="my-auto pt-24 pb-12">
-                    {/* Luxury Typewriter Title */}
+                {/* Right Middle Text */}
+                <div className="absolute right-12 top-[45%] -translate-y-1/2 text-right text-xs md:text-sm leading-8 tracking-widest opacity-40 text-[#d4d4d4]">
+                    <p>Wellness</p>
+                    <p>Nature</p>
+                    <p>Design</p>
+                </div>
+
+                {/* Bottom Left Title */}
+                <div className="mt-120 md:mb-8">
                     <motion.h1
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-[70px] sm:text-[90px] md:text-[100px] lg:text-[150px] xl:text-[185px] tracking-tight font-light mb-6 flex items-center whitespace-nowrap"
+                        className="text-[70px] sm:text-[90px] md:text-[110px] lg:text-[140px] xl:text-[195px] tracking-tighter font-light flex items-center whitespace-nowrap text-[#d6cdb7]"
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
                                 {char}
                             </motion.span>
                         ))}
-                        {/* Soft pulsing cursor */}
-                        <motion.span
-                            variants={cursorPulse}
-                            initial="hidden"
-                            animate="visible"
-                            className="inline-block w-[3px] h-[60px] sm:h-[80px] md:h-[100px] lg:h-[140px] xl:h-[180px] bg-[#bba371] ml-4 md:ml-6 opacity-50"
-                        />
                     </motion.h1>
-
-                    {/* Staggered Subtext */}
-                    <motion.div variants={staggerContainer} initial="hidden" animate="visible">
-                        <motion.p
-                            variants={fadeUpVariants}
-                            className="text-[#bba371] italic text-xl md:text-2xl mb-12 tracking-wide"
-                        >
-                            Design Retreats & Spa
-                        </motion.p>
-
-                        <motion.p
-                            variants={fadeUpVariants}
-                            className="max-w-sm text-sm md:text-base leading-loose opacity-80"
-                        >
-                            Exclusive spaces combining nature, wellbeing, and design.
-                            Historic buildings meticulously restored by Riccarda Guidotti
-                            and Andrea Frapolli.
-                        </motion.p>
-                    </motion.div>
                 </div>
             </div>
 
@@ -298,34 +261,19 @@ export default function HeroSection() {
                     </motion.div>
                 </AnimatePresence>
 
-                {/* Left/Right Overlays for Screen Control */}
-                <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 flex space-x-2 md:space-x-4 z-20">
-                    <button onClick={prevSlide} className="p-2 text-white/50 hover:text-white transition-all flex items-center justify-center hover:-translate-x-1 duration-300">
-                        <ChevronLeft size={36} strokeWidth={1} className="md:w-10 md:h-10" />
-                    </button>
-                    <button onClick={nextSlide} className="p-2 text-white/50 hover:text-white transition-all flex items-center justify-center hover:translate-x-1 duration-300">
-                        <ChevronRight size={36} strokeWidth={1} className="md:w-10 md:h-10" />
-                    </button>
-                </div>
-
+                {/* Vertical Text Overlay */}
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentProperty.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute bottom-6 right-6 md:bottom-10 md:right-10 text-right z-20 pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="absolute right-4 md:right-8 top-40 -translate-y-1/2 z-20 pointer-events-none text-[#e0e0e0] font-light tracking-[0.2em] text-md md:text-lg opacity-90 flex flex-col items-center gap-5"
+                        style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
                     >
-                        <p className="text-xs md:text-sm tracking-[0.2em] opacity-80 mb-2 font-medium">
-                            {String(currentIndex + 1).padStart(2, '0')}/{String(properties.length).padStart(2, '0')}
-                        </p>
-                        <p className="text-xl md:text-3xl lg:text-4xl tracking-[0.15em] mb-2 font-light uppercase text-white/95">
-                            {currentProperty.name}
-                        </p>
-                        <p className="text-sm md:text-base lg:text-lg opacity-70 tracking-[0.2em] font-light text-white">
-                            {currentProperty.type}
-                        </p>
+                        <p>{currentProperty.name}</p>
+                        <p>{currentProperty.type}</p>
                     </motion.div>
                 </AnimatePresence>
             </div>
