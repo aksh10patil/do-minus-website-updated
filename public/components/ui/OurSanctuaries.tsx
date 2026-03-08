@@ -16,13 +16,13 @@ const gridData = {
   left: {
     id: "inner-sanctum",
     title: "The Inner Sanctum",
-    imageUrl: "/Do-Minus/Ca Polete/ca_polete_v3.avif", // Rustic bedroom
+    imageUrl: "/Do-Minus/Ca_Polete/ca_polete_v3.avif", // Rustic bedroom
     delay: 0.2,
   },
   middle: {
     id: "nature",
     title: "The Nature",
-    imageUrl: "/Do-Minus/Ca Spontoi/ca_spontoi_1.avif", // Lake/forest
+    imageUrl: "/Do-Minus/Ca_Spontoi/ca_spontoi_1.avif", // Lake/forest
     delay: 0.4,
   },
   rightTop: {
@@ -34,7 +34,7 @@ const gridData = {
   rightBottom: {
     id: "dining",
     title: "Dining", // Fixed spelling from "Dinning" for professionalism, but easily changeable!
-    imageUrl: "/Do-Minus/Ca Negra/ca_negra_v2.avif", // Rustic dining/fireplace
+    imageUrl: "/Do-Minus/Ca_Negra/ca_negra_v2.avif", // Rustic dining/fireplace
     delay: 0.8,
   },
 };

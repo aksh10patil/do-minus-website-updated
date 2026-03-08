@@ -24,25 +24,25 @@ const properties: Property[] = [
         id: 2,
         name: "Ca Polete",
         type: "Thermal Spa",
-        imageUrl: "/Do-Minus/Ca Polete/ca_polete_v1.avif",
+        imageUrl: "/Do-Minus/Ca_Polete/ca_polete_v1.avif",
     },
     {
         id: 3,
         name: "Ca Spontoi",
         type: "Alpine Lodge",
-        imageUrl: "/Do-Minus/Ca Spontoi/ca_spontoi_v1.avif",
+        imageUrl: "/Do-Minus/Ca_Spontoi/ca_spontoi_v1.avif",
     },
     {
         id: 4,
         name: "Ca Negra",
         type: "Secluded Villa",
-        imageUrl: "/Do-Minus/Ca Negra/ca_negra_v1.avif",
+        imageUrl: "/Do-Minus/Ca_Negra/ca_negra_v1.avif",
     },
     {
         id: 5,
         name: "Barca Winga",
         type: "Riverside Escape",
-        imageUrl: "/Do-Minus/Barca Winga/barca_winga.avif",
+        imageUrl: "/Do-Minus/Barca_Winga/barca_winga.avif",
     },
 ];
 
@@ -210,9 +210,22 @@ export default function HeroSection() {
             <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#1b1a19] p-6 md:p-12 lg:p-16 flex flex-col justify-between z-30">
                 {/* Top Left Links */}
                 <div className="flex flex-col space-y-6 text-xs md:text-sm tracking-widest opacity-80 mt-8 text-[#d4d4d4]">
-                    <p className="cursor-pointer hover:opacity-100 transition-opacity">Properties</p>
-                    <p className="cursor-pointer hover:opacity-100 transition-opacity">Philosophy</p>
-                    <p className="cursor-pointer hover:opacity-100 transition-opacity">Experiences</p>
+
+                    <p className="group cursor-pointer hover:opacity-100 transition-opacity w-fit">
+                        Properties
+                        <span className="block h-[1px] w-0 bg-[#d4d4d4] transition-all duration-300 group-hover:w-full"></span>
+                    </p>
+
+                    <p className="group cursor-pointer hover:opacity-100 transition-opacity w-fit">
+                        Philosophy
+                        <span className="block h-[1px] w-0 bg-[#d4d4d4] transition-all duration-300 group-hover:w-full"></span>
+                    </p>
+
+                    <p className="group cursor-pointer hover:opacity-100 transition-opacity w-fit">
+                        Experiences
+                        <span className="block h-[1px] w-0 bg-[#d4d4d4] transition-all duration-300 group-hover:w-full"></span>
+                    </p>
+
                 </div>
 
                 {/* Right Middle Text */}
@@ -228,7 +241,7 @@ export default function HeroSection() {
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-[70px] md:text-[195px] tracking-tighter font-light flex items-center whitespace-nowrap text-[#d6cdb7]"
+                        className="text-[clamp(90px,13vw,180px)] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] translate-x-[1vw]"
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>

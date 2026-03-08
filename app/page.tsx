@@ -3,6 +3,7 @@ import PhilosophySection from "@/public/components/ui/Philosophy";
 import OurSanctuaries from "@/public/components/ui/OurSanctuaries";
 import CuratedImmersion from "@/public/components/ui/CuratedImmersion";
 import Footer from "@/public/components/ui/Footer";
+import StoryGrid from "@/public/components/ui/StoryGrid";
 export default function Home() {
   return (
     <main className="relative bg-[#050505]">
@@ -14,6 +15,11 @@ export default function Home() {
       {/* Philosophy Wrapper */}
       <div className="sticky top-0 h-[100dvh] w-full z-10 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
         <PhilosophySection />
+      </div>
+
+      {/* Story Grid Wrapper */}
+      <div className="sticky top-0 h-[100dvh] w-full z-15 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+        <StoryGrid />
       </div>
 
       {/* Sanctuaries Wrapper */}

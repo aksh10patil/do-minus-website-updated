@@ -8,19 +8,19 @@ const immersionData = {
   spa: {
     subtitle: "DO-MINUS SPA",
     title: "Experience the Nature\nand mindfullnes",
-    imageUrl: "/Do-Minus/Ca Spontoi/ca_spontoi_2.avif", // Spa/candles
+    imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_4.avif",// Spa/candles
     delay: 0.2,
   },
   dining: {
     subtitle: "DINING",
     title: "The Cuisine like never\nbefore",
-    imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_4.avif", // Fine dining/wine
+    imageUrl: "/Do-Minus/Ca_Spontoi/ca_spontoi_2.avif", // Fine dining/wine
     delay: 0.4,
   },
   mountain: {
     subtitle: "SILENT TALES",
     title: "MOUNTAIN\nEXPEDITIONS",
-    imageUrl: "/Do-Minus/Ca Negra/ca_negra_v1.avif", // Epic mountain
+    imageUrl: "/Do-Minus/Ca_Negra/ca_negra_v1.avif", // Epic mountain
     delay: 0.6,
   }
 };
@@ -170,7 +170,7 @@ export default function CuratedImmersion() {
             <p className="text-[10px] md:text-xs tracking-[0.3em] uppercase opacity-90 mb-4 drop-shadow-md">
               {immersionData.mountain.subtitle}
             </p>
-            <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-widest whitespace-pre-line leading-tight mb-8 drop-shadow-xl">
+            <h3 className="text-3xl md:text-5xl lg:text-3xl font-bold tracking-widest whitespace-pre-line leading-tight mb-8 drop-shadow-xl">
               {immersionData.mountain.title}
             </h3>
 

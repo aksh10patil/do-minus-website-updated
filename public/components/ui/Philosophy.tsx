@@ -106,11 +106,6 @@ export default function PhilosophySection() {
                     TEXTURE | SPACE | NATURE
                 </motion.h2>
 
-                {/* Vertical Connecting Line */}
-                <motion.div
-                    variants={lineReveal}
-                    className="w-[1px] bg-white mt-8 md:mt-12"
-                />
             </motion.div>
 
             {/* Images Grid Showcase - fixed paddings between images */}
