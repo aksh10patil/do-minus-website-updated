@@ -7,29 +7,32 @@ import StoryGrid from "@/public/components/ui/StoryGrid";
 export default function Home() {
   return (
     <main className="relative bg-[#050505]">
-      {/* Hero Wrapper */}
-      <div className="sticky top-0 h-[100dvh] w-full z-0 overflow-hidden">
-        <HeroSection />
-      </div>
+      {/* Container to restrict sticky behavior so the footer doesn't get overlapped */}
+      <div className="relative w-full">
+        {/* Hero Wrapper */}
+        <div className="sticky top-0 h-[100dvh] w-full z-0 overflow-hidden">
+          <HeroSection />
+        </div>
 
-      {/* Philosophy Wrapper */}
-      <div className="sticky top-0 h-[100dvh] w-full z-10 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
-        <PhilosophySection />
-      </div>
+        {/* Philosophy Wrapper */}
+        <div className="sticky top-0 h-[100dvh] w-full z-10 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+          <PhilosophySection />
+        </div>
 
-      {/* Story Grid Wrapper */}
-      <div className="sticky top-0 h-[100dvh] w-full z-15 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
-        <StoryGrid />
-      </div>
+        {/* Story Grid Wrapper */}
+        <div className="sticky top-0 h-[100dvh] w-full z-15 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+          <StoryGrid />
+        </div>
 
-      {/* Sanctuaries Wrapper */}
-      <div className="sticky top-0 h-[100dvh] w-full z-20 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
-        <OurSanctuaries />
-      </div>
+        {/* Sanctuaries Wrapper */}
+        <div className="sticky top-0 h-[100dvh] w-full z-20 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+          <OurSanctuaries />
+        </div>
 
-      {/* Immersion Wrapper */}
-      <div className="sticky top-0 h-[100dvh] w-full z-30 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
-        <CuratedImmersion />
+        {/* Immersion Wrapper */}
+        <div className="sticky top-0 h-[100dvh] w-full z-30 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+          <CuratedImmersion />
+        </div>
       </div>
 
       {/* Footer Wrapper */}
