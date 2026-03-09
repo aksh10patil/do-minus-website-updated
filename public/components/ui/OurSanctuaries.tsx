@@ -112,7 +112,7 @@ const SanctuaryCard = ({ item }: { item: GridItem }) => (
 export default function OurSanctuaries() {
   return (
     <section
-      className="relative w-full min-h-screen bg-[#0a0a0a] text-[#f4f4f0] py-12 px-6 md:px-12 lg:px-20 flex flex-col items-center justify-center"
+      className="relative w-full min-h-screen bg-[#fffff] text-[#f4f4f0] py-12 px-6 md:px-12 lg:px-20 flex flex-col items-center justify-center"
       style={{ fontFamily: '"Courier New", Courier, monospace' }}
     >
       {/* Header Section */}
