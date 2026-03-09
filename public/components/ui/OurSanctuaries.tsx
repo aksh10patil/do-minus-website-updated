@@ -9,6 +9,8 @@ interface GridItem {
   title: string;
   imageUrl: string;
   delay: number;
+  imagePosition?: string,
+  zoom?: number
 }
 
 // --- Mock Data ---
@@ -16,8 +18,10 @@ const gridData = {
   left: {
     id: "inner-sanctum",
     title: "The Inner Sanctum",
-    imageUrl: "/Do-Minus/Ca_Polete/ca_polete_v3.avif", // Rustic bedroom
+    imageUrl: "/Do-Minus/Ca_Polete/ca_polete_v2.avif",
     delay: 0.2,
+    imagePosition: "50% 85%",
+    zoom: 0.75
   },
   middle: {
     id: "nature",
@@ -28,14 +32,16 @@ const gridData = {
   rightTop: {
     id: "architecture",
     title: "Architecture",
-    imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_6.avif", // Blueprint/sketch
+    imageUrl: "/Do-Minus/Barca_Winga/barca_winga_boat_map.avif", // Blueprint/sketch
     delay: 0.6,
   },
   rightBottom: {
     id: "dining",
     title: "Dining", // Fixed spelling from "Dinning" for professionalism, but easily changeable!
-    imageUrl: "/Do-Minus/Ca_Negra/ca_negra_v2.avif", // Rustic dining/fireplace
+    imageUrl: "/Do-Minus/Ca_Spontoi/ca_spontoi_2.avif", // Rustic dining/fireplace
     delay: 0.8,
+    imagePosition: "bottom left",
+    zoom: 0.75
   },
 };
 
@@ -87,9 +93,13 @@ const SanctuaryCard = ({ item }: { item: GridItem }) => (
       variants={imageInnerScale(item.delay)}
       src={item.imageUrl}
       alt={item.title}
-      className="object-cover w-full h-full transition-transform duration-[2000ms] ease-out group-hover:scale-110"
+      style={{
+        objectPosition: item.imagePosition ?? "center",
+        scale: item.zoom ?? 1
+      }}
+      className="object-cover w-full h-full transition-transform duration-[2000ms] ease-out group-hover:scale-105"
     />
-    {/* Gradient Overlay for text readability */}
+
     <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/0 to-transparent transition-opacity duration-500 group-hover:opacity-80" />
 
     <h3 className="absolute top-6 left-6 text-xl md:text-2xl font-bold tracking-wide text-white drop-shadow-lg z-10">
@@ -102,7 +112,7 @@ const SanctuaryCard = ({ item }: { item: GridItem }) => (
 export default function OurSanctuaries() {
   return (
     <section
-      className="relative w-full min-h-screen bg-[#0a0a0a] text-[#f4f4f0] py-20 px-6 md:px-12 lg:px-20 flex flex-col items-center justify-center"
+      className="relative w-full min-h-screen bg-[#0a0a0a] text-[#f4f4f0] py-12 px-6 md:px-12 lg:px-20 flex flex-col items-center justify-center"
       style={{ fontFamily: '"Courier New", Courier, monospace' }}
     >
       {/* Header Section */}
@@ -137,7 +147,7 @@ export default function OurSanctuaries() {
       </motion.div>
 
       {/* Grid Layout */}
-      <div className="w-full max-w-[70rem] h-[55vh] md:h-[60vh] lg:h-[65vh] min-h-[400px] flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scrollbar-hide pb-4 md:pb-0">
+      <div className="w-full max-w-[70rem] h-[45vh] md:h-[60vh] lg:h-[65vh] min-h-[400px] flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scrollbar-hide pb-4 md:pb-0">
 
         {/* Left Column (Full Height) */}
         <div className="h-full w-[85vw] flex-shrink-0 md:w-auto md:flex-shrink snap-center">
@@ -151,10 +161,10 @@ export default function OurSanctuaries() {
 
         {/* Right Column (Split Height) */}
         <div className="h-full w-[85vw] flex-shrink-0 md:w-auto md:flex-shrink snap-center flex flex-col gap-4 md:gap-6 pb-2 md:pb-0">
-          <div className="flex-1 min-h-0">
+          <div className="h-[40%]">
             <SanctuaryCard item={gridData.rightTop} />
           </div>
-          <div className="flex-1 min-h-0">
+          <div className="h-[60%]">
             <SanctuaryCard item={gridData.rightBottom} />
           </div>
         </div>
