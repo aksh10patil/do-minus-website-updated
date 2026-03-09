@@ -236,12 +236,12 @@ export default function HeroSection() {
                 </div>
 
                 {/* Bottom Left Title */}
-                <div className="mt-120 md:mb-8">
+                <div className="mt-auto mb-[4vh]">
                     <motion.h1
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-[clamp(90px,10.4vw,300px)] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] translate-x-[1vw]"
+                        className="text-[clamp(90px,10.4vw,300px)] leading-none tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] translate-x-[1vw]"
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
