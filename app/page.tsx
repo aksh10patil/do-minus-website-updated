@@ -4,6 +4,7 @@ import OurSanctuaries from "@/public/components/ui/OurSanctuaries";
 import CuratedImmersion from "@/public/components/ui/CuratedImmersion";
 import Footer from "@/public/components/ui/Footer";
 import StoryGrid from "@/public/components/ui/StoryGrid";
+import PropertyMap from "@/public/components/ui/PropertyMap";
 
 export default function Home() {
   return (
@@ -22,6 +23,10 @@ export default function Home() {
 
       <div className="relative w-full z-10 overflow-hidden">
         <OurSanctuaries />
+      </div>
+
+      <div className="relative w-full z-10 overflow-hidden bg-[#050505]">
+        <PropertyMap />
       </div>
 
       <div className="relative w-full z-10 overflow-hidden">
