@@ -4,39 +4,31 @@ import OurSanctuaries from "@/public/components/ui/OurSanctuaries";
 import CuratedImmersion from "@/public/components/ui/CuratedImmersion";
 import Footer from "@/public/components/ui/Footer";
 import StoryGrid from "@/public/components/ui/StoryGrid";
+
 export default function Home() {
   return (
-    <main className="relative bg-[#050505]">
-      {/* Container to restrict sticky behavior so the footer doesn't get overlapped */}
-      <div className="relative w-full">
-        {/* Hero Wrapper */}
-        <div className="sticky top-0 h-[100dvh] w-full z-0 overflow-hidden">
-          <HeroSection />
-        </div>
-
-        {/* Philosophy Wrapper */}
-        <div className="sticky top-0 h-[100dvh] w-full z-10 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
-          <PhilosophySection />
-        </div>
-
-        {/* Story Grid Wrapper */}
-        <div className="sticky top-0 h-[100dvh] w-full z-15 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
-          <StoryGrid />
-        </div>
-
-        {/* Sanctuaries Wrapper */}
-        <div className="sticky top-0 h-[100dvh] w-full z-20 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
-          <OurSanctuaries />
-        </div>
-
-        {/* Immersion Wrapper */}
-        <div className="sticky top-0 h-[100dvh] w-full z-30 overflow-hidden shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
-          <CuratedImmersion />
-        </div>
+    <main className="relative bg-[#050505] flex flex-col">
+      <div className="relative w-full h-[100dvh] z-0 overflow-hidden">
+        <HeroSection />
       </div>
 
-      {/* Footer Wrapper */}
-      <div className="relative w-full z-40 bg-[#050505] shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+      <div className="relative w-full z-10 overflow-hidden">
+        <PhilosophySection />
+      </div>
+
+      <div className="relative w-full z-10 overflow-hidden">
+        <StoryGrid />
+      </div>
+
+      <div className="relative w-full z-10 overflow-hidden">
+        <OurSanctuaries />
+      </div>
+
+      <div className="relative w-full z-10 overflow-hidden">
+        <CuratedImmersion />
+      </div>
+
+      <div className="relative w-full z-20 bg-[#050505]">
         <Footer />
       </div>
     </main>
