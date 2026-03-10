@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 export default function StoryGrid() {
     return (
         <section
-            className="relative w-full h-[100dvh] bg-[#050505] text-[#a3a3a3] pt-24 md:pt-28 pb-6 md:pb-12 px-6 md:px-12 lg:px-20 flex justify-center items-center overflow-hidden"
+            className="relative w-full min-h-[100dvh] bg-[#050505] text-[#a3a3a3] pt-24 md:pt-28 pb-6 md:pb-12 px-6 md:px-12 lg:px-20 flex justify-center items-center"
             style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
-            <div className="max-w-[75rem] w-full h-full max-h-[900px] mx-auto flex flex-col gap-6 md:gap-10">
+            <div className="max-w-[75rem] w-full mx-auto flex flex-col gap-6 md:gap-10">
 
                 {/* Top Text Section */}
                 <div className="flex w-full justify-end shrink-0">
@@ -37,10 +37,10 @@ export default function StoryGrid() {
                 </div>
 
                 {/* 3-Box Layout */}
-                <div className="w-full flex-1 flex flex-col gap-3 md:gap-4 min-h-0 relative z-10 pb-4 md:pb-0 overflow-y-auto md:overflow-hidden">
+                <div className="w-full flex flex-col gap-3 md:gap-4 relative z-10">
 
                     {/* Top Row: Experiences & Properties */}
-                    <div className="w-full flex-[1.2] flex flex-col md:flex-row gap-3 md:gap-4 min-h-[50vh] md:min-h-0 shrink-0">
+                    <div className="w-full flex flex-col md:flex-row gap-3 md:gap-4 min-h-[50vh] md:min-h-0 md:h-[400px] lg:h-[480px] shrink-0">
 
                         {/* Top Left: Experiences */}
                         <motion.div
@@ -85,7 +85,7 @@ export default function StoryGrid() {
                     </div>
 
                     {/* Bottom Row: Philosophy */}
-                    <div className="w-full flex-1 min-h-[30vh] md:min-h-0 shrink-0">
+                    <div className="w-full min-h-[30vh] md:min-h-0 md:h-[300px] lg:h-[360px] shrink-0">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}

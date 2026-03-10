@@ -25,7 +25,7 @@ const properties: Property[] = [
         textTheme: "light",
     },
     {
-        id: 5,
+        id: 6,
         name: "Ca' Pedrot",
         type: "Mountain Retreat",
         imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_v1.avif",
@@ -182,7 +182,7 @@ export default function HeroSection() {
 
     return (
         <section
-            className="flex flex-col md:flex-row h-full w-full text-[#f4f4f0] overflow-hidden"
+            className="flex h-screen w-full text-[#f4f4f0] overflow-hidden"
             style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             {/* MENU OVERLAY */}
@@ -227,7 +227,7 @@ export default function HeroSection() {
             </AnimatePresence>
 
             {/* LEFT COLUMN */}
-            <div className="relative w-full md:w-max flex-shrink-0 h-[50%] md:h-full bg-[#1b1a19] pl-6 pr-4 pt-6 pb-0 md:pl-12 md:pr-12 md:pt-12 md:pb-0 lg:pl-16 lg:pr-16 lg:pt-16 lg:pb-0 flex flex-col justify-between z-30">
+            <div className="relative flex-[0.6] h-full bg-[#1b1a19] pl-6 pr-4 pt-6 pb-0 md:pl-12 md:pr-12 md:pt-12 md:pb-0 lg:pl-16 lg:pr-16 lg:pt-16 lg:pb-0 flex flex-col justify-between z-30">
                 {/* Top Left Links */}
                 <div className="flex flex-col space-y-6 text-xs md:text-sm tracking-widest opacity-80 mt-8 text-[#d4d4d4]">
 
@@ -261,7 +261,8 @@ export default function HeroSection() {
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-[clamp(40px,20vw,205px)] leading-[0.85] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md translate-y-[5vh] md:translate-y-0 translate-x-0 -mr-[0.55em]"
+                        // calc(14.8vw - 1rem) is the exact mathematical ratio needed to perfectly hit the 60% line before the "S"
+                        className="text-[clamp(100px,calc(14.8vw-1rem),3000px)] leading-[0.85] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md translate-y-[5vh] md:translate-y-0 translate-x-0 -mr-[0.55em]"
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
@@ -273,7 +274,7 @@ export default function HeroSection() {
             </div>
 
             {/* RIGHT COLUMN: Slideshow */}
-            <div className="relative w-full flex-1 h-[50%] md:h-full bg-[#050505] overflow-hidden">
+            <div className="relative flex-[0.4] h-full bg-[#050505] overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentProperty.id}
@@ -304,12 +305,19 @@ export default function HeroSection() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.8 }}
-                        className={`absolute right-4 md:right-8 top-40 -translate-y-1/2 z-20 pointer-events-none font-light tracking-[0.2em] text-md md:text-lg flex flex-col items-center gap-5 drop-shadow-lg ${currentProperty.textTheme === "dark" ? "text-black" : "text-white"
+                        className={`absolute right-4 md:right-8 top-12 z-20 pointer-events-none font-light tracking-[0.2em] text-md md:text-lg flex flex-col items-end gap-0 drop-shadow-lg ${currentProperty.textTheme === "dark" ? "text-black" : "text-white"
                             }`}
-                        style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", textShadow: currentProperty.textTheme === "dark" ? "0 2px 10px rgba(255,255,255,0.3)" : "0 2px 10px rgba(0,0,0,0.5)" }}
+                        style={{
+                            writingMode: "vertical-rl",
+                            transform: "rotate(180deg)",
+                            textShadow:
+                                currentProperty.textTheme === "dark"
+                                    ? "0 2px 10px rgba(255,255,255,0.3)"
+                                    : "0 2px 10px rgba(0,0,0,0.5)",
+                        }}
                     >
-                        <p>{currentProperty.name}</p>
-                        <p>{currentProperty.type}</p>
+                        <p className="m-0">{currentProperty.name}</p>
+                        <p className="m-0">{currentProperty.type}</p>
                     </motion.div>
                 </AnimatePresence>
             </div>

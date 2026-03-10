@@ -172,12 +172,14 @@ export default function PropertyMap() {
                         <button
                             className="text-[10px] text-white/50 hover:text-white uppercase tracking-[0.2em] transition-colors duration-300 border-b border-white/20 hover:border-white pb-1"
                             onClick={() => {
-                                mapRef.current?.flyTo({
+                                mapRef.current?.easeTo({
                                     center: [8.97, 46.195],
                                     zoom: 10,
                                     pitch: 45,
                                     bearing: -15,
-                                    duration: 2000
+                                    duration: 4000,
+                                    easing: (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+                                    essential: true
                                 });
                             }}
                         >
@@ -199,12 +201,13 @@ export default function PropertyMap() {
                             className="group flex flex-col gap-1 cursor-pointer border-b border-white/10 pb-4 hover:border-[#bba371]/50 transition-colors"
                             onMouseEnter={() => {
                                 setHoveredProperty(property.id);
-                                mapRef.current?.flyTo({
+                                mapRef.current?.easeTo({
                                     center: [property.lng, property.lat],
                                     zoom: 13.5,
                                     pitch: 60,
-                                    bearing: Math.random() * 40 - 20, // Add slight random bearing for dynamic feel
-                                    duration: 2500,
+                                    bearing: -15 + ((i % 3) * 10), // Consistent, slight bearing shifts per property
+                                    duration: 3500,
+                                    easing: (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
                                     essential: true
                                 });
                             }}
