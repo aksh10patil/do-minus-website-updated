@@ -10,39 +10,59 @@ interface Property {
     name: string;
     type: string;
     imageUrl: string;
+    imagePosition?: string;
+    textTheme?: "light" | "dark";
 }
 
 // --- Mock Data ---
 const properties: Property[] = [
     {
         id: 1,
-        name: "Ca' Pedrotti",
+        name: "Ca' Pedrot",
         type: "Mountain Retreat",
-        imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_v2.avif",
+        imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_6.avif",
+        imagePosition: "right",
+        textTheme: "light",
+    },
+    {
+        id: 5,
+        name: "Ca' Pedrot",
+        type: "Mountain Retreat",
+        imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_v1.avif",
+        imagePosition: "right",
+        textTheme: "light",
     },
     {
         id: 2,
         name: "Ca Polete",
         type: "Thermal Spa",
-        imageUrl: "/Do-Minus/Ca_Polete/ca_polete_v1.avif",
+        imageUrl: "/Do-Minus/Ca_Polete/ca_polete_2.avif",
+        imagePosition: "center",
+        textTheme: "light",
     },
     {
         id: 3,
         name: "Ca Spontoi",
         type: "Alpine Lodge",
-        imageUrl: "/Do-Minus/Ca_Spontoi/ca_spontoi_v1.avif",
+        imageUrl: "/Do-Minus/Ca_Spontoi/ca_sponoti_v2.avif",
+        imagePosition: "center",
+        textTheme: "light",
     },
     {
         id: 4,
         name: "Ca Negra",
         type: "Secluded Villa",
         imageUrl: "/Do-Minus/Ca_Negra/ca_negra_v1.avif",
+        imagePosition: "center",
+        textTheme: "light",
     },
     {
         id: 5,
         name: "Barca Winga",
         type: "Riverside Escape",
         imageUrl: "/Do-Minus/Barca_Winga/barca_winga.avif",
+        imagePosition: "left",
+        textTheme: "dark",
     },
 ];
 
@@ -207,7 +227,7 @@ export default function HeroSection() {
             </AnimatePresence>
 
             {/* LEFT COLUMN */}
-            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#1b1a19] p-6 md:p-12 lg:p-16 flex flex-col justify-between z-30">
+            <div className="relative w-full md:w-[55%] h-[50%] md:h-full bg-[#1b1a19] p-6 md:p-12 lg:p-16 flex flex-col justify-between z-30">
                 {/* Top Left Links */}
                 <div className="flex flex-col space-y-6 text-xs md:text-sm tracking-widest opacity-80 mt-8 text-[#d4d4d4]">
 
@@ -236,12 +256,12 @@ export default function HeroSection() {
                 </div>
 
                 {/* Bottom Left Title */}
-                <div className="mt-auto mb-[4vh]">
+                <div className="mt-auto mb-[2vh] md:mb-[5vh] relative z-40 w-max pointer-events-none">
                     <motion.h1
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-[clamp(90px,10.4vw,300px)] leading-none tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] translate-x-[1vw]"
+                        className="text-[clamp(45px,9vw,250px)] leading-[0.85] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md translate-y-[5vh] md:translate-y-0 translate-x-0 md:translate-x-[6vw] lg:translate-x-[10vw] xl:translate-x-[12vw]"
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
@@ -253,7 +273,7 @@ export default function HeroSection() {
             </div>
 
             {/* RIGHT COLUMN: Slideshow */}
-            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#050505] overflow-hidden">
+            <div className="relative w-full md:w-[45%] h-[50%] md:h-full bg-[#050505] overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentProperty.id}
@@ -267,12 +287,14 @@ export default function HeroSection() {
                             src={currentProperty.imageUrl}
                             alt={currentProperty.name}
                             className="object-cover w-full h-full"
+                            style={{ objectPosition: currentProperty.imagePosition || "center" }}
                             initial={{ scale: 1 }}
                             animate={{ scale: 1.1 }}
                             transition={{ duration: 10, ease: "linear" }}
                         />
                     </motion.div>
                 </AnimatePresence>
+
 
                 {/* Vertical Text Overlay */}
                 <AnimatePresence mode="wait">
@@ -282,8 +304,9 @@ export default function HeroSection() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="absolute right-4 md:right-8 top-40 -translate-y-1/2 z-20 pointer-events-none text-[#e0e0e0] font-light tracking-[0.2em] text-md md:text-lg opacity-90 flex flex-col items-center gap-5"
-                        style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                        className={`absolute right-4 md:right-8 top-40 -translate-y-1/2 z-20 pointer-events-none font-light tracking-[0.2em] text-md md:text-lg flex flex-col items-center gap-5 drop-shadow-lg ${currentProperty.textTheme === "dark" ? "text-black" : "text-white"
+                            }`}
+                        style={{ writingMode: "vertical-rl", transform: "rotate(180deg)", textShadow: currentProperty.textTheme === "dark" ? "0 2px 10px rgba(255,255,255,0.3)" : "0 2px 10px rgba(0,0,0,0.5)" }}
                     >
                         <p>{currentProperty.name}</p>
                         <p>{currentProperty.type}</p>
