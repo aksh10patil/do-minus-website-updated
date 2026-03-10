@@ -227,7 +227,7 @@ export default function HeroSection() {
             </AnimatePresence>
 
             {/* LEFT COLUMN */}
-            <div className="relative w-full md:w-[55%] h-[50%] md:h-full bg-[#1b1a19] p-6 md:p-12 lg:p-16 flex flex-col justify-between z-30">
+            <div className="relative w-full md:w-max flex-shrink-0 h-[50%] md:h-full bg-[#1b1a19] pl-6 pr-4 pt-6 pb-0 md:pl-12 md:pr-12 md:pt-12 md:pb-0 lg:pl-16 lg:pr-16 lg:pt-16 lg:pb-0 flex flex-col justify-between z-30">
                 {/* Top Left Links */}
                 <div className="flex flex-col space-y-6 text-xs md:text-sm tracking-widest opacity-80 mt-8 text-[#d4d4d4]">
 
@@ -249,19 +249,19 @@ export default function HeroSection() {
                 </div>
 
                 {/* Right Middle Text */}
-                <div className="absolute right-12 top-[45%] -translate-y-1/2 text-right text-xs md:text-sm leading-8 tracking-widest opacity-40 text-[#d4d4d4]">
+                <div className="absolute right-6 md:right-8 lg:right-12 top-[45%] -translate-y-1/2 text-right text-xs md:text-sm leading-8 tracking-widest opacity-40 text-[#d4d4d4]">
                     <p>Wellness</p>
                     <p>Nature</p>
                     <p>Design</p>
                 </div>
 
                 {/* Bottom Left Title */}
-                <div className="mt-auto mb-[2vh] md:mb-[5vh] relative z-40 w-max pointer-events-none">
+                <div className="mt-auto relative z-40 w-max pointer-events-none">
                     <motion.h1
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-[clamp(45px,9vw,250px)] leading-[0.85] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md translate-y-[5vh] md:translate-y-0 translate-x-0 md:translate-x-[6vw] lg:translate-x-[10vw] xl:translate-x-[12vw]"
+                        className="text-[clamp(40px,20vw,205px)] leading-[0.85] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md translate-y-[5vh] md:translate-y-0 translate-x-0 -mr-[0.55em]"
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
@@ -273,7 +273,7 @@ export default function HeroSection() {
             </div>
 
             {/* RIGHT COLUMN: Slideshow */}
-            <div className="relative w-full md:w-[45%] h-[50%] md:h-full bg-[#050505] overflow-hidden">
+            <div className="relative w-full flex-1 h-[50%] md:h-full bg-[#050505] overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentProperty.id}

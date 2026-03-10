@@ -36,39 +36,19 @@ export default function StoryGrid() {
                     </motion.div>
                 </div>
 
-                {/* 3-Box Asymmetric Layout */}
-                <div className="w-full flex-1 flex flex-row gap-3 md:gap-4 min-h-0 overflow-x-auto overflow-y-hidden md:overflow-hidden snap-x snap-mandatory md:snap-none scrollbar-hide pb-4 md:pb-0 relative z-10">
+                {/* 3-Box Layout */}
+                <div className="w-full flex-1 flex flex-col gap-3 md:gap-4 min-h-0 relative z-10 pb-4 md:pb-0 overflow-y-auto md:overflow-hidden">
 
-                    {/* Left Column (Desktop) / Slide 1 (Mobile) */}
-                    <div className="w-[85vw] md:w-[45%] flex-shrink-0 md:flex-shrink-0 flex flex-col gap-3 md:gap-4 h-full min-h-0 snap-center md:snap-align-none">
+                    {/* Top Row: Experiences & Properties */}
+                    <div className="w-full flex-[1.2] flex flex-col md:flex-row gap-3 md:gap-4 min-h-[50vh] md:min-h-0 shrink-0">
 
-                        {/* Top Left: Philosophy */}
+                        {/* Top Left: Experiences */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                             viewport={{ once: true, margin: "-100px" }}
-                            className="w-full flex-[1.4] relative overflow-hidden group flex items-center justify-center shrink-0 min-h-0"
-                        >
-                            <div className="absolute inset-0 bg-transparent group-hover:bg-[#050505]/40 z-10 transition-colors duration-[0.5s]" />
-                            <img
-                                src="/Do-Minus/Ca_Pedrot/ca_pedrot_2.avif"
-                                alt="the philosophy"
-                                className="absolute inset-0 w-full h-full object-cover transition-all duration-[0.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:opacity-70 group-hover:grayscale-[0.2]"
-                            />
-                            {/* Overlay Text */}
-                            <div className="relative z-20 text-[#f4f4f0] text-xl md:text-2xl tracking-[0.2em] font-light pointer-events-none drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-[0.5s]">
-                                the philosophy
-                            </div>
-                        </motion.div>
-
-                        {/* Bottom Left: Experiences */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            className="w-full flex-1 relative overflow-hidden group flex items-center justify-center shrink-0 min-h-0"
+                            className="w-full md:w-[40%] h-full relative overflow-hidden group flex items-center justify-center shrink-0"
                         >
                             <div className="absolute inset-0 bg-transparent group-hover:bg-[#050505]/40 z-10 transition-colors duration-[0.5s]" />
                             <img
@@ -82,18 +62,13 @@ export default function StoryGrid() {
                             </div>
                         </motion.div>
 
-                    </div>
-
-                    {/* Right Column (Desktop) / Slide 2 (Mobile) */}
-                    <div className="w-[85vw] md:flex-1 flex-shrink-0 md:flex-shrink-0 flex items-center justify-center h-full min-h-0 snap-center md:snap-align-none">
-
-                        {/* Right: Properties */}
+                        {/* Top Right: Properties */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                             viewport={{ once: true, margin: "-100px" }}
-                            className="w-full h-full md:h-[85%] relative overflow-hidden group flex items-center justify-center shrink-0 min-h-0"
+                            className="w-full md:w-[60%] h-full relative overflow-hidden group flex items-center justify-center shrink-0"
                         >
                             <div className="absolute inset-0 bg-transparent group-hover:bg-[#050505]/40 z-10 transition-colors duration-[0.5s]" />
                             <img
@@ -107,6 +82,28 @@ export default function StoryGrid() {
                             </div>
                         </motion.div>
 
+                    </div>
+
+                    {/* Bottom Row: Philosophy */}
+                    <div className="w-full flex-1 min-h-[30vh] md:min-h-0 shrink-0">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="w-full h-full relative overflow-hidden group flex items-center justify-center shrink-0"
+                        >
+                            <div className="absolute inset-0 bg-transparent group-hover:bg-[#050505]/40 z-10 transition-colors duration-[0.5s]" />
+                            <img
+                                src="/Do-Minus/Ca_Pedrot/ca_pedrot_2.avif"
+                                alt="the philosophy"
+                                className="absolute inset-0 w-full h-full object-cover transition-all duration-[0.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105 group-hover:opacity-70 group-hover:grayscale-[0.2]"
+                            />
+                            {/* Overlay Text */}
+                            <div className="relative z-20 text-[#f4f4f0] text-xl md:text-2xl tracking-[0.2em] font-light pointer-events-none drop-shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-[0.5s]">
+                                the philosophy
+                            </div>
+                        </motion.div>
                     </div>
 
                 </div>
