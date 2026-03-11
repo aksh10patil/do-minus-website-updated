@@ -305,7 +305,7 @@ export default function HeroSection() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.8 }}
-                        className={`absolute right-4 md:right-8 top-4 z-20 pointer-events-none font-light tracking-[0.2em] text-md md:text-lg flex flex-col items-end gap-0 drop-shadow-lg ${currentProperty.textTheme === "dark" ? "text-black" : "text-white"
+                        className={`absolute right-4 md:right-2 top-4 z-20 pointer-events-none font-light tracking-[0.2em] text-md md:text-lg flex flex-col items-end gap-0 drop-shadow-lg ${currentProperty.textTheme === "dark" ? "text-black" : "text-white"
                             }`}
                         style={{
                             writingMode: "vertical-rl",
