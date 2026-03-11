@@ -51,10 +51,10 @@ export default function PropertyMap() {
 
         map.setTerrain({ source: "mapbox-dem", exaggeration: 1.3 });
 
-        /* Fog perfectly matched to #050505 for seamless background integration */
+        /* Fog perfectly matched to #1A1A1A for seamless background integration */
         map.setFog({
-            color: "rgb(5,5,5)",
-            "high-color": "rgb(5,5,5)",
+            color: "#1A1A1A",
+            "high-color": "#1A1A1A",
             "horizon-blend": 0.2
         });
 
@@ -74,7 +74,7 @@ export default function PropertyMap() {
     const activePropertyImages = properties.find(p => p.id === hoveredProperty)?.images || [];
 
     return (
-        <section className="relative w-full h-screen bg-[#050505] overflow-hidden" style={{ fontFamily: '"Courier New", Courier, monospace' }}>
+        <section className="relative w-full h-screen bg-[#1A1A1A] overflow-hidden" style={{ fontFamily: '"Courier New", Courier, monospace' }}>
             {/* The Map */}
             <div className="absolute inset-0 z-0">
                 <Map
@@ -117,7 +117,7 @@ export default function PropertyMap() {
                                 <div className={`relative w-4 h-4 rounded-full border-2 border-white shadow-[0_0_15px_3px_rgba(255,215,0,0.6)] transition duration-300 ${hoveredProperty === property.id ? 'bg-white shadow-[0_0_25px_8px_rgba(255,215,0,0.9)] scale-150' : 'bg-[#FFD700] group-hover:scale-125'}`} />
 
                                 {/* Label */}
-                                <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition duration-300 text-xs tracking-widest bg-[#050505]/95 backdrop-blur-md px-4 py-2 border whitespace-nowrap shadow-[0_5px_15px_rgba(255,215,0,0.15)] ${hoveredProperty === property.id ? 'opacity-100 border-[#FFD700] text-[#FFD700]' : 'opacity-0 border-[#333] text-[#f4f4f0] group-hover:opacity-100'}`}>
+                                <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition duration-300 text-xs tracking-widest bg-[#1A1A1A]/95 backdrop-blur-md px-4 py-2 border whitespace-nowrap shadow-[0_5px_15px_rgba(255,215,0,0.15)] ${hoveredProperty === property.id ? 'opacity-100 border-[#FFD700] text-[#FFD700]' : 'opacity-0 border-[#333] text-[#f4f4f0] group-hover:opacity-100'}`}>
                                     {property.name}
                                 </div>
                             </motion.div>
@@ -127,9 +127,9 @@ export default function PropertyMap() {
             </div>
 
             {/* Seamless Overlay Gradients */}
-            <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#050505] via-[#050505]/40 to-[#050505]" />
-            <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#050505] via-transparent to-[#050505]" />
-            <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#050505] via-transparent to-transparent h-32" />
+            <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#1A1A1A] via-[#1A1A1A]/40 to-[#1A1A1A]" />
+            <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#1A1A1A] via-transparent to-[#1A1A1A]" />
+            <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#1A1A1A] via-transparent to-transparent h-32" />
 
             {/* Floating Image Gallery */}
             <div className="absolute inset-0 z-15 pointer-events-none overflow-hidden">
@@ -159,7 +159,7 @@ export default function PropertyMap() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="flex flex-col gap-6 pointer-events-auto bg-[#050505]/20 backdrop-blur-sm p-8 rounded-2xl border border-white/5 shadow-2xl"
+                    className="flex flex-col gap-6 pointer-events-auto bg-[#1A1A1A]/20 backdrop-blur-sm p-8 rounded-2xl border border-white/5 shadow-2xl"
                 >
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
@@ -174,6 +174,7 @@ export default function PropertyMap() {
                             onClick={() => {
                                 mapRef.current?.easeTo({
                                     center: [8.97, 46.195],
+                                    padding: { top: 0, bottom: 0, left: 0, right: 0 },
                                     zoom: 10,
                                     pitch: 45,
                                     bearing: -15,
@@ -201,8 +202,15 @@ export default function PropertyMap() {
                             className="group flex flex-col gap-1 cursor-pointer border-b border-white/10 pb-4 hover:border-[#bba371]/50 transition-colors"
                             onMouseEnter={() => {
                                 setHoveredProperty(property.id);
+                                const isMobile = window.innerWidth < 768;
                                 mapRef.current?.easeTo({
                                     center: [property.lng, property.lat],
+                                    padding: {
+                                        top: window.innerHeight * 0.15, // Provide top padding to prevent clipping (e.g. Ca Negra near a mountain)
+                                        bottom: 0,
+                                        left: isMobile ? 0 : window.innerWidth * 0.1, // Account for left images
+                                        right: isMobile ? 0 : 400 // Account for right sidebar list
+                                    },
                                     zoom: 13.5,
                                     pitch: 60,
                                     bearing: -15 + ((i % 3) * 10), // Consistent, slight bearing shifts per property

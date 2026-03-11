@@ -5,7 +5,7 @@ import PropertyMap from "@/public/components/ui/PropertyMap";
 
 export default function Home() {
   return (
-    <main className="relative bg-[#050505] flex flex-col">
+    <main className="relative flex flex-col">
       <div className="relative w-full h-[100dvh] z-0 overflow-hidden">
         <HeroSection />
       </div>
@@ -14,11 +14,11 @@ export default function Home() {
         <StoryGrid />
       </div>
 
-      <div className="relative w-full z-10 overflow-hidden bg-[#050505]">
+      <div className="relative w-full z-10 overflow-hidden">
         <PropertyMap />
       </div>
 
-      <div className="relative w-full z-20 bg-[#050505]">
+      <div className="relative w-full z-20">
         <Footer />
       </div>
     </main>

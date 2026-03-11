@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function StoryGrid() {
     return (
         <section
-            className="relative w-full min-h-[100dvh] bg-[#050505] text-[#a3a3a3] pt-24 md:pt-28 pb-6 md:pb-12 px-6 md:px-12 lg:px-20 flex justify-center items-center"
+            className="relative w-full min-h-[100dvh] bg-[#1A1A1A] text-[#a3a3a3] pt-24 md:pt-28 pb-6 md:pb-12 px-6 md:px-12 lg:px-20 flex justify-center items-center"
             style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             <div className="max-w-[75rem] w-full mx-auto flex flex-col gap-6 md:gap-10">
@@ -19,15 +19,12 @@ export default function StoryGrid() {
                         viewport={{ once: true, margin: "-100px" }}
                         className="w-full md:w-[70%] lg:w-[45%] text-sm md:text-base leading-relaxed tracking-wide text-white/70"
                     >
-                        <p className="text-[#f4f4f0] leading-relaxed">
+                        <p className="text-[#f4f4f0] text-sm md:text-base leading-relaxed">
                             <span className="block">
                                 Old stone, warm wood, silence.
                             </span>
 
-                            Five Ticinese houses rescued from time and restored with the care they
-                            deserve, furnished with vintage design pieces, surrounded by nature that
-                            asks nothing of you. A mountain cottage at 1,390 metres. A village home
-                            steps from a waterfall. A sailboat rocking on Lago Maggiore.
+                            A curated collection of boutique guesthouses in Ticino. For lovers of design, nature, and wellness. Plan your stay and let time slow down.
 
                             <span className="block">
                                 This is Do-Minus.
