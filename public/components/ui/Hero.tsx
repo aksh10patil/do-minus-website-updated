@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 // --- Types ---
 interface Property {
@@ -147,11 +148,11 @@ const menuItemVariants: any = {
 };
 
 const menuItems = [
-    { name: "Home", href: "#" },
-    { name: "Philosophy", href: "#" },
-    { name: "Region", href: "#" },
-    { name: "Properties", href: "#" },
-    { name: "Contact Us", href: "#" },
+    { name: "Home", href: "/" },
+    { name: "Philosophy", href: "/philosophy" },
+    { name: "Region", href: "/region" },
+    { name: "Properties", href: "/properties" },
+    { name: "Contact Us", href: "/contact" },
 ];
 
 export default function HeroSection() {
@@ -231,15 +232,26 @@ export default function HeroSection() {
                 {/* Top Left Links */}
                 <div className="flex flex-col space-y-6 text-xs md:text-sm tracking-widest opacity-80 mt-8 text-[#d4d4d4]">
 
-                    <p className="group cursor-pointer hover:opacity-100 transition-opacity w-fit">
-                        Properties
-                        <span className="block h-[1px] w-0 bg-[#d4d4d4] transition-all duration-300 group-hover:w-full"></span>
-                    </p>
+                    <div className="group flex flex-col w-fit">
+                        <Link href="/properties/ca-spontoi" className="cursor-pointer hover:opacity-100 transition-opacity w-fit pointer-events-auto pb-1">
+                            Properties
+                            <span className="block h-[1px] w-0 bg-[#d4d4d4] transition-all duration-300 group-hover:w-full"></span>
+                        </Link>
+                        <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                            <div className="overflow-hidden flex flex-col space-y-3 pl-4 text-xs md:text-sm opacity-90 pointer-events-auto">
+                                <Link href="/properties/ca-spontoi" className="hover:opacity-100 hover:text-white transition-opacity w-fit block pt-2">Cà Spontoi</Link>
+                                <Link href="/properties/ca-polete" className="hover:opacity-100 hover:text-white transition-opacity w-fit block">Cà Pölete</Link>
+                                <Link href="/properties/ca-pedrot" className="hover:opacity-100 hover:text-white transition-opacity w-fit block">Cà Pedrot</Link>
+                                <Link href="/properties/ca-negra" className="hover:opacity-100 hover:text-white transition-opacity w-fit block">Cà Negra</Link>
+                                <Link href="/properties/barca-winga" className="hover:opacity-100 hover:text-white transition-opacity w-fit block pb-2">Barca Winga</Link>
+                            </div>
+                        </div>
+                    </div>
 
-                    <p className="group cursor-pointer hover:opacity-100 transition-opacity w-fit">
+                    <Link href="/philosophy" className="group cursor-pointer hover:opacity-100 transition-opacity w-fit block">
                         Philosophy
                         <span className="block h-[1px] w-0 bg-[#d4d4d4] transition-all duration-300 group-hover:w-full"></span>
-                    </p>
+                    </Link>
 
                     <p className="group cursor-pointer hover:opacity-100 transition-opacity w-fit">
                         Experiences
