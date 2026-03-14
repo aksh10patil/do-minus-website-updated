@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 
 
-export default function Navbar() {
+export default function Navbar({ hidden = false }: { hidden?: boolean }) {
     const navLinks = [
         { name: "Portfolio", href: "#" },
         { name: "Philosophy", href: "#" },
@@ -15,9 +15,9 @@ export default function Navbar() {
     return (
         <motion.nav
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, ease: [0.2, 0.65, 0.3, 0.9] }}
-            className="absolute top-0 left-0 h-full w-max z-50 pointer-events-none px-6 md:px-12 lg:px-16"
+            animate={{ opacity: hidden ? 0 : 1 }}
+            transition={{ duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
+            className={`absolute top-0 left-0 h-full w-max z-20 px-6 md:px-12 lg:px-16 ${hidden ? 'pointer-events-none' : 'pointer-events-none'}`}
             style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             {/* Logo Section */}
@@ -29,7 +29,7 @@ export default function Navbar() {
             </div>
 
             {/* Desktop Links — pinned to a fixed vertical position */}
-            <div className="absolute top-8 md:top-12 left-12 flex flex-col space-y-4 text-xs tracking-widest opacity-90 text-[#d4d4d4] pointer-events-auto bg-[#1A1A1A]/20 backdrop-blur-sm border border-white/5 shadow-2xl rounded-xl p-4 max-w-[150px]">
+            <div className="absolute top-8 md:top-12 left-12 flex flex-col z-25 space-y-4 text-xs tracking-widest opacity-90 text-[#d4d4d4] pointer-events-auto bg-[#1A1A1A]/20 backdrop-blur-sm border border-white/5 shadow-2xl rounded-xl p-4 max-w-[150px]">
                 {navLinks.map((link, i) => (
                     <Link
                         key={i}

@@ -79,9 +79,14 @@ const ScrollingColumn = ({ images, reverse = false, speed = 20 }: { images: stri
     );
 };
 
-export default function PropertyMap() {
+export default function PropertyMap({ onHoverChange }: { onHoverChange?: (hovered: boolean) => void }) {
     const mapRef = useRef<any>(null);
     const [hoveredProperty, setHoveredProperty] = useState<string | null>(null);
+
+    const handleSetHoveredProperty = (id: string | null) => {
+        setHoveredProperty(id);
+        onHoverChange?.(id !== null);
+    };
 
     const handleLoad = (e: any) => {
         const map = e.target;
@@ -173,8 +178,8 @@ export default function PropertyMap() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 1 + i * 0.2, duration: 0.8 }}
                                 className="group relative cursor-pointer"
-                                onMouseEnter={() => setHoveredProperty(property.id)}
-                                onMouseLeave={() => setHoveredProperty(null)}
+                                onMouseEnter={() => handleSetHoveredProperty(property.id)}
+                                onMouseLeave={() => handleSetHoveredProperty(null)}
                             >
                                 {/* Outer Glow */}
                                 <div className={`absolute w-12 h-12 -top-4 -left-4 rounded-full blur-md transition duration-500 ${hoveredProperty === property.id ? 'bg-[#FFD700]/60 scale-150' : 'bg-[#FFD700]/30 animate-pulse'}`} />
@@ -298,7 +303,7 @@ export default function PropertyMap() {
                             }}
                             className="group flex flex-col gap-1 cursor-pointer border-b border-white/10 pb-4 hover:border-[#bba371]/50 transition-colors"
                             onMouseEnter={() => {
-                                setHoveredProperty(property.id);
+                                handleSetHoveredProperty(property.id);
                                 mapRef.current?.easeTo({
                                     center: [property.lng, property.lat],
                                     padding: { top: 0, bottom: 0, left: 0, right: 0 },
@@ -310,7 +315,7 @@ export default function PropertyMap() {
                                     essential: true
                                 });
                             }}
-                            onMouseLeave={() => setHoveredProperty(null)}
+                            onMouseLeave={() => handleSetHoveredProperty(null)}
                         >
                             <div className="flex items-center justify-between">
                                 <span className={`text-lg md:text-xl tracking-wide transition-colors duration-300 ${hoveredProperty === property.id ? 'text-[#bba371]' : 'text-white group-hover:text-[#bba371]'}`}>
