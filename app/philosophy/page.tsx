@@ -7,20 +7,23 @@ export default function PhilosophyPage() {
         <main className="min-h-screen bg-[#1A1A1A] text-white selection:bg-white/20" style={{ fontFamily: "Courier, monospace" }}>
 
             {/* Hero Section */}
-            <section className="relative w-full min-h-[90vh] flex flex-col justify-center px-8 md:px-16 lg:px-32">
-                <LuxReveal delay={0.2} direction="up" duration={1.2}>
-                    <p className="text-[#A3A3A3] text-sm md:text-base tracking-[0.2em] uppercase mb-8">
-                        Do-Minus
-                    </p>
-                    <h1 className="text-[clamp(50px,8vw,160px)] leading-[1.05] tracking-[0.1em] font-light uppercase">
-                        Philosophy
-                    </h1>
-                </LuxReveal>
+            <section className="relative w-full min-h-[90vh] flex justify-center w-full">
+                <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-32 flex flex-col justify-center">
+                    <LuxReveal delay={0.2} direction="up" duration={1.2}>
+                        <p className="text-[#A3A3A3] text-sm md:text-base tracking-[0.2em] uppercase mb-8">
+                            Do-Minus
+                        </p>
+                        <h1 className="text-[clamp(50px,8vw,160px)] leading-[1.05] tracking-[0.1em] font-light uppercase">
+                            Philosophy
+                        </h1>
+                    </LuxReveal>
+                </div>
             </section>
 
             {/* 1. Do Less */}
-            <section className="py-24 md:py-[160px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-32 border-t border-[#333333]/50">
-                <div className="lg:w-1/3 flex justify-start lg:justify-end w-full">
+            <section className="py-24 md:py-[160px] border-t border-[#333333]/50 flex justify-center w-full">
+                <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
+                    <div className="lg:w-1/3 flex justify-start lg:justify-end w-full">
                     <LuxReveal direction="up">
                         <h2 className="text-[clamp(30px,4vw,60px)] leading-[1.1] tracking-wide font-light text-left lg:text-right">
                             Do Less
@@ -64,11 +67,13 @@ export default function PhilosophyPage() {
                         </div>
                     </LuxReveal>
                 </div>
+                </div>
             </section>
 
             {/* 2. A Return to Simplicity */}
-            <section className="py-24 md:py-[160px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row gap-16 lg:gap-32 border-t border-[#333333]/50">
-                <div className="lg:w-1/2 flex flex-col justify-center">
+            <section className="py-24 md:py-[160px] border-t border-[#333333]/50 flex justify-center w-full">
+                <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row gap-16 lg:gap-32">
+                    <div className="lg:w-1/2 flex flex-col justify-center">
                     <LuxReveal direction="up">
                         <div className="relative w-full aspect-[3/4] overflow-hidden">
                             <Image
@@ -109,11 +114,13 @@ export default function PhilosophyPage() {
                         </LuxReveal>
                     </div>
                 </div>
+                </div>
             </section>
 
             {/* 3. Architecture That Respects Time */}
-            <section className="py-24 md:py-[160px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row-reverse gap-16 lg:gap-32 border-t border-[#333333]/50 bg-[#151515]">
-                <div className="lg:w-1/2 flex flex-col justify-center">
+            <section className="py-24 md:py-[160px] border-t border-[#333333]/50 bg-[#151515] flex justify-center w-full">
+                <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row-reverse gap-16 lg:gap-32">
+                    <div className="lg:w-1/2 flex flex-col justify-center">
                     <LuxReveal direction="up">
                         <div className="relative w-full aspect-square md:aspect-[4/3] overflow-hidden">
                             <Image
@@ -152,11 +159,13 @@ export default function PhilosophyPage() {
                         </div>
                     </div>
                 </div>
+                </div>
             </section>
 
             {/* 4. Design That Tells a Story */}
-            <section className="py-24 md:py-[160px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row gap-16 lg:gap-32 border-t border-[#333333]/50">
-                <div className="lg:w-1/2 flex flex-col justify-center gap-12">
+            <section className="py-24 md:py-[160px] border-t border-[#333333]/50 flex justify-center w-full">
+                <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row gap-16 lg:gap-32">
+                    <div className="lg:w-1/2 flex flex-col justify-center gap-12">
                     <LuxReveal direction="up">
                         <h2 className="text-[clamp(30px,4vw,60px)] leading-[1.1] tracking-wide font-light">
                             Design That<br />Tells a Story
@@ -200,11 +209,13 @@ export default function PhilosophyPage() {
                         </LuxReveal>
                     </div>
                 </div>
+                </div>
             </section>
 
             {/* 5. Nature as Co-Author */}
-            <section className="py-24 md:py-[160px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-32 border-t border-[#333333]/50 bg-[#151515]">
-                <div className="lg:w-1/3 flex justify-start w-full">
+            <section className="py-24 md:py-[160px] border-t border-[#333333]/50 bg-[#151515] flex justify-center w-full">
+                <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-32">
+                    <div className="lg:w-1/3 flex justify-start w-full">
                     <LuxReveal direction="up">
                         <h2 className="text-[clamp(30px,4vw,60px)] leading-[1.1] tracking-wide font-light text-left">
                             Nature as<br />Co-Author
@@ -242,11 +253,13 @@ export default function PhilosophyPage() {
                         </LuxReveal>
                     </div>
                 </div>
+                </div>
             </section>
 
             {/* 6. Wellness Through Stillness */}
-            <section className="py-24 md:py-[160px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row gap-16 lg:gap-32 border-t border-[#333333]/50">
-                <div className="lg:w-1/2 flex flex-col justify-center">
+            <section className="py-24 md:py-[160px] border-t border-[#333333]/50 flex justify-center w-full">
+                <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row gap-16 lg:gap-32">
+                    <div className="lg:w-1/2 flex flex-col justify-center">
                     <LuxReveal direction="up" delay={0.7}>
                         <div className="relative w-full aspect-[3/4] md:aspect-[4/3] overflow-hidden">
                             <Image
@@ -283,11 +296,13 @@ export default function PhilosophyPage() {
                         </LuxReveal>
                     </div>
                 </div>
+                </div>
             </section>
 
             {/* 7. A Different Kind of Luxury */}
-            <section className="py-24 md:py-[160px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-32 border-t border-[#333333]/50 bg-[#151515]">
-                <div className="lg:w-1/3 flex justify-start lg:justify-end w-full">
+            <section className="py-24 md:py-[160px] border-t border-[#333333]/50 bg-[#151515] flex justify-center w-full">
+                <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-32 flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
+                    <div className="lg:w-1/3 flex justify-start lg:justify-end w-full">
                     <LuxReveal direction="up">
                         <h2 className="text-[clamp(30px,4vw,60px)] leading-[1.1] tracking-wide font-light text-left lg:text-right">
                             A Different<br />Kind of Luxury
@@ -324,12 +339,14 @@ export default function PhilosophyPage() {
                         </LuxReveal>
                     </div>
                 </div>
+                </div>
             </section>
 
             {/* 8. An Invitation */}
-            <section className="py-32 md:py-[200px] px-8 md:px-16 lg:px-32 flex flex-col items-center text-center border-t border-[#333333]/50">
-                <LuxReveal direction="up">
-                    <h2 className="text-[clamp(40px,5vw,80px)] leading-[1.1] tracking-wide font-light mb-12">
+            <section className="py-32 md:py-[200px] border-t border-[#333333]/50 flex justify-center w-full text-center">
+                <div className="w-full max-w-[1920px] px-8 md:px-16 lg:px-32 flex flex-col items-center">
+                    <LuxReveal direction="up">
+                        <h2 className="text-[clamp(40px,5vw,80px)] leading-[1.1] tracking-wide font-light mb-12">
                         An Invitation
                     </h2>
                 </LuxReveal>
@@ -347,6 +364,7 @@ export default function PhilosophyPage() {
                         <p className="mt-12 text-[#A3A3A3]">At Do-Minus, you do not simply check in.</p>
                         <p className="mt-4 text-2xl md:text-4xl text-white tracking-[0.1em] uppercase">You return to yourself.</p>
                     </LuxReveal>
+                </div>
                 </div>
             </section>
 

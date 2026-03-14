@@ -132,14 +132,16 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
     return (
         <main className="relative flex flex-col bg-[#1A1A1A] text-[#ffffff] min-h-screen font-mono selection:bg-[#C6A] selection:text-white">
             {/* Navigation Header */}
-            <nav className="absolute top-0 w-full z-50 flex justify-between items-center py-8 px-8 lg:px-32 text-[#FFFFFF] mix-blend-difference">
-                <Link href="/" className="uppercase text-xs sm:text-sm tracking-[0.15em] hover:opacity-70 transition-opacity">
-                    Do-Minus
-                </Link>
-                <span className="uppercase text-xs sm:text-sm tracking-[0.15em] opacity-70">
-                    {propertyData.location}
-                </span>
-            </nav>
+            <div className="absolute top-0 w-full z-50 flex justify-center mix-blend-difference pointer-events-none">
+                <nav className="w-full max-w-[1920px] flex justify-between items-center py-8 px-8 lg:px-32 text-[#FFFFFF] pointer-events-auto">
+                    <Link href="/" className="uppercase text-xs sm:text-sm tracking-[0.15em] hover:opacity-70 transition-opacity">
+                        Do-Minus
+                    </Link>
+                    <span className="uppercase text-xs sm:text-sm tracking-[0.15em] opacity-70">
+                        {propertyData.location}
+                    </span>
+                </nav>
+            </div>
 
             {/* Hero Section */}
             <section className="relative w-full h-[100dvh] overflow-hidden flex flex-col justify-end items-center">
@@ -155,76 +157,124 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                 </div>
 
                 <div className="relative z-10 w-full flex flex-col items-center justify-end text-center pb-4">
-                    <h1 className="text-[clamp(50px,12vw,250px)] leading-[0.8] tracking-[0.10em] uppercase font-light drop-shadow-2xl translate-y-[10%]" style={{ fontFamily: "Courier, Courier New, monospace" }}>
+                    <h1 className="text-[clamp(50px,12vw,250px)] leading-[0.8] tracking-[0.10em] uppercase font-thin text-[#d6cdb7] translate-y-[10%]" style={{ fontFamily: "Courier, Courier New, monospace"}}>
                         <Typewriter text={propertyData.name} mode="luxury" className="inline-flex items-center whitespace-nowrap" />
                     </h1>
                 </div>
             </section>
 
             {/* Philosophy Section */}
-            <section className="w-full py-32 lg:py-56 px-8 lg:px-32 flex justify-center items-center bg-[#1A1A1A]">
-                <LuxReveal delay={0.1} duration={1.2}>
-                    <h2 className="text-2xl md:text-3xl lg:text-5xl leading-[1.2] font-light text-center tracking-wide text-[#FFFFFF] max-w-5xl whitespace-pre-line">
-                        {propertyData.philosophy}
-                    </h2>
-                </LuxReveal>
+            <section className="w-full py-32 lg:py-56 bg-[#1A1A1A] flex justify-center">
+                <div className="w-full max-w-[1920px] px-8 lg:px-32 flex justify-center items-center">
+                    <LuxReveal delay={0.1} duration={1.2}>
+                        <h2 className="text-2xl md:text-3xl lg:text-5xl leading-[1.2] font-light text-center tracking-wide text-[#FFFFFF] max-w-5xl whitespace-pre-line">
+                            {propertyData.philosophy}
+                        </h2>
+                    </LuxReveal>
+                </div>
             </section>
 
             {/* Description & Details Section */}
-            <section className="w-full py-24 px-8 lg:px-32 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 border-t border-[#6B6B6B]/30 bg-[#1A1A1A]">
-                <div className="lg:col-span-6 flex flex-col justify-center">
-                    <LuxReveal delay={0.1}>
-                        <p className="text-base md:text-lg leading-relaxed tracking-wide text-[#A3A3A3] max-w-lg">
-                            {propertyData.description}
-                        </p>
-                    </LuxReveal>
-                </div>
-                <div className="lg:col-span-1 hidden lg:block"></div>
-                <div className="lg:col-span-5 flex flex-col justify-center space-y-8">
-                    {Object.entries(propertyData.details).map(([key, value], index) => (
-                        <LuxReveal key={key} delay={0.2 + (index * 0.1)}>
-                            <div className="flex justify-between items-center border-b border-[#6B6B6B]/30 pb-4">
-                                <span className="text-xs uppercase tracking-[0.15em] text-[#A3A3A3]">{key}</span>
-                                <span className="text-sm tracking-wide text-[#FFFFFF] font-light">{value}</span>
-                            </div>
+            <section className="w-full py-24 border-t border-[#6B6B6B]/30 bg-[#1A1A1A] flex justify-center">
+                <div className="w-full max-w-[1920px] px-8 lg:px-32 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+                    <div className="lg:col-span-6 flex flex-col justify-center">
+                        <LuxReveal delay={0.1}>
+                            <p className="text-base md:text-lg leading-relaxed tracking-wide text-[#A3A3A3] max-w-lg">
+                                {propertyData.description}
+                            </p>
                         </LuxReveal>
-                    ))}
+                    </div>
+                    <div className="lg:col-span-1 hidden lg:block"></div>
+                    <div className="lg:col-span-5 flex flex-col justify-center space-y-8">
+                        {Object.entries(propertyData.details).map(([key, value], index) => (
+                            <LuxReveal key={key} delay={0.2 + (index * 0.1)}>
+                                <div className="flex justify-between items-center border-b border-[#6B6B6B]/30 pb-4">
+                                    <span className="text-xs uppercase tracking-[0.15em] text-[#A3A3A3]">{key}</span>
+                                    <span className="text-sm tracking-wide text-[#FFFFFF] font-light">{value}</span>
+                                </div>
+                            </LuxReveal>
+                        ))}
+                    </div>
                 </div>
             </section>
 
             {/* Image Gallery / The Space */}
-            <section className="w-full py-24 lg:py-40 px-8 lg:px-16 bg-[#1A1A1A]">
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-4 lg:gap-8">
-                    {propertyData.images.map((img, index) => (
-                        <div key={index} className="relative w-full overflow-hidden group break-inside-avoid mb-4 lg:mb-8">
-                            <Image
-                                src={img.src}
-                                alt={img.alt}
-                                width={0}
-                                height={0}
-                                sizes="100vw"
-                                className="w-full h-auto origin-center transform scale-100 group-hover:scale-[1.03] transition-transform duration-[15s] ease-out brightness-[0.85] group-hover:brightness-100"
-                            />
-                            {/* Hover Overlay */}
-                            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6 text-center">
-                                <span className="text-white text-sm md:text-base tracking-[0.2em] uppercase font-light translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                    {img.alt}
-                                </span>
-                                <div className="h-[1px] w-0 bg-white/50 mt-4 group-hover:w-16 transition-all duration-700 delay-100"></div>
+            <section className="w-full py-24 lg:py-40 bg-[#1A1A1A] flex justify-center">
+                <div className="w-full max-w-[1920px] px-8 lg:px-16">
+                    <div className="columns-1 md:columns-2 lg:columns-3 gap-4 lg:gap-8">
+                        {propertyData.images.map((img, index) => (
+                            <div key={index} className="relative w-full overflow-hidden group break-inside-avoid mb-4 lg:mb-8">
+                                <Image
+                                    src={img.src}
+                                    alt={img.alt}
+                                    width={0}
+                                    height={0}
+                                    sizes="100vw"
+                                    className="w-full h-auto origin-center transform scale-100 group-hover:scale-[1.03] transition-transform duration-[15s] ease-out brightness-[0.85] group-hover:brightness-100"
+                                />
+                                {/* Hover Overlay */}
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-6 text-center">
+                                    <span className="text-white text-sm md:text-base tracking-[0.2em] uppercase font-light translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        {img.alt}
+                                    </span>
+                                    <div className="h-[1px] w-0 bg-white/50 mt-4 group-hover:w-16 transition-all duration-700 delay-100"></div>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Explore Other Properties */}
+            <section className="w-full py-24 border-t border-[#6B6B6B]/30 bg-[#1A1A1A] flex flex-col items-center">
+                <div className="w-full max-w-[1920px] px-8 lg:px-16 flex flex-col">
+                    <div className="w-full flex justify-center mb-16">
+                        <LuxReveal>
+                            <h3 className="text-2xl md:text-3xl font-light tracking-[0.15em] text-[#FFFFFF] text-center uppercase" style={{ fontFamily: "Courier, Courier New, monospace" }}>
+                                Explore Other Properties
+                            </h3>
+                        </LuxReveal>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {Object.entries(propertiesData)
+                            .filter(([key]) => key !== (propertiesData[slug] ? slug : "ca-spontoi"))
+                            .map(([key, prop], index) => (
+                                <LuxReveal key={key} delay={index * 0.1}>
+                                    <Link href={`/properties/${key}`} className="group flex flex-col gap-6">
+                                        <div className="relative w-full aspect-[4/5] overflow-hidden">
+                                            <Image
+                                                src={prop.heroImage}
+                                                alt={prop.name}
+                                                fill
+                                                className="object-cover transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out"
+                                            />
+                                            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-1000"></div>
+                                        </div>
+                                        <div className="flex flex-col items-center text-center">
+                                            <h4 className="text-lg md:text-xl tracking-[0.1em] text-[#d6cdb7] uppercase" style={{ fontFamily: "Courier, Courier New, monospace" }}>
+                                                {prop.name}
+                                            </h4>
+                                            <span className="text-xs tracking-[0.15em] text-[#A3A3A3] uppercase mt-2">
+                                                {prop.location}
+                                            </span>
+                                        </div>
+                                    </Link>
+                                </LuxReveal>
+                            ))}
+                    </div>
                 </div>
             </section>
 
             {/* Contact / Booking */}
-            <section className="w-full py-32 lg:py-56 px-8 lg:px-32 flex flex-col items-center justify-center text-center bg-[#1A1A1A]">
-                <h3 className="text-3xl md:text-5xl font-light tracking-[0.1em] mb-16">
-                    READY TO RETURN?
-                </h3>
-                <button className="px-12 py-5 border border-[#FFFFFF] bg-transparent text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#0a0a0a] transition-all duration-700 uppercase tracking-[0.2em] text-xs">
-                    Request Booking
-                </button>
+            <section className="w-full py-32 lg:py-56 bg-[#1A1A1A] flex justify-center">
+                <div className="w-full max-w-[1920px] px-8 lg:px-32 flex flex-col items-center justify-center text-center">
+                    <h3 className="text-3xl md:text-5xl font-light tracking-[0.1em] mb-16">
+                        READY TO RETURN?
+                    </h3>
+                    <button className="px-12 py-5 border border-[#FFFFFF] bg-transparent text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#0a0a0a] transition-all duration-700 uppercase tracking-[0.2em] text-xs">
+                        Request Booking
+                    </button>
+                </div>
             </section>
 
             <Footer />
