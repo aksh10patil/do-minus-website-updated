@@ -261,7 +261,7 @@ export default function HeroSection() {
                 </div>
 
                 {/* Right Middle Text */}
-                <div className="absolute right-6 md:right-8 lg:right-12 top-[45%] -translate-y-1/2 text-right text-xs md:text-sm leading-8 tracking-widest opacity-40 text-[#d4d4d4]">
+                <div className="absolute right-6 md:right-8 lg:right-12 top-[38%] -translate-y-1/2 text-right text-xs md:text-sm leading-8 tracking-widest opacity-40 text-[#d4d4d4]">
                     <p>Wellness</p>
                     <p>Nature</p>
                     <p>Design</p>
@@ -274,7 +274,7 @@ export default function HeroSection() {
                         initial="hidden"
                         animate="visible"
                         // calc(14.8vw - 1rem) is the exact mathematical ratio needed to perfectly hit the 60% line before the "S"
-                        className="text-[clamp(100px,calc(14.8vw-1rem),3000px)] leading-[0.85] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md translate-y-[5vh] md:translate-y-0 translate-x-0 -mr-[0.55em]"
+                        className="text-[clamp(100px,calc(14.8vw-1rem),3000px)] leading-[0.85] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md -mr-[0.55em]"
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
@@ -317,7 +317,7 @@ export default function HeroSection() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.8 }}
-                        className={`absolute right-4 md:right-2 top-4 z-20 pointer-events-none font-light tracking-[0.2em] text-md md:text-lg flex flex-col items-end gap-0 drop-shadow-lg ${currentProperty.textTheme === "dark" ? "text-black" : "text-white"
+                        className={`absolute right-4 md:right-2 top-[calc(1.5rem+32px)] z-20 pointer-events-none font-light tracking-[0.2em] text-md md:text-lg flex flex-col items-end gap-0 drop-shadow-lg ${currentProperty.textTheme === "dark" ? "text-black" : "text-white"
                             }`}
                         style={{
                             writingMode: "vertical-rl",

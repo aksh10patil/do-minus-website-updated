@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Navbar({ hidden = false }: { hidden?: boolean }) {
     const navLinks = [
-        { name: "Portfolio", href: "#" },
+        { name: "Properties", href: "/properties" },
         { name: "Philosophy", href: "#" },
         { name: "Journal", href: "#" },
         { name: "Contact", href: "#" },
@@ -29,7 +29,7 @@ export default function Navbar({ hidden = false }: { hidden?: boolean }) {
             </div>
 
             {/* Desktop Links — pinned to a fixed vertical position */}
-            <div className="absolute top-8 md:top-12 left-12 flex flex-col z-25 space-y-4 text-xs tracking-widest opacity-90 text-[#d4d4d4] pointer-events-auto bg-[#1A1A1A]/20 backdrop-blur-sm border border-white/5 shadow-2xl rounded-xl p-4 max-w-[150px]">
+            <div className="absolute top-8 md:top-12 left-12 flex flex-col z-25 space-y-4 text-xs tracking-widest opacity-90 text-[#d4d4d4] pointer-events-auto bg-[#1A1A1A]/20 backdrop-blur-sm border border-white/5 shadow-2xl  p-4 max-w-[150px]">
                 {navLinks.map((link, i) => (
                     <Link
                         key={i}

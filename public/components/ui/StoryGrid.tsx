@@ -11,7 +11,7 @@ export default function StoryGrid() {
             <div className="max-w-[75rem] w-full mx-auto flex flex-col gap-6 md:gap-10">
 
                 {/* Top Text Section */}
-                <div className="flex w-full justify-end shrink-0">
+                <div className="flex w-full justify-end shrink-0 space-y-2">
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -19,7 +19,7 @@ export default function StoryGrid() {
                         viewport={{ once: true, margin: "-100px" }}
                         className="w-full md:w-[70%] lg:w-[45%] text-sm md:text-base leading-relaxed tracking-wide text-white/70"
                     >
-                        <p className="text-[#f4f4f0] text-sm md:text-base leading-relaxed">
+                        <p className="text-[#f4f4f0] text-sm md:text-base leading-relaxed ">
                             <span className="block">
                                 Old stone, warm wood, silence.
                             </span>

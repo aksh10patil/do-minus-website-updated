@@ -28,23 +28,23 @@ const luxuryLetter: any = {
 
 const properties = [
     {
-        id: "barca", name: "Barca Winga", lat: 46.1737, lng: 8.8125, location: "Lake Maggiore, CH",
+        id: "barca", name: "Barca Winga", lat: 46.1782436, lng: 8.8411258, location: "Lake Maggiore, CH",
         images: ["/Do-Minus/Barca_Winga/barca_winga.avif", "/Do-Minus/Barca_Winga/barca_winga_2.avif", "/Do-Minus/Barca_Winga/barca_winga_boat_map.avif"]
     },
     {
-        id: "polete", name: "Ca Polete", lat: 46.1863, lng: 8.9974, location: "Locarno, CH",
+        id: "polete", name: "Ca Polete", lat: 46.1863, lng: 8.9974, location: "Monte Carasso",
         images: ["/Do-Minus/Ca_Polete/ca_polete.avif", "/Do-Minus/Ca_Polete/ca_polete_1.avif", "/Do-Minus/Ca_Polete/ca_polete_2.avif", "/Do-Minus/Ca_Polete/ca_polete_v1.avif", "/Do-Minus/Ca_Polete/ca_polete_v2.avif", "/Do-Minus/Ca_Polete/ca_polete_v3.avif"]
     },
     {
-        id: "pedrot", name: "Ca Pedrot", lat: 46.2086, lng: 8.9830, location: "Mergoscia, CH",
+        id: "pedrot", name: "Ca Pedrot", lat: 46.2077934, lng: 8.9835479, location: "Mornera",
         images: ["/Do-Minus/Ca_Pedrot/ca_pedrot.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_2.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_3.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_4.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_5.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_6.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_7.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v1.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v2.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v3.avif"]
     },
     {
-        id: "negra", name: "Ca Negra", lat: 46.2069, lng: 8.9797, location: "Minusio, CH",
+        id: "negra", name: "Ca Negra", lat: 46.2069, lng: 8.9797, location: "Mornera",
         images: ["/Do-Minus/Ca_Negra/ca_negra_v1.avif", "/Do-Minus/Ca_Negra/ca_negra_v2.avif", "/Do-Minus/Ca_Negra/ca_negra_v3.avif", "/Do-Minus/Ca_Negra/ca_negra_v4.avif"]
     },
     {
-        id: "spontoi", name: "Ca Spontoi", lat: 46.2099, lng: 9.0374, location: "Verzasca Valley, CH",
+        id: "spontoi", name: "Ca Spontoi", lat: 46.23, lng: 9.0195363, location: "Gnosca",
         images: ["/Do-Minus/Ca_Spontoi/ca_spontoi.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_1.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_2.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_map.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v1.avif", "/Do-Minus/Ca_Spontoi/ca_sponoti_v2.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v3.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v4.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v5.avif"]
     }
 ];
@@ -122,7 +122,7 @@ export default function PropertyMap({ onHoverChange }: { onHoverChange?: (hovere
             // Water bodies (Rivers, Lakes, Oceans)
             if (layer.id.includes("water")) {
                 try {
-                    map.setPaintProperty(layer.id, "fill-color", "#0f172a"); // Dark slate blue
+                    map.setPaintProperty(layer.id, "fill-color", "#080d17ff"); // Dark slate blue
                 } catch { }
             }
             // Vegetation (Parks, Forests, Landcover)
@@ -182,10 +182,10 @@ export default function PropertyMap({ onHoverChange }: { onHoverChange?: (hovere
                                 onMouseLeave={() => handleSetHoveredProperty(null)}
                             >
                                 {/* Outer Glow */}
-                                <div className={`absolute w-12 h-12 -top-4 -left-4 rounded-full blur-md transition duration-500 ${hoveredProperty === property.id ? 'bg-[#FFD700]/60 scale-150' : 'bg-[#FFD700]/30 animate-pulse'}`} />
+                                <div className={`absolute w-12 h-12 -top-4 -left-4 rounded-full blur-md transition duration-500 ${hoveredProperty === property.id ? 'bg-[#FFD700]/60 scale-150' : 'bg-[#FFD700]/30 animate-pulse'}`} style={{ animationDuration: '4s' }} />
 
                                 {/* Inner Ping */}
-                                <div className={`absolute w-8 h-8 -top-2 -left-2 rounded-full transition duration-1000 ${hoveredProperty === property.id ? 'bg-[#FFD700]/0' : 'bg-[#FFD700]/60 animate-ping'}`} />
+                                <div className={`absolute w-8 h-8 -top-2 -left-2 rounded-full transition duration-1000 ${hoveredProperty === property.id ? 'bg-[#FFD700]/0' : 'bg-[#FFD700]/60 animate-ping'}`} style={{ animationDuration: '3s' }} />
 
                                 {/* Solid Marker */}
                                 <div className={`relative w-4 h-4 rounded-full border-2 border-white shadow-[0_0_15px_3px_rgba(255,215,0,0.6)] transition duration-300 ${hoveredProperty === property.id ? 'bg-white shadow-[0_0_25px_8px_rgba(255,215,0,0.9)] scale-150' : 'bg-[#FFD700] group-hover:scale-125'}`} />
@@ -204,6 +204,14 @@ export default function PropertyMap({ onHoverChange }: { onHoverChange?: (hovere
             <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#1A1A1A]/90 via-transparent to-[#1A1A1A]/90" />
             <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#1A1A1A]/90 via-transparent to-transparent" />
             <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#1A1A1A]/90 via-transparent to-transparent h-32" />
+
+            {/* Radial Vignette — dark edges, clear centre */}
+            <div
+                className="absolute inset-0 z-10 pointer-events-none"
+                style={{
+                    background: "radial-gradient(ellipse 60% 55% at 50% 50%, transparent 0%, rgba(26,26,26,0.55) 60%, rgba(26,26,26,0.92) 100%)"
+                }}
+            />
 
             {/* Hero Text Section (Bottom Left) */}
             <div className={`absolute left-0 bottom-0 z-30 flex flex-col justify-end px-6 md:px-12 lg:px-16 pb-[4vh] md:pb-[6vh] w-full md:w-[60%] pointer-events-none transition-opacity duration-500 ease-in-out ${hoveredProperty ? 'opacity-0' : 'opacity-100'}`}>
@@ -261,7 +269,7 @@ export default function PropertyMap({ onHoverChange }: { onHoverChange?: (hovere
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="flex flex-col gap-6 pointer-events-auto bg-[#1A1A1A]/20 backdrop-blur-sm p-8 rounded-2xl border border-white/5 shadow-2xl"
+                    className="flex flex-col gap-6 pointer-events-auto bg-[#1A1A1A]/20 backdrop-blur-sm p-8 border border-white/5 shadow-2xl"
                 >
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
