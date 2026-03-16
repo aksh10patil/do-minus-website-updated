@@ -7,24 +7,24 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const properties = [
     {
-        id: "barca", name: "Barca Winga", lat: 46.1737, lng: 8.8125, location: "Lake Maggiore, CH",
+        id: "barca", slug: "barca-winga", name: "Barca Winga", lat: 46.1782436, lng: 8.8411258, location: "Lake Maggiore, CH",
         images: ["/Do-Minus/Barca_Winga/barca_winga.avif", "/Do-Minus/Barca_Winga/barca_winga_2.avif", "/Do-Minus/Barca_Winga/barca_winga_boat_map.avif"]
     },
     {
-        id: "polete", name: "Ca Polete", lat: 46.1863, lng: 8.9974, location: "Locarno, CH",
-        images: ["/Do-Minus/Ca_Polete/ca_polete_v1.avif", "/Do-Minus/Ca_Polete/ca_polete_v2.avif", "/Do-Minus/Ca_Polete/ca_polete_v3.avif"]
+        id: "polete", slug: "ca-polete", name: "Ca Polete", lat: 46.1863, lng: 8.9974, location: "Monte Carasso",
+        images: ["/Do-Minus/Ca_Polete/ca_polete.avif", "/Do-Minus/Ca_Polete/ca_polete_1.avif", "/Do-Minus/Ca_Polete/ca_polete_2.avif", "/Do-Minus/Ca_Polete/ca_polete_v1.avif", "/Do-Minus/Ca_Polete/ca_polete_v2.avif", "/Do-Minus/Ca_Polete/ca_polete_v3.avif"]
     },
     {
-        id: "pedrot", name: "Ca Pedrot", lat: 46.2086, lng: 8.9830, location: "Mergoscia, CH",
-        images: ["/Do-Minus/Ca_Pedrot/ca_pedrot_v2.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v3.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_6.avif"]
+        id: "pedrot", slug: "ca-pedrot", name: "Ca Pedrot", lat: 46.2077934, lng: 8.9835479, location: "Mornera",
+        images: ["/Do-Minus/Ca_Pedrot/ca_pedrot.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_2.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_3.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_4.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_5.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_6.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_7.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v1.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v2.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v3.avif"]
     },
     {
-        id: "negra", name: "Ca Negra", lat: 46.2069, lng: 8.9797, location: "Minusio, CH",
-        images: ["/Do-Minus/Ca_Negra/ca_negra_v1.avif", "/Do-Minus/Ca_Negra/ca_negra_v2.avif", "/Do-Minus/Ca_Negra/ca_negra_v3.avif"]
+        id: "negra", slug: "ca-negra", name: "Ca Negra", lat: 46.2069, lng: 8.9797, location: "Mornera",
+        images: ["/Do-Minus/Ca_Negra/ca_negra_v1.avif", "/Do-Minus/Ca_Negra/ca_negra_v2.avif", "/Do-Minus/Ca_Negra/ca_negra_v3.avif", "/Do-Minus/Ca_Negra/ca_negra_v4.avif"]
     },
     {
-        id: "spontoi", name: "Ca Spontoi", lat: 46.2099, lng: 9.0374, location: "Verzasca Valley, CH",
-        images: ["/Do-Minus/Ca_Spontoi/ca_spontoi_1.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_2.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v4.avif"]
+        id: "spontoi", slug: "ca-spontoi", name: "Ca Spontoi", lat: 46.23, lng: 9.0195363, location: "Gnosca",
+        images: ["/Do-Minus/Ca_Spontoi/ca_spontoi.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_1.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_2.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_map.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v1.avif", "/Do-Minus/Ca_Spontoi/ca_sponoti_v2.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v3.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v4.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v5.avif"]
     }
 ];
 
@@ -135,9 +135,9 @@ export default function PropertyMap() {
             <div className="absolute inset-0 z-15 pointer-events-none overflow-hidden">
                 <div className="relative w-full h-full pointer-events-auto">
                     <AnimatePresence>
-                        {hoveredProperty && activePropertyImages.map((img, idx) => (
+                        {hoveredProperty && activePropertyImages.slice(0, 3).map((img, idx) => (
                             <motion.img
-                                key={`${hoveredProperty}-${idx}`}
+                                key={img}
                                 src={img}
                                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
