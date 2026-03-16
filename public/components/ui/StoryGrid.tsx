@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function StoryGrid() {
     return (
         <section
-            className="relative w-full min-h-[100dvh] bg-[#1A1A1A] text-[#a3a3a3] pt-24 md:pt-28 pb-6 md:pb-12 px-6 md:px-12 lg:px-32 flex justify-center items-center"
+            className="relative w-full min-h-[100dvh] bg-[#1A1A1A] text-[#a3a3a3] pt-24 md:pt-40 pb-6 md:pb-12 px-6 md:px-12 lg:px-32 flex justify-center items-center"
             style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             <div className="max-w-[75rem] w-full mx-auto flex flex-col gap-6 md:gap-10">
@@ -31,7 +31,7 @@ export default function StoryGrid() {
                 <div className="w-full flex flex-col gap-3 md:gap-4 relative z-10">
 
                     {/* Top Row: Experiences & Properties */}
-                    <div className="w-full flex flex-col md:flex-row gap-3 md:gap-4 min-h-[50vh] md:min-h-0 md:h-[400px] lg:h-[480px] shrink-0">
+                    <div className="w-full flex flex-col m md:flex-row gap-3 md:gap-4 min-h-[50vh] md:min-h-0 md:h-[400px] lg:h-[480px] shrink-0">
 
                         {/* Top Left: Experiences */}
                         <motion.div
