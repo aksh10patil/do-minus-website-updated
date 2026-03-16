@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Menu, X, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 // --- Types ---
 interface Property {
@@ -10,39 +11,59 @@ interface Property {
     name: string;
     type: string;
     imageUrl: string;
+    imagePosition?: string;
+    textTheme?: "light" | "dark";
 }
 
 // --- Mock Data ---
 const properties: Property[] = [
     {
         id: 1,
-        name: "Ca' Pedrotti",
+        name: "Ca' Pedrot",
         type: "Mountain Retreat",
-        imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_v2.avif",
+        imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_6.avif",
+        imagePosition: "right",
+        textTheme: "light",
+    },
+    {
+        id: 6,
+        name: "Ca' Pedrot",
+        type: "Mountain Retreat",
+        imageUrl: "/Do-Minus/Ca_Pedrot/ca_pedrot_v1.avif",
+        imagePosition: "right",
+        textTheme: "light",
     },
     {
         id: 2,
         name: "Ca Polete",
         type: "Thermal Spa",
-        imageUrl: "/Do-Minus/Ca_Polete/ca_polete_v1.avif",
+        imageUrl: "/Do-Minus/Ca_Polete/ca_polete_2.avif",
+        imagePosition: "center",
+        textTheme: "light",
     },
     {
         id: 3,
         name: "Ca Spontoi",
         type: "Alpine Lodge",
-        imageUrl: "/Do-Minus/Ca_Spontoi/ca_spontoi_v1.avif",
+        imageUrl: "/Do-Minus/Ca_Spontoi/ca_sponoti_v2.avif",
+        imagePosition: "center",
+        textTheme: "light",
     },
     {
         id: 4,
         name: "Ca Negra",
         type: "Secluded Villa",
         imageUrl: "/Do-Minus/Ca_Negra/ca_negra_v1.avif",
+        imagePosition: "center",
+        textTheme: "light",
     },
     {
         id: 5,
         name: "Barca Winga",
         type: "Riverside Escape",
         imageUrl: "/Do-Minus/Barca_Winga/barca_winga.avif",
+        imagePosition: "left",
+        textTheme: "dark",
     },
 ];
 
@@ -127,11 +148,11 @@ const menuItemVariants: any = {
 };
 
 const menuItems = [
-    { name: "Home", href: "#" },
-    { name: "Philosophy", href: "#" },
-    { name: "Region", href: "#" },
-    { name: "Properties", href: "#" },
-    { name: "Contact Us", href: "#" },
+    { name: "Home", href: "/" },
+    { name: "Philosophy", href: "/philosophy" },
+    { name: "Region", href: "/region" },
+    { name: "Properties", href: "/properties" },
+    { name: "Contact Us", href: "/contact" },
 ];
 
 export default function HeroSection() {
@@ -162,7 +183,7 @@ export default function HeroSection() {
 
     return (
         <section
-            className="flex flex-col md:flex-row h-full w-full text-[#f4f4f0] overflow-hidden"
+            className="flex h-screen w-full text-[#f4f4f0] overflow-hidden"
             style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             {/* MENU OVERLAY */}
@@ -207,19 +228,30 @@ export default function HeroSection() {
             </AnimatePresence>
 
             {/* LEFT COLUMN */}
-            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#1b1a19] p-6 md:p-12 lg:p-16 flex flex-col justify-between z-30">
+            <div className="relative flex-[0.55] h-full bg-[#1A1A1A] pl-6 pr-4 pt-6 pb-0 md:pl-12 md:pr-12 md:pt-12 md:pb-0 lg:pl-16 lg:pr-16 lg:pt-16 lg:pb-0 flex flex-col justify-between z-30">
                 {/* Top Left Links */}
                 <div className="flex flex-col space-y-6 text-xs md:text-sm tracking-widest opacity-80 mt-8 text-[#d4d4d4]">
 
-                    <p className="group cursor-pointer hover:opacity-100 transition-opacity w-fit">
-                        Properties
-                        <span className="block h-[1px] w-0 bg-[#d4d4d4] transition-all duration-300 group-hover:w-full"></span>
-                    </p>
+                    <div className="group flex flex-col w-fit">
+                        <Link href="/properties/ca-spontoi" className="cursor-pointer hover:opacity-100 transition-opacity w-fit pointer-events-auto pb-1">
+                            Properties
+                            <span className="block h-[1px] w-0 bg-[#d4d4d4] transition-all duration-300 group-hover:w-full"></span>
+                        </Link>
+                        <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-in-out">
+                            <div className="overflow-hidden flex flex-col space-y-3 pl-4 text-xs md:text-sm opacity-90 pointer-events-auto">
+                                <Link href="/properties/ca-spontoi" className="hover:opacity-100 hover:text-white transition-opacity w-fit block pt-2">Cà Spontoi</Link>
+                                <Link href="/properties/ca-polete" className="hover:opacity-100 hover:text-white transition-opacity w-fit block">Cà Pölete</Link>
+                                <Link href="/properties/ca-pedrot" className="hover:opacity-100 hover:text-white transition-opacity w-fit block">Cà Pedrot</Link>
+                                <Link href="/properties/ca-negra" className="hover:opacity-100 hover:text-white transition-opacity w-fit block">Cà Negra</Link>
+                                <Link href="/properties/barca-winga" className="hover:opacity-100 hover:text-white transition-opacity w-fit block pb-2">Barca Winga</Link>
+                            </div>
+                        </div>
+                    </div>
 
-                    <p className="group cursor-pointer hover:opacity-100 transition-opacity w-fit">
+                    <Link href="/philosophy" className="group cursor-pointer hover:opacity-100 transition-opacity w-fit block">
                         Philosophy
                         <span className="block h-[1px] w-0 bg-[#d4d4d4] transition-all duration-300 group-hover:w-full"></span>
-                    </p>
+                    </Link>
 
                     <p className="group cursor-pointer hover:opacity-100 transition-opacity w-fit">
                         Experiences
@@ -229,19 +261,21 @@ export default function HeroSection() {
                 </div>
 
                 {/* Right Middle Text */}
-                <div className="absolute right-12 top-[45%] -translate-y-1/2 text-right text-xs md:text-sm leading-8 tracking-widest opacity-40 text-[#d4d4d4]">
+                <div className="absolute right-6 md:right-8 lg:right-12 top-[38%] -translate-y-1/2 text-right text-xs md:text-sm leading-8 tracking-widest opacity-40 text-[#d4d4d4]">
                     <p>Wellness</p>
                     <p>Nature</p>
                     <p>Design</p>
                 </div>
 
                 {/* Bottom Left Title */}
-                <div className="mt-auto mb-[4vh]">
+                <div className="mt-auto relative z-40 w-max pointer-events-none">
                     <motion.h1
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-[clamp(90px,10.4vw,300px)] leading-none tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] translate-x-[1vw]"
+                        // Pure vw (no rem) ensures the S cuts identically across all screen sizes — both scale proportionally with viewport width
+                        className="text-[clamp(100px,12.7vw,3000px)] leading-[0.85] tracking-[-0.02em] font-thin flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md -mr-[0.55em]"
+                        style={{ fontWeight: 100 }}
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
@@ -253,7 +287,7 @@ export default function HeroSection() {
             </div>
 
             {/* RIGHT COLUMN: Slideshow */}
-            <div className="relative w-full md:w-1/2 h-[50%] md:h-full bg-[#050505] overflow-hidden">
+            <div className="relative flex-[0.45] h-full bg-[#050505] overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentProperty.id}
@@ -267,12 +301,14 @@ export default function HeroSection() {
                             src={currentProperty.imageUrl}
                             alt={currentProperty.name}
                             className="object-cover w-full h-full"
+                            style={{ objectPosition: currentProperty.imagePosition || "center" }}
                             initial={{ scale: 1 }}
                             animate={{ scale: 1.1 }}
                             transition={{ duration: 10, ease: "linear" }}
                         />
                     </motion.div>
                 </AnimatePresence>
+
 
                 {/* Vertical Text Overlay */}
                 <AnimatePresence mode="wait">
@@ -282,11 +318,19 @@ export default function HeroSection() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.8 }}
-                        className="absolute right-4 md:right-8 top-40 -translate-y-1/2 z-20 pointer-events-none text-[#e0e0e0] font-light tracking-[0.2em] text-md md:text-lg opacity-90 flex flex-col items-center gap-5"
-                        style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                        className={`absolute right-4 md:right-2 top-[calc(1.5rem+32px)] z-20 pointer-events-none font-light tracking-[0.2em] text-md md:text-lg flex flex-col items-end gap-0 drop-shadow-lg ${currentProperty.textTheme === "dark" ? "text-black" : "text-white"
+                            }`}
+                        style={{
+                            writingMode: "vertical-rl",
+                            transform: "rotate(180deg)",
+                            textShadow:
+                                currentProperty.textTheme === "dark"
+                                    ? "0 2px 10px rgba(255,255,255,0.3)"
+                                    : "0 2px 10px rgba(0,0,0,0.5)",
+                        }}
                     >
-                        <p>{currentProperty.name}</p>
-                        <p>{currentProperty.type}</p>
+                        <p className="m-0">{currentProperty.name}</p>
+                        <p className="m-0">{currentProperty.type}</p>
                     </motion.div>
                 </AnimatePresence>
             </div>

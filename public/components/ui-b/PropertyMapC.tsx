@@ -5,6 +5,27 @@ import { useRef, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { motion, AnimatePresence } from "framer-motion";
 
+const luxuryTypewriterContainer: any = {
+    hidden: { opacity: 1 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.12,
+            delayChildren: 0.4,
+        },
+    },
+};
+
+const luxuryLetter: any = {
+    hidden: { opacity: 0, y: 15, filter: "blur(2px)" },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        transition: { duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] },
+    },
+};
+
 const properties = [
     {
         id: "barca", name: "Barca Winga", lat: 46.1737, lng: 8.8125, location: "Lake Maggiore, CH",
@@ -29,9 +50,9 @@ const properties = [
 ];
 
 const imagePositions = [
-    "top-[20%] left-[5%] w-[35vw] md:w-[16vw] aspect-[4/3] z-10 -rotate-3 hover:z-50 hover:scale-105 transition-all duration-300",
-    "top-[35%] left-[16%] w-[40vw] md:w-[15vw] aspect-[3/4] z-20 rotate-1 shadow-2xl shadow-black/90 hover:z-50 hover:scale-105 transition-all duration-300",
-    "bottom-[20%] left-[8%] w-[30vw] md:w-[12vw] aspect-square z-30 -rotate-3 shadow-2xl shadow-black/80 hover:z-50 hover:scale-105 transition-all duration-300"
+    "top-[18%] left-[42%] w-[35vw] md:w-[15vw] aspect-[4/3] z-10 -rotate-3 hover:z-50 hover:scale-105 transition-all duration-300",
+    "top-[45%] left-[38%] w-[40vw] md:w-[16vw] aspect-[3/4] z-20 rotate-2 shadow-2xl shadow-black/90 hover:z-50 hover:scale-105 transition-all duration-300",
+    "bottom-[18%] left-[47%] w-[30vw] md:w-[14vw] aspect-square z-30 -rotate-6 shadow-2xl shadow-black/80 hover:z-50 hover:scale-105 transition-all duration-300"
 ];
 
 export default function PropertyMap() {
@@ -131,6 +152,35 @@ export default function PropertyMap() {
             <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#1A1A1A] via-transparent to-[#1A1A1A]" />
             <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-[#1A1A1A] via-transparent to-transparent h-32" />
 
+            {/* Hero Text Section (Bottom Left) */}
+            <div className="absolute left-0 bottom-0 z-20 flex flex-col justify-end px-6 md:px-12 lg:px-16 pb-[4vh] md:pb-[6vh] w-full md:w-[60%] pointer-events-none">
+                <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
+                    className="pointer-events-auto flex flex-col items-start"
+                >
+                    <h2 className="text-[#bba371] text-xs md:text-sm tracking-[0.4em] font-bold uppercase mb-4 ml-2">
+                        Welcome to
+                    </h2>
+                    <motion.h1
+                        variants={luxuryTypewriterContainer}
+                        initial="hidden"
+                        animate="visible"
+                        className="text-[clamp(50px,8vw,160px)] leading-[0.9] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md mb-4 -ml-2"
+                    >
+                        {"Do-Minus".split("").map((char, index) => (
+                            <motion.span key={index} variants={luxuryLetter}>
+                                {char}
+                            </motion.span>
+                        ))}
+                    </motion.h1>
+                    <p className="text-sm md:text-base text-white/60 tracking-[0.2em] uppercase max-w-lg leading-relaxed mix-blend-difference ml-2">
+                        A curated collection of exclusive properties in the heart of Switzerland.
+                    </p>
+                </motion.div>
+            </div>
+
             {/* Floating Image Gallery */}
             <div className="absolute inset-0 z-15 pointer-events-none overflow-hidden">
                 <div className="relative w-full h-full pointer-events-auto">
@@ -208,7 +258,7 @@ export default function PropertyMap() {
                                     padding: {
                                         top: window.innerHeight * 0.15, // Provide top padding to prevent clipping (e.g. Ca Negra near a mountain)
                                         bottom: 0,
-                                        left: isMobile ? 0 : window.innerWidth * 0.1, // Account for left images
+                                        left: isMobile ? 0 : window.innerWidth * 0.4, // Account for left hero text
                                         right: isMobile ? 0 : 400 // Account for right sidebar list
                                     },
                                     zoom: 13.5,
