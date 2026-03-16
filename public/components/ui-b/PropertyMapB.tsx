@@ -8,7 +8,10 @@ import Link from "next/link";
 
 
 const lngOrder = ["barca", "negra", "pedrot", "polete", "spontoi"];
-const markerAnimIndex = (id: string) => lngOrder.indexOf(id);
+const markerAnimIndex = (id: string) => {
+    const index = lngOrder.indexOf(id);
+    return index === -1 ? 0 : index;
+};
 
 const luxuryTypewriterContainer: any = {
     hidden: { opacity: 1 },
@@ -117,35 +120,28 @@ export default function PropertyMap({ onHoverChange, preloaderDone = true }: { o
         const layers = map.getStyle().layers;
 
         layers.forEach((layer: any) => {
+        layers.forEach((layer: any) => {
             // Roads
             if (layer.id.includes("road")) {
-                try {
-                    map.setPaintProperty(layer.id, "line-color", "#ffffff");
-                    map.setPaintProperty(layer.id, "line-opacity", 0.15);
-                } catch { }
+                map.setPaintProperty(layer.id, "line-color", "#ffffff");
+                map.setPaintProperty(layer.id, "line-opacity", 0.15);
             }
             // Water bodies (Rivers, Lakes, Oceans)
-            if (layer.id.includes("water")) {
-                try {
-                    map.setPaintProperty(layer.id, "fill-color", "#080d17ff"); // Dark slate blue
-                } catch { }
+            if (layer.id.includes("water") && layer.type === "fill") {
+                map.setPaintProperty(layer.id, "fill-color", "#080d17"); // Dark slate blue
             }
             // Vegetation (Parks, Forests, Landcover)
-            if (layer.id.includes("landcover") || layer.id.includes("national-park") || layer.id.includes("pitch")) {
-                try {
-                    map.setPaintProperty(layer.id, "fill-color", "#132018"); // Very dark, muted green
-                    map.setPaintProperty(layer.id, "fill-opacity", 0.6);
-                } catch { }
+            if ((layer.id.includes("landcover") || layer.id.includes("national-park") || layer.id.includes("pitch")) && layer.type === "fill") {
+                map.setPaintProperty(layer.id, "fill-color", "#132018"); // Very dark, muted green
+                map.setPaintProperty(layer.id, "fill-opacity", 0.6);
             }
             // Brighten Text
             if (layer.type === "symbol" && layer.layout && layer.layout["text-field"]) {
-                try {
-                    // Brighten text labels for legibility
-                    map.setPaintProperty(layer.id, "text-color", "#ffffff");
-                    map.setPaintProperty(layer.id, "text-halo-color", "#1A1A1A");
-                    map.setPaintProperty(layer.id, "text-halo-width", 1.5);
-                } catch { }
+                map.setPaintProperty(layer.id, "text-color", "#ffffff");
+                map.setPaintProperty(layer.id, "text-halo-color", "#1A1A1A");
+                map.setPaintProperty(layer.id, "text-halo-width", 1.5);
             }
+        });
         });
     };
 
@@ -221,21 +217,21 @@ export default function PropertyMap({ onHoverChange, preloaderDone = true }: { o
             />
 
             {/* Hero Text Section (Bottom Left) */}
-            <div className={`absolute left-0 bottom-0 z-30 flex flex-col justify-end px-6 md:px-12 lg:px-16 pb-[4vh] md:pb-[6vh] w-full md:w-[60%] pointer-events-none transition-opacity duration-500 ease-in-out ${hoveredProperty ? 'opacity-0' : 'opacity-100'}`}>
+            <div className={`absolute left-0 bottom-0 z-30 flex flex-col justify-end px-6 md:px-12 lg:px-32 pb-[4vh] md:pb-[6vh] w-full md:w-[60%] pointer-events-none transition-opacity duration-500 ease-in-out ${hoveredProperty ? 'opacity-0' : 'opacity-100'}`}>
                 <motion.div
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
                     className="pointer-events-auto flex flex-col items-start"
                 >
-                    <h2 className="text-[#bba371] text-xs md:text-sm tracking-[0.4em] font-bold uppercase mb-4 ml-2">
+                    <h2 className="text-[#bba371] text-xs md:text-sm tracking-[0.4em] font-bold uppercase mb-4">
                         Welcome to
                     </h2>
                     <motion.h1
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        className="text-[clamp(50px,8vw,160px)] leading-[0.9] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md mb-4 -ml-2"
+                        className="text-[clamp(50px,8vw,160px)] leading-[0.9] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md mb-4"
                     >
                         {"Do-Minus".split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
@@ -289,12 +285,12 @@ export default function PropertyMap({ onHoverChange, preloaderDone = true }: { o
                             onClick={() => {
                                 mapRef.current?.easeTo({
                                     center: [8.97, 46.195],
-                                    padding: { top: 0, bottom: 0, left: 0, right: 0 },
                                     zoom: 10,
                                     pitch: 45,
                                     bearing: -15,
-                                    duration: 4000,
-                                    easing: (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
+                                    duration: 3000,
+                                    easing: (t: number) =>
+                                        t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2,
                                     essential: true
                                 });
                             }}

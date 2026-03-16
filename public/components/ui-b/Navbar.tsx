@@ -73,13 +73,13 @@ export default function Navbar({ hidden = false }: NavbarProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: hidden ? 0 : 1 }}
             transition={{ duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
-            className={`fixed top-0 left-0 h-full w-max z-50 px-6 md:px-12 lg:px-16 ${hidden ? "pointer-events-none" : "pointer-events-none"
+            className={`fixed top-0 left-0 h-full w-max z-50 px-6 md:px-12 lg:px-32 ${hidden ? "pointer-events-none" : "pointer-events-none"
                 }`}
             style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             {/* Expanding Glassmorphism Container */}
             <motion.div
-                className="absolute top-8 md:top-12 left-12 flex flex-col pointer-events-auto bg-[#1A1A1A]/30 backdrop-blur-md border border-white/5 shadow-2xl rounded-sm overflow-hidden hover:bg-[#1A1A1A]/60 transition-colors duration-500"
+                className="absolute top-8 md:top-12 left-12 lg:left-32 flex flex-col pointer-events-auto bg-[#1A1A1A]/30 backdrop-blur-md border border-white/5 shadow-2xl rounded-sm overflow-hidden hover:bg-[#1A1A1A]/60 transition-colors duration-500"
                 initial="hidden"
                 animate={isHovered ? "visible" : "hidden"}
                 variants={containerVariants}

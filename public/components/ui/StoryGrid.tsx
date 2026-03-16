@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function StoryGrid() {
     return (
         <section
-            className="relative w-full min-h-[100dvh] bg-[#1A1A1A] text-[#a3a3a3] pt-24 md:pt-28 pb-6 md:pb-12 px-6 md:px-12 lg:px-20 flex justify-center items-center"
+            className="relative w-full min-h-[100dvh] bg-[#1A1A1A] text-[#a3a3a3] pt-24 md:pt-28 pb-6 md:pb-12 px-6 md:px-12 lg:px-32 flex justify-center items-center"
             style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             <div className="max-w-[75rem] w-full mx-auto flex flex-col gap-6 md:gap-10">

@@ -1,8 +1,10 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/public/components/ui/Footer";
 import LuxReveal from "@/public/components/ui/LuxReveal";
-import AnimatedTitle from "./AnimatedTitle";
+import { motion } from "framer-motion";
+
 
 interface PropertyImage {
     src: string;
@@ -21,7 +23,7 @@ interface PropertyData {
 
 const propertiesData: Record<string, PropertyData> = {
     "ca-spontoi": {
-        name: "Cà spontoi",
+        name: "Ca' spontoi",
         location: "Gnosca, Ticino",
         heroImage: "/Do-Minus/Ca_Spontoi/ca_spontoi_v5.avif",
         philosophy: "Quiet village escape.\nNature and architecture.\nHistoric stone.",
@@ -132,14 +134,20 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
     return (
         <main className="relative flex flex-col bg-[#1A1A1A] text-[#ffffff] min-h-screen font-mono selection:bg-[#C6A] selection:text-white">
             {/* Navigation Header */}
-            <div className="absolute top-0 w-full z-50 flex justify-center mix-blend-difference pointer-events-none">
+            <div className="absolute top-0 w-full z-50 flex justify-center pointer-events-none">
                 <nav className="w-full max-w-[1920px] flex justify-between items-center py-8 px-8 lg:px-32 text-[#FFFFFF] pointer-events-auto">
-                    <Link href="/" className="uppercase text-xs sm:text-sm tracking-[0.15em] hover:opacity-70 transition-opacity">
+
+                    <Link
+                        href="/"
+                        className="uppercase text-xs sm:text-sm tracking-[0.15em] hover:opacity-70 transition-opacity text-white mix-blend-difference"
+                    >
                         Do-Minus
                     </Link>
-                    <span className="uppercase text-xs sm:text-sm tracking-[0.15em] opacity-70">
+
+                    <span className="uppercase text-xs sm:text-sm tracking-[0.15em] opacity-70 text-white mix-blend-difference">
                         {propertyData.location}
                     </span>
+
                 </nav>
             </div>
 
@@ -155,26 +163,24 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#1A1A1A]"></div>
                 </div>
-                <div className="relative z-10 w-full flex flex-col items-start justify-end text-left pb-4 px-6">
-                    <div className="mt-auto relative z-40 w-max pointer-events-none">
-                        <AnimatedTitle name={propertyData.name} />
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    className="absolute top-0 left-32 z-10 w-full h-full flex items-center justify-start text-left"
+                >
+                    <div
+                        className="text-5xl text-[#ffffff]/70 relative mt-100 z-40 w-max pointer-events-none"
+                        style={{ fontFamily: "Courier, Courier New, monospace" }}
+                    >
+                        {propertyData.name}
                     </div>
-                </div>
+                </motion.div>
             </section>
 
-            {/* Philosophy Section */}
-            <section className="w-full py-32 lg:py-56 bg-[#1A1A1A] flex justify-center">
-                <div className="w-full max-w-[1920px] px-8 lg:px-32 flex justify-center items-center">
-                    <LuxReveal delay={0.1} duration={1.2}>
-                        <h2 className="text-2xl md:text-3xl lg:text-5xl leading-[1.2] font-light text-center tracking-wide text-[#FFFFFF] max-w-5xl whitespace-pre-line">
-                            {propertyData.philosophy}
-                        </h2>
-                    </LuxReveal>
-                </div>
-            </section>
 
             {/* Description & Details Section */}
-            <section className="w-full py-24 border-t border-[#6B6B6B]/30 bg-[#1A1A1A] flex justify-center">
+            <section className="w-full py-24  bg-[#1A1A1A] flex justify-center">
                 <div className="w-full max-w-[1920px] px-8 lg:px-32 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
                     <div className="lg:col-span-6 flex flex-col justify-center">
                         <LuxReveal delay={0.1}>
