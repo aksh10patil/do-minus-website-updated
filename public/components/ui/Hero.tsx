@@ -228,7 +228,7 @@ export default function HeroSection() {
             </AnimatePresence>
 
             {/* LEFT COLUMN */}
-            <div className="relative flex-[0.6] h-full bg-[#1A1A1A] pl-6 pr-4 pt-6 pb-0 md:pl-12 md:pr-12 md:pt-12 md:pb-0 lg:pl-16 lg:pr-16 lg:pt-16 lg:pb-0 flex flex-col justify-between z-30">
+            <div className="relative flex-[0.55] h-full bg-[#1A1A1A] pl-6 pr-4 pt-6 pb-0 md:pl-12 md:pr-12 md:pt-12 md:pb-0 lg:pl-16 lg:pr-16 lg:pt-16 lg:pb-0 flex flex-col justify-between z-30">
                 {/* Top Left Links */}
                 <div className="flex flex-col space-y-6 text-xs md:text-sm tracking-widest opacity-80 mt-8 text-[#d4d4d4]">
 
@@ -273,8 +273,9 @@ export default function HeroSection() {
                         variants={luxuryTypewriterContainer}
                         initial="hidden"
                         animate="visible"
-                        // calc(14.8vw - 1rem) is the exact mathematical ratio needed to perfectly hit the 60% line before the "S"
-                        className="text-[clamp(100px,calc(14.8vw-1rem),3000px)] leading-[0.85] tracking-[-0.02em] font-light flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md -mr-[0.55em]"
+                        // Pure vw (no rem) ensures the S cuts identically across all screen sizes — both scale proportionally with viewport width
+                        className="text-[clamp(100px,12.7vw,3000px)] leading-[0.85] tracking-[-0.02em] font-thin flex items-center whitespace-nowrap text-[#d6cdb7] drop-shadow-md -mr-[0.55em]"
+                        style={{ fontWeight: 100 }}
                     >
                         {titleText.split("").map((char, index) => (
                             <motion.span key={index} variants={luxuryLetter}>
@@ -286,7 +287,7 @@ export default function HeroSection() {
             </div>
 
             {/* RIGHT COLUMN: Slideshow */}
-            <div className="relative flex-[0.4] h-full bg-[#050505] overflow-hidden">
+            <div className="relative flex-[0.45] h-full bg-[#050505] overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={currentProperty.id}

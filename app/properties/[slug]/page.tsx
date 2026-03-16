@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/public/components/ui/Footer";
-import Typewriter from "@/public/components/ui/Typewriter";
 import LuxReveal from "@/public/components/ui/LuxReveal";
+import AnimatedTitle from "./AnimatedTitle";
 
 interface PropertyImage {
     src: string;
@@ -21,7 +21,7 @@ interface PropertyData {
 
 const propertiesData: Record<string, PropertyData> = {
     "ca-spontoi": {
-        name: "CÀ SPONTOI",
+        name: "Cà spontoi",
         location: "Gnosca, Ticino",
         heroImage: "/Do-Minus/Ca_Spontoi/ca_spontoi_v5.avif",
         philosophy: "Quiet village escape.\nNature and architecture.\nHistoric stone.",
@@ -34,9 +34,9 @@ const propertiesData: Record<string, PropertyData> = {
         images: [
             { src: "/Do-Minus/Ca_Spontoi/ca_spontoi_v5.avif", alt: "Historic Stone Facade" },
             { src: "/Do-Minus/Ca_Spontoi/ca_spontoi.avif", alt: "Living Space" },
-            { src: "/Do-Minus/Ca_Spontoi/ca_spontoi_1.avif", alt: "Bedroom Retreat" },
-            { src: "/Do-Minus/Ca_Spontoi/ca_spontoi_2.avif", alt: "Private Spa Area" },
-            { src: "/Do-Minus/Ca_Spontoi/ca_spontoi_v1.avif", alt: "Garden View" },
+            { src: "/Do-Minus/Ca_Spontoi/ca_spontoi_1.avif", alt: "Outside" },
+            { src: "/Do-Minus/Ca_Spontoi/ca_spontoi_2.avif", alt: "Dining Area" },
+            { src: "/Do-Minus/Ca_Spontoi/ca_spontoi_v1.avif", alt: "Living View" },
             { src: "/Do-Minus/Ca_Spontoi/ca_spontoi_v3.avif", alt: "Architectural Detail" },
             { src: "/Do-Minus/Ca_Spontoi/ca_spontoi_v4.avif", alt: "Mountain Surroundings" },
             { src: "/Do-Minus/Ca_Spontoi/ca_sponoti_v2.avif", alt: "Interior Ambience" },
@@ -155,11 +155,10 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#1A1A1A]"></div>
                 </div>
-
-                <div className="relative z-10 w-full flex flex-col items-center justify-end text-center pb-4">
-                    <h1 className="text-[clamp(50px,12vw,250px)] leading-[0.8] tracking-[0.10em] uppercase font-thin text-[#d6cdb7] translate-y-[10%]" style={{ fontFamily: "Courier, Courier New, monospace"}}>
-                        <Typewriter text={propertyData.name} mode="luxury" className="inline-flex items-center whitespace-nowrap" />
-                    </h1>
+                <div className="relative z-10 w-full flex flex-col items-start justify-end text-left pb-4 px-6">
+                    <div className="mt-auto relative z-40 w-max pointer-events-none">
+                        <AnimatedTitle name={propertyData.name} />
+                    </div>
                 </div>
             </section>
 

@@ -4,6 +4,11 @@ import Map, { Marker } from "react-map-gl/mapbox";
 import { useRef, useState } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+
+
+const lngOrder = ["barca", "negra", "pedrot", "polete", "spontoi"];
+const markerAnimIndex = (id: string) => lngOrder.indexOf(id);
 
 const luxuryTypewriterContainer: any = {
     hidden: { opacity: 1 },
@@ -28,23 +33,23 @@ const luxuryLetter: any = {
 
 const properties = [
     {
-        id: "barca", name: "Barca Winga", lat: 46.1782436, lng: 8.8411258, location: "Lake Maggiore, CH",
+        id: "barca", slug: "barca-winga", name: "Barca Winga", lat: 46.1782436, lng: 8.8411258, location: "Lake Maggiore, CH",
         images: ["/Do-Minus/Barca_Winga/barca_winga.avif", "/Do-Minus/Barca_Winga/barca_winga_2.avif", "/Do-Minus/Barca_Winga/barca_winga_boat_map.avif"]
     },
     {
-        id: "polete", name: "Ca Polete", lat: 46.1863, lng: 8.9974, location: "Monte Carasso",
+        id: "polete", slug: "ca-polete", name: "Ca Polete", lat: 46.1863, lng: 8.9974, location: "Monte Carasso",
         images: ["/Do-Minus/Ca_Polete/ca_polete.avif", "/Do-Minus/Ca_Polete/ca_polete_1.avif", "/Do-Minus/Ca_Polete/ca_polete_2.avif", "/Do-Minus/Ca_Polete/ca_polete_v1.avif", "/Do-Minus/Ca_Polete/ca_polete_v2.avif", "/Do-Minus/Ca_Polete/ca_polete_v3.avif"]
     },
     {
-        id: "pedrot", name: "Ca Pedrot", lat: 46.2077934, lng: 8.9835479, location: "Mornera",
+        id: "pedrot", slug: "ca-pedrot", name: "Ca Pedrot", lat: 46.2077934, lng: 8.9835479, location: "Mornera",
         images: ["/Do-Minus/Ca_Pedrot/ca_pedrot.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_2.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_3.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_4.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_5.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_6.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_7.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v1.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v2.avif", "/Do-Minus/Ca_Pedrot/ca_pedrot_v3.avif"]
     },
     {
-        id: "negra", name: "Ca Negra", lat: 46.2069, lng: 8.9797, location: "Mornera",
+        id: "negra", slug: "ca-negra", name: "Ca Negra", lat: 46.2069, lng: 8.9797, location: "Mornera",
         images: ["/Do-Minus/Ca_Negra/ca_negra_v1.avif", "/Do-Minus/Ca_Negra/ca_negra_v2.avif", "/Do-Minus/Ca_Negra/ca_negra_v3.avif", "/Do-Minus/Ca_Negra/ca_negra_v4.avif"]
     },
     {
-        id: "spontoi", name: "Ca Spontoi", lat: 46.23, lng: 9.0195363, location: "Gnosca",
+        id: "spontoi", slug: "ca-spontoi", name: "Ca Spontoi", lat: 46.23, lng: 9.0195363, location: "Gnosca",
         images: ["/Do-Minus/Ca_Spontoi/ca_spontoi.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_1.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_2.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_map.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v1.avif", "/Do-Minus/Ca_Spontoi/ca_sponoti_v2.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v3.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v4.avif", "/Do-Minus/Ca_Spontoi/ca_spontoi_v5.avif"]
     }
 ];
@@ -79,7 +84,7 @@ const ScrollingColumn = ({ images, reverse = false, speed = 20 }: { images: stri
     );
 };
 
-export default function PropertyMap({ onHoverChange }: { onHoverChange?: (hovered: boolean) => void }) {
+export default function PropertyMap({ onHoverChange, preloaderDone = true }: { onHoverChange?: (hovered: boolean) => void; preloaderDone?: boolean }) {
     const mapRef = useRef<any>(null);
     const [hoveredProperty, setHoveredProperty] = useState<string | null>(null);
 
@@ -173,28 +178,30 @@ export default function PropertyMap({ onHoverChange }: { onHoverChange?: (hovere
                             latitude={property.lat}
                             anchor="center"
                         >
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 1 + i * 0.2, duration: 0.8 }}
-                                className="group relative cursor-pointer"
-                                onMouseEnter={() => handleSetHoveredProperty(property.id)}
-                                onMouseLeave={() => handleSetHoveredProperty(null)}
-                            >
-                                {/* Outer Glow */}
-                                <div className={`absolute w-12 h-12 -top-4 -left-4 rounded-full blur-md transition duration-500 ${hoveredProperty === property.id ? 'bg-[#FFD700]/60 scale-150' : 'bg-[#FFD700]/30 animate-pulse'}`} style={{ animationDuration: '4s' }} />
+                            <Link href={`/properties/${property.slug}`}>
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={preloaderDone ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+                                    transition={{ delay: markerAnimIndex(property.id) * 0.9, duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
+                                    className="group relative cursor-pointer"
+                                    onMouseEnter={() => handleSetHoveredProperty(property.id)}
+                                    onMouseLeave={() => handleSetHoveredProperty(null)}
+                                >
+                                    {/* Outer Glow */}
+                                    <div className={`absolute w-12 h-12 -top-4 -left-4 rounded-full blur-md transition duration-500 ${hoveredProperty === property.id ? 'bg-[#FFD700]/60 scale-150' : 'bg-[#FFD700]/30 animate-pulse'}`} style={{ animationDuration: '4s' }} />
 
-                                {/* Inner Ping */}
-                                <div className={`absolute w-8 h-8 -top-2 -left-2 rounded-full transition duration-1000 ${hoveredProperty === property.id ? 'bg-[#FFD700]/0' : 'bg-[#FFD700]/60 animate-ping'}`} style={{ animationDuration: '3s' }} />
+                                    {/* Inner Ping */}
+                                    <div className={`absolute w-8 h-8 -top-2 -left-2 rounded-full transition duration-1000 ${hoveredProperty === property.id ? 'bg-[#FFD700]/0' : 'bg-[#FFD700]/60 animate-ping'}`} style={{ animationDuration: '3s' }} />
 
-                                {/* Solid Marker */}
-                                <div className={`relative w-4 h-4 rounded-full border-2 border-white shadow-[0_0_15px_3px_rgba(255,215,0,0.6)] transition duration-300 ${hoveredProperty === property.id ? 'bg-white shadow-[0_0_25px_8px_rgba(255,215,0,0.9)] scale-150' : 'bg-[#FFD700] group-hover:scale-125'}`} />
+                                    {/* Solid Marker */}
+                                    <div className={`relative w-4 h-4 rounded-full border-2 border-white shadow-[0_0_15px_3px_rgba(255,215,0,0.6)] transition duration-300 ${hoveredProperty === property.id ? 'bg-white shadow-[0_0_25px_8px_rgba(255,215,0,0.9)] scale-150' : 'bg-[#FFD700] group-hover:scale-125'}`} />
 
-                                {/* Label */}
-                                <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition duration-300 text-xs tracking-widest bg-[#1A1A1A]/95 backdrop-blur-md px-4 py-2 border whitespace-nowrap shadow-[0_5px_15px_rgba(255,215,0,0.15)] ${hoveredProperty === property.id ? 'opacity-100 border-[#FFD700] text-[#FFD700]' : 'opacity-0 border-[#333] text-[#f4f4f0] group-hover:opacity-100'}`}>
-                                    {property.name}
-                                </div>
-                            </motion.div>
+                                    {/* Label */}
+                                    <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition duration-300 text-xs tracking-widest bg-[#1A1A1A]/95 backdrop-blur-md px-4 py-2 border whitespace-nowrap shadow-[0_5px_15px_rgba(255,215,0,0.15)] ${hoveredProperty === property.id ? 'opacity-100 border-[#FFD700] text-[#FFD700]' : 'opacity-0 border-[#333] text-[#f4f4f0] group-hover:opacity-100'}`}>
+                                        {property.name}
+                                    </div>
+                                </motion.div>
+                            </Link>
                         </Marker>
                     ))}
                 </Map>
@@ -236,9 +243,7 @@ export default function PropertyMap({ onHoverChange }: { onHoverChange?: (hovere
                             </motion.span>
                         ))}
                     </motion.h1>
-                    <p className="text-sm md:text-base text-white/60 tracking-[0.2em] uppercase max-w-lg leading-relaxed mix-blend-difference ml-2">
-                        A curated collection of exclusive properties in the heart of Switzerland.
-                    </p>
+
                 </motion.div>
             </div>
 
@@ -325,17 +330,19 @@ export default function PropertyMap({ onHoverChange }: { onHoverChange?: (hovere
                             }}
                             onMouseLeave={() => handleSetHoveredProperty(null)}
                         >
-                            <div className="flex items-center justify-between">
-                                <span className={`text-lg md:text-xl tracking-wide transition-colors duration-300 ${hoveredProperty === property.id ? 'text-[#bba371]' : 'text-white group-hover:text-[#bba371]'}`}>
-                                    {property.name}
+                            <Link href={`/properties/${property.slug}`} className="flex flex-col gap-1">
+                                <div className="flex items-center justify-between">
+                                    <span className={`text-lg md:text-xl tracking-wide transition-colors duration-300 ${hoveredProperty === property.id ? 'text-[#bba371]' : 'text-white group-hover:text-[#bba371]'}`}>
+                                        {property.name}
+                                    </span>
+                                    <span className={`text-[#bba371] transition-all duration-300 transform ${hoveredProperty === property.id ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0'}`}>
+                                        →
+                                    </span>
+                                </div>
+                                <span className="text-xs text-white/50 tracking-widest uppercase">
+                                    {property.location}
                                 </span>
-                                <span className={`text-[#bba371] transition-all duration-300 transform ${hoveredProperty === property.id ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0'}`}>
-                                    →
-                                </span>
-                            </div>
-                            <span className="text-xs text-white/50 tracking-widest uppercase">
-                                {property.location}
-                            </span>
+                            </Link>
                         </motion.div>
                     ))}
                 </motion.div>
