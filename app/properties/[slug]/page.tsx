@@ -167,10 +167,10 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 1 }}
-                    className="absolute top-0 left-32 z-10 w-full h-full flex items-center justify-start text-left"
+                    className="absolute top-0 left-[8vw] z-10 w-full h-full flex items-center justify-start text-left"
                 >
                     <div
-                        className="text-5xl text-[#ffffff]/70 relative mt-100 z-40 w-max pointer-events-none"
+                        className="text-[clamp(28px,3vw,56px)] text-[#ffffff]/70 relative mt-[10vh] z-40 w-max pointer-events-none"
                         style={{ fontFamily: "Courier, Courier New, monospace" }}
                     >
                         {propertyData.name}
