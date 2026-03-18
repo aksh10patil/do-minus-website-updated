@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, Variants } from "framer-motion";
 
 // --- Types & Data ---
 type PhilosophyBlock = {
@@ -12,7 +12,7 @@ type PhilosophyBlock = {
     image: string;
 };
 
-const luxuryTypewriterContainer: any = {
+const luxuryTypewriterContainer: Variants = {
     hidden: { opacity: 1 },
     visible: {
         opacity: 1,
@@ -23,7 +23,7 @@ const luxuryTypewriterContainer: any = {
     },
 };
 
-const luxuryLetter: any = {
+const luxuryLetter: Variants = {
     hidden: { opacity: 0, y: 15, filter: "blur(2px)" },
     visible: {
         opacity: 1,
@@ -164,7 +164,7 @@ const PhilosophyBlockEl = ({ block, index }: { block: PhilosophyBlock; index: nu
 
                     <motion.div
                         style={{ scaleX: lineScaleX, originX: 0 }}
-                        className="mt-1 h-[1px] w-full bg-[#d6ceb8] opacity-60 ml-0 md:ml-0"
+                        className="mt-1 h-[1px] w-full bg-[#d6ceb8] opacity-60 ml-0 md:ml-0 "
                     />
                 </button>
             </div>
@@ -193,6 +193,7 @@ export default function InteractivePhilosophySection() {
 
     const lineHeight = useTransform(smoothedProgress, [0, 1], ["0%", "100%"]);
     const lineOpacity = useTransform(smoothedProgress, [0, 0.05, 1], [0.25, 1, 1]);
+    const lineVisibility = useTransform(smoothedProgress, [0, 0.04, 0.96, 1], [0, 1, 1, 0]);
 
     return (
         <section
@@ -215,19 +216,24 @@ export default function InteractivePhilosophySection() {
                     </motion.h1>
                 </div>
 
-                <div aria-hidden="true" className="pointer-events-none sticky top-[12vh] z-0 h-0">
-                    <div className="absolute left-0 -translate-x-6 md:-translate-x-12 lg:-translate-x-16 h-[76vh] w-[1.5px] overflow-hidden bg-[#a89f87]/20">
-                        <motion.div
-                            style={{ height: lineHeight, opacity: lineOpacity }}
-                            className="absolute left-0 top-0 w-full 
-                                bg-gradient-to-b 
-                                from-[#e7e0cc] 
-                                via-[#d6ceb8] 
-                                to-[#8B7325] 
-                                shadow-[0_0_12px_rgba(214,206,184,0.45)]"
-                        />
-                    </div>
-                </div>
+                <motion.div
+                    aria-hidden="true"
+                    className="pointer-events-none fixed top-[12vh] z-0 h-[76vh] w-[1.5px] -translate-x-1/2 overflow-hidden bg-[#a89f87]/20"
+                    style={{
+                        left: "var(--navbar-icon-center-x, 72px)",
+                        opacity: lineVisibility,
+                    }}
+                >
+                    <motion.div
+                        style={{ height: lineHeight, opacity: lineOpacity }}
+                        className="absolute left-0 top-0 w-full 
+                            bg-gradient-to-b 
+                            from-[#e7e0cc] 
+                            via-[#d6ceb8] 
+                            to-[#8B7325] 
+                            shadow-[0_0_12px_rgba(214,206,184,0.45)]"
+                    />
+                </motion.div>
 
                 {philosophyData.map((block, index) => (
                     <PhilosophyBlockEl key={block.id} block={block} index={index} />
