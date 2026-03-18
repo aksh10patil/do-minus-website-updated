@@ -13,7 +13,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
 
     const navLinks = [
         { name: "Properties", href: "/properties/${property.slug}" },
-        { name: "Philosophy", href: "#" },
+        { name: "Philosophy", href: "/philosophy" },
         { name: "Journal", href: "#" },
         { name: "Contact", href: "#" },
     ];
@@ -75,7 +75,6 @@ export default function Navbar({ hidden = false }: NavbarProps) {
             transition={{ duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
             className={`fixed top-0 left-0 h-full w-max z-50 px-6 md:px-12 lg:px-32 ${hidden ? "pointer-events-none" : "pointer-events-none"
                 }`}
-            style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             {/* Expanding Glassmorphism Container */}
             <motion.div

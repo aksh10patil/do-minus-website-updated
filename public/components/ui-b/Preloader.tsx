@@ -80,7 +80,6 @@ export default function Preloader({ onComplete }: PreloaderProps) {
                     exit={{ opacity: 0, filter: "blur(10px)", scale: 1.02 }}
                     transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
                     className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#1A1A1A]"
-                    style={{ fontFamily: '"Courier New", Courier, monospace' }}
                 >
                     {/* Staggered Wordmark */}
                     <motion.div
