@@ -139,12 +139,12 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
 
                     <Link
                         href="/"
-                        className="uppercase text-xs sm:text-sm tracking-[0.15em] hover:opacity-70 transition-opacity text-white mix-blend-difference"
+                        className="uppercase font-bold text-xs sm:text-sm tracking-[0.15em] hover:opacity-70 transition-opacity text-white mix-blend-difference"
                     >
                         Do-Minus
                     </Link>
 
-                    <span className="uppercase text-xs sm:text-sm tracking-[0.15em] opacity-70 text-white mix-blend-difference">
+                    <span className="uppercase font-bold text-xs sm:text-sm tracking-[0.15em] opacity-70 text-white mix-blend-difference">
                         {propertyData.location}
                     </span>
 

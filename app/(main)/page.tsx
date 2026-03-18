@@ -1,11 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Footer from "@/public/components/ui/Footer";
 import StoryGrid from "@/public/components/ui/StoryGrid";
-
 import PropertyMapB from "@/public/components/ui-b/PropertyMapB";
-import Navbar from "@/public/components/ui-b/Navbar";
 import Preloader from "@/public/components/ui-b/Preloader";
 
 export default function Home() {
@@ -22,7 +19,6 @@ export default function Home() {
         style={{ opacity: isReady ? 1 : 0 }}
       >
         <div className="relative w-full overflow-hidden">
-          <Navbar hidden={propertyHovered} />
           <PropertyMapB onHoverChange={setPropertyHovered} preloaderDone={isReady} />
         </div>
 
