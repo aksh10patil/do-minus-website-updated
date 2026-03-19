@@ -139,12 +139,12 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
 
                     <Link
                         href="/"
-                        className="uppercase text-xs sm:text-sm tracking-[0.15em] hover:opacity-70 transition-opacity text-white mix-blend-difference"
+                        className="uppercase font-bold text-xs sm:text-sm tracking-[0.15em] hover:opacity-70 transition-opacity text-white mix-blend-difference"
                     >
                         Do-Minus
                     </Link>
 
-                    <span className="uppercase text-xs sm:text-sm tracking-[0.15em] opacity-70 text-white mix-blend-difference">
+                    <span className="uppercase font-bold text-xs sm:text-sm tracking-[0.15em] opacity-70 text-white mix-blend-difference">
                         {propertyData.location}
                     </span>
 
@@ -171,7 +171,6 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                 >
                     <div
                         className="text-[clamp(28px,3vw,56px)] text-[#ffffff]/70 relative mt-[10vh] z-40 w-max pointer-events-none"
-                        style={{ fontFamily: "Courier, Courier New, monospace" }}
                     >
                         {propertyData.name}
                     </div>
@@ -235,7 +234,7 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                 <div className="w-full max-w-[1920px] px-8 lg:px-16 flex flex-col">
                     <div className="w-full flex justify-center mb-16">
                         <LuxReveal>
-                            <h3 className="text-2xl md:text-3xl font-light tracking-[0.15em] text-[#FFFFFF] text-center uppercase" style={{ fontFamily: "Courier, Courier New, monospace" }}>
+                            <h3 className="text-2xl md:text-3xl font-light tracking-[0.15em] text-[#FFFFFF] text-center uppercase">
                                 Explore Other Properties
                             </h3>
                         </LuxReveal>
@@ -256,7 +255,7 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors duration-1000"></div>
                                         </div>
                                         <div className="flex flex-col items-center text-center">
-                                            <h4 className="text-lg md:text-xl tracking-[0.1em] text-[#d6cdb7] uppercase" style={{ fontFamily: "Courier, Courier New, monospace" }}>
+                                            <h4 className="text-lg md:text-xl tracking-[0.1em] text-[#d6cdb7] uppercase">
                                                 {prop.name}
                                             </h4>
                                             <span className="text-xs tracking-[0.15em] text-[#A3A3A3] uppercase mt-2">
@@ -282,7 +281,6 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                 </div>
             </section>
 
-            <Footer />
         </main>
     );
 }

@@ -148,7 +148,7 @@ export default function PropertyMap({ onHoverChange, preloaderDone = true }: { o
     const activePropertyImages = properties.find(p => p.id === hoveredProperty)?.images || [];
 
     return (
-        <section className="relative w-full h-screen bg-[#1A1A1A] overflow-hidden" style={{ fontFamily: '"Courier New", Courier, monospace' }}>
+        <section className="relative w-full h-screen bg-[#1A1A1A] overflow-hidden">
             {/* The Map */}
             <div className="absolute inset-0 z-0">
                 <Map

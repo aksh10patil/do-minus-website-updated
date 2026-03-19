@@ -1,19 +1,55 @@
 "use client";
 
-import { useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
+import { usePreloaderGate } from "./usePreloaderGate";
 
 interface NavbarProps {
     hidden?: boolean;
 }
 
 export default function Navbar({ hidden = false }: NavbarProps) {
+    const isPreloaderReady = usePreloaderGate();
     const [isHovered, setIsHovered] = useState(false);
+    const iconRef = useRef<HTMLDivElement>(null);
+
+    useLayoutEffect(() => {
+        const iconElement = iconRef.current;
+        if (!iconElement) return;
+
+        const root = document.documentElement;
+        const syncIconPosition = () => {
+            const rect = iconElement.getBoundingClientRect();
+            root.style.setProperty("--navbar-icon-left", `${rect.left}px`);
+            root.style.setProperty("--navbar-icon-center-x", `${rect.left + rect.width / 2}px`);
+            root.style.setProperty("--navbar-icon-top", `${rect.top}px`);
+            root.style.setProperty("--navbar-icon-center-y", `${rect.top + rect.height / 2}px`);
+        };
+
+        syncIconPosition();
+
+        const handleResize = () => {
+            window.requestAnimationFrame(syncIconPosition);
+        };
+
+        const resizeObserver =
+            typeof ResizeObserver !== "undefined"
+                ? new ResizeObserver(syncIconPosition)
+                : null;
+
+        resizeObserver?.observe(iconElement);
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            resizeObserver?.disconnect();
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
 
     const navLinks = [
         { name: "Properties", href: "/properties/${property.slug}" },
-        { name: "Philosophy", href: "#" },
+        { name: "Philosophy", href: "/philosophy" },
         { name: "Journal", href: "#" },
         { name: "Contact", href: "#" },
     ];
@@ -68,6 +104,10 @@ export default function Navbar({ hidden = false }: NavbarProps) {
         },
     };
 
+    if (!isPreloaderReady) {
+        return null;
+    }
+
     return (
         <motion.nav
             initial={{ opacity: 0 }}
@@ -75,7 +115,6 @@ export default function Navbar({ hidden = false }: NavbarProps) {
             transition={{ duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
             className={`fixed top-0 left-0 h-full w-max z-50 px-6 md:px-12 lg:px-32 ${hidden ? "pointer-events-none" : "pointer-events-none"
                 }`}
-            style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             {/* Expanding Glassmorphism Container */}
             <motion.div
@@ -87,7 +126,10 @@ export default function Navbar({ hidden = false }: NavbarProps) {
                 onMouseLeave={() => setIsHovered(false)}
             >
                 {/* Header / Hamburger Icon (Fixed 48x48 bounds) */}
-                <div className="h-[48px] w-[48px] shrink-0 p-3 flex items-center justify-center cursor-pointer box-border relative z-10">
+                <div
+                    ref={iconRef}
+                    className="h-[48px] w-[48px] shrink-0 p-3 flex items-center justify-center cursor-pointer box-border relative z-10"
+                >
                     <div className="flex flex-col gap-[5px] w-6">
                         <span
                             className={`h-[1px] bg-[#d6cdb7] transition-all duration-500 ease-[0.4,0,0.2,1] ${isHovered ? "w-6" : "w-4"

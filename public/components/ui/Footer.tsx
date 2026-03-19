@@ -33,7 +33,6 @@ export default function Footer() {
     return (
         <footer
             className="relative w-full bg-[#1A1A1A] text-[#f4f4f0] pt-24 pb-12 md:pt-32 px-6 md:px-12 lg:px-20 flex flex-col items-center overflow-hidden"
-            style={{ fontFamily: '"Courier New", Courier, monospace' }}
         >
             <div className="w-full max-w-[1400px] flex flex-col md:flex-row justify-between mb-16 md:mb-24 gap-12 md:gap-8 z-10">
                 {/* Left Section - Brand */}

@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { blockPreloaderGate, releasePreloaderGate } from "./usePreloaderGate";
 
 // Key images to preload — covers StoryGrid hero images + representative property images
 const IMAGES_TO_PRELOAD: string[] = [
@@ -20,32 +21,49 @@ interface PreloaderProps {
 
 export default function Preloader({ onComplete }: PreloaderProps) {
     const [done, setDone] = useState<boolean>(false);
+    const gateReleasedRef = useRef(false);
 
     useEffect(() => {
+        blockPreloaderGate();
+
         const total = IMAGES_TO_PRELOAD.length;
 
         if (total === 0) {
             setDone(true);
-            return;
+        } else {
+            let loaded = 0;
+
+            const tick = () => {
+                loaded++;
+                if (loaded >= total) {
+                    setTimeout(() => setDone(true), 800);
+                }
+            };
+
+            IMAGES_TO_PRELOAD.forEach((src) => {
+                const img = new Image();
+                img.onload = tick;
+                img.onerror = tick;
+                img.src = src;
+            });
         }
 
-        let loaded = 0;
-
-        const tick = () => {
-            loaded++;
-            if (loaded >= total) {
-                setTimeout(() => setDone(true), 800);
+        return () => {
+            if (!gateReleasedRef.current) {
+                gateReleasedRef.current = true;
+                releasePreloaderGate();
             }
         };
-
-        IMAGES_TO_PRELOAD.forEach((src) => {
-            const img = new Image();
-            img.onload = tick;
-            img.onerror = tick;
-            img.src = src;
-        });
     }, []);
 
+    const handleExitComplete = () => {
+        if (!gateReleasedRef.current) {
+            gateReleasedRef.current = true;
+            releasePreloaderGate();
+        }
+
+        onComplete();
+    };
 
     const wordmark = "Do-Minus";
     const letters = Array.from(wordmark);
@@ -72,15 +90,15 @@ export default function Preloader({ onComplete }: PreloaderProps) {
     };
 
     return (
-        <AnimatePresence onExitComplete={onComplete}>
+        <AnimatePresence onExitComplete={handleExitComplete}>
             {!done && (
                 <motion.div
                     key="preloader"
+                    data-do-minus-preloader="active"
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0, filter: "blur(10px)", scale: 1.02 }}
                     transition={{ duration: 1.2, ease: [0.4, 0, 0.2, 1] }}
                     className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#1A1A1A]"
-                    style={{ fontFamily: '"Courier New", Courier, monospace' }}
                 >
                     {/* Staggered Wordmark */}
                     <motion.div
