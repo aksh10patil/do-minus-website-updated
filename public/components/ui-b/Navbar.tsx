@@ -3,12 +3,14 @@
 import { useLayoutEffect, useRef, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
+import { usePreloaderGate } from "./usePreloaderGate";
 
 interface NavbarProps {
     hidden?: boolean;
 }
 
 export default function Navbar({ hidden = false }: NavbarProps) {
+    const isPreloaderReady = usePreloaderGate();
     const [isHovered, setIsHovered] = useState(false);
     const iconRef = useRef<HTMLDivElement>(null);
 
@@ -101,6 +103,10 @@ export default function Navbar({ hidden = false }: NavbarProps) {
             transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] },
         },
     };
+
+    if (!isPreloaderReady) {
+        return null;
+    }
 
     return (
         <motion.nav

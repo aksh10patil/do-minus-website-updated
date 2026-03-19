@@ -281,7 +281,6 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                 </div>
             </section>
 
-            <Footer />
         </main>
     );
 }
