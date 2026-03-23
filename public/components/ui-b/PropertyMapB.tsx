@@ -546,65 +546,12 @@ export default function PropertyMapB({
 
             <div className="md:hidden block">
                 <div
-                    className="absolute pt-20 left-4 z-40 pointer-events-none"
+                    className="absolute top-0 left-1/2 -translate-x-1/2 pt-6 z-40 pointer-events-none text-center w-max"
                     style={{ top: "max(1rem, env(safe-area-inset-top))" }}
                 >
-                    <h2 className="text-[#bba371] text-[9px] tracking-[0.35em] font-bold uppercase mb-1.5">
-                        Welcome to
-                    </h2>
-                    <h1 className="text-[clamp(1.6rem,6vw,2rem)] tracking-[0.18em] font-light text-[#f4f4f0] drop-shadow-md">
-                        Do-Minus
-                    </h1>
-                </div>
-
-                <div
-                    className="absolute left-2 z-40 pointer-events-none"
-                    style={{ top: "38%", transform: "translateY(-50%)" }}
-                >
-                    <button
-                        onClick={handlePrev}
-                        className="pointer-events-auto flex items-center justify-center w-11 h-11 rounded-none bg-[#1A1A1A]/60 border border-white/20 hover:bg-[#bba371]/90 hover:border-[#bba371] active:scale-95 transition-all duration-300 backdrop-blur-md group"
-                        aria-label="Previous property"
-                    >
-                        <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="text-[#d6cdb7] group-hover:text-white group-hover:-translate-x-1 transition-all duration-300"
-                        >
-                            <path d="m15 18-6-6 6-6" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div
-                    className="absolute right-2 z-40 pointer-events-none"
-                    style={{ top: "38%", transform: "translateY(-50%)" }}
-                >
-                    <button
-                        onClick={handleNext}
-                        className="pointer-events-auto flex items-center justify-center w-11 h-11 rounded-none bg-[#1A1A1A]/60 border border-white/20 hover:bg-[#bba371]/90 hover:border-[#bba371] active:scale-95 transition-all duration-300 backdrop-blur-md group"
-                        aria-label="Next property"
-                    >
-                        <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="text-[#d6cdb7] group-hover:text-white group-hover:translate-x-1 transition-all duration-300"
-                        >
-                            <path d="m9 18 6-6-6-6" />
-                        </svg>
-                    </button>
+                   <h1 className="text-[clamp(1.1rem,4.5vw,1.45rem)] tracking-[0.18em] font-light text-[#f4f4f0] drop-shadow-md">
+  Do-Minus
+</h1>
                 </div>
 
                 <div
@@ -618,11 +565,11 @@ export default function PropertyMapB({
                             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                             exit={{ opacity: 0, y: -16, filter: "blur(10px)" }}
                             transition={{ duration: 0.45, ease: [0.2, 0.65, 0.3, 0.9] }}
-                            className="pointer-events-auto flex flex-col bg-[#1A1A1A]/80 backdrop-blur-2xl border border-white/15 rounded-none overflow-hidden shadow-2xl w-full max-w-[min(92vw,26rem)]"
+                            className="pointer-events-auto flex flex-col bg-[#1A1A1A]/80 backdrop-blur-2xl border border-white/15 rounded-none overflow-hidden shadow-2xl w-[75%] max-w-[min(69vw,19.5rem)] max-h-[42vh]"
                         >
                             <div
                                 className="w-full relative overflow-hidden group"
-                                style={{ height: "clamp(150px, 22vh, 180px)" }}
+                                style={{ height: "clamp(112px, 16.5vh, 135px)" }}
                             >
                                 <Link
                                     href={`/properties/${activeMobileProperty.slug}`}
@@ -636,21 +583,60 @@ export default function PropertyMapB({
                                 <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors duration-500 z-10" />
                             </div>
 
-                            <div className="w-full px-5 py-4 flex flex-col justify-center relative">
+                            <div className="w-full px-4 py-3 flex flex-col justify-center relative overflow-y-auto">
                                 <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#bba371] to-transparent opacity-80" />
+                                <div className="absolute top-3 right-3 flex items-center gap-1.5 z-20">
+                                    <button
+                                        onClick={handlePrev}
+                                        className="pointer-events-auto flex items-center justify-center w-7 h-7 border border-white/10 bg-white/5 backdrop-blur-md text-white/70 active:scale-95 transition-all duration-300 hover:text-[#bba371] hover:border-[#bba371]/30"
+                                        aria-label="Previous property"
+                                    >
+                                        <svg
+                                            width="14"
+                                            height="14"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="1.7"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        >
+                                            <path d="m15 18-6-6 6-6" />
+                                        </svg>
+                                    </button>
 
-                                <h2 className="text-[#bba371] text-[9px] tracking-[0.28em] font-bold uppercase mb-1.5">
+                                    <button
+                                        onClick={handleNext}
+                                        className="pointer-events-auto flex items-center justify-center w-7 h-7 border border-white/10 bg-white/5 backdrop-blur-md text-white/70 active:scale-95 transition-all duration-300 hover:text-[#bba371] hover:border-[#bba371]/30"
+                                        aria-label="Next property"
+                                    >
+                                        <svg
+                                            width="14"
+                                            height="14"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="1.7"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        >
+                                            <path d="m9 18 6-6-6-6" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <h2 className="text-[#bba371] text-[8px] tracking-[0.24em] font-bold uppercase mb-1">
                                     Destination
                                 </h2>
 
-                                <h3 className="text-[clamp(1.5rem,5.5vw,1.9rem)] tracking-tight font-light text-[#f4f4f0] mb-2 leading-none">
+                                <h3 className="text-[clamp(1.15rem,4.2vw,1.45rem)] tracking-tight font-light text-[#f4f4f0] mb-1.5 leading-none">
                                     {activeMobileProperty.name}
                                 </h3>
 
-                                <p className="text-white/60 text-[11px] tracking-[0.18em] uppercase mb-5 flex items-center gap-2">
+                                <p className="text-white/60 text-[10px] tracking-[0.14em] uppercase mb-4 flex items-center gap-1.5">
                                     <svg
-                                        width="14"
-                                        height="14"
+                                        width="12"
+                                        height="12"
                                         viewBox="0 0 24 24"
                                         fill="none"
                                         stroke="currentColor"
@@ -667,7 +653,7 @@ export default function PropertyMapB({
 
                                 <Link
                                     href={`/properties/${activeMobileProperty.slug}`}
-                                    className="inline-flex w-fit items-center gap-3 text-sm text-white hover:text-[#bba371] transition-colors border-b border-transparent hover:border-[#bba371] pb-1 group/link z-20 relative"
+                                    className="inline-flex w-fit items-center gap-2 text-[13px] text-white hover:text-[#bba371] transition-colors border-b border-transparent hover:border-[#bba371] pb-1 group/link z-20 relative"
                                 >
                                     Explore Property
                                     <span className="group-hover/link:translate-x-1 transition-transform duration-300">
@@ -675,12 +661,12 @@ export default function PropertyMapB({
                                     </span>
                                 </Link>
 
-                                <div className="absolute bottom-4 right-5 flex gap-1.5 z-20">
+                                <div className="absolute bottom-3 right-4 flex gap-1 z-20">
                                     {properties.map((_, idx) => (
                                         <button
                                             key={idx}
                                             onClick={() => setActiveIndex(idx)}
-                                            className={`h-1 rounded-none transition-all duration-500 hover:bg-[#bba371]/80 ${idx === activeIndex ? "w-6 bg-[#bba371]" : "w-2 bg-white/20"
+                                            className={`h-1 rounded-none transition-all duration-500 hover:bg-[#bba371]/80 ${idx === activeIndex ? "w-5 bg-[#bba371]" : "w-2 bg-white/20"
                                                 }`}
                                             aria-label={`Go to property ${idx + 1}`}
                                         />
