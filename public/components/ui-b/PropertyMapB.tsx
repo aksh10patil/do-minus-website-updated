@@ -549,13 +549,13 @@ export default function PropertyMapB({
                     className="absolute top-0 left-1/2 -translate-x-1/2 pt-6 z-40 pointer-events-none text-center w-max"
                     style={{ top: "max(1rem, env(safe-area-inset-top))" }}
                 >
-                   <h1 className="text-[clamp(1.1rem,4.5vw,1.45rem)] tracking-[0.18em] font-light text-[#f4f4f0] drop-shadow-md">
-  Do-Minus
-</h1>
+                    <h1 className="text-[clamp(1.1rem,4.5vw,1.45rem)] tracking-[0.18em] font-light text-[#f4f4f0] drop-shadow-md">
+                        Do-Minus
+                    </h1>
                 </div>
 
                 <div
-                    className="absolute w-full left-1/2 -translate-x-1/2 px-3 z-50 pointer-events-none flex justify-center"
+                    className="absolute w-full left-1/2 -translate-x-1/2 px-3 z-50 pb-16 pointer-events-none flex justify-center"
                     style={{ bottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
                 >
                     <AnimatePresence mode="wait">
