@@ -118,7 +118,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
         >
             {/* Expanding Glassmorphism Container */}
             <motion.div
-                className="absolute top-8 md:top-12 left-12 lg:left-32 flex flex-col pointer-events-auto bg-[#1A1A1A]/30 backdrop-blur-md border border-white/5 shadow-2xl rounded-sm overflow-hidden hover:bg-[#1A1A1A]/60 transition-colors duration-500"
+                className="absolute top-8 md:top-12 left-4 md:left-12 lg:left-32 flex flex-col pointer-events-auto bg-[#1A1A1A]/30 backdrop-blur-md border border-white/5 shadow-2xl rounded-sm overflow-hidden hover:bg-[#1A1A1A]/60 transition-colors duration-500"
                 initial="hidden"
                 animate={isHovered ? "visible" : "hidden"}
                 variants={containerVariants}
