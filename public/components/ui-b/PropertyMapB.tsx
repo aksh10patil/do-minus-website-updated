@@ -555,7 +555,7 @@ export default function PropertyMapB({
                 </div>
 
                 <div
-                    className="absolute w-full left-1/2 -translate-x-1/2 px-3 z-50 pb-16 pointer-events-none flex justify-center"
+                    className="absolute inset-x-0 z-50 pb-16 pointer-events-none flex justify-center px-3 sm:px-3"
                     style={{ bottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
                 >
                     <AnimatePresence mode="wait">
@@ -565,7 +565,7 @@ export default function PropertyMapB({
                             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                             exit={{ opacity: 0, y: -16, filter: "blur(10px)" }}
                             transition={{ duration: 0.45, ease: [0.2, 0.65, 0.3, 0.9] }}
-                            className="pointer-events-auto flex flex-col bg-[#1A1A1A]/80 backdrop-blur-2xl border border-white/15 rounded-none overflow-hidden shadow-2xl w-[75%] max-w-[min(69vw,19.5rem)] max-h-[42vh]"
+                            className="pointer-events-auto flex flex-col bg-[#1A1A1A]/80 backdrop-blur-2xl border-y border-white/15 md:border md:border-white/15 rounded-none overflow-hidden shadow-2xl w-full max-w-full sm:max-w-[min(92vw,28rem)] max-h-[42vh]"
                         >
                             <div
                                 className="w-full relative overflow-hidden group"
