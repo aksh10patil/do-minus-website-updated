@@ -87,7 +87,7 @@ const ScrollingColumn = ({ images, reverse = false, speed = 20 }: { images: stri
 
 export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { onHoverChange?: (hovered: boolean) => void; preloaderDone?: boolean }) {
     const mapRef = useRef<any>(null);
-    
+
     // Shared state
     const [viewReady, setViewReady] = useState(false);
     const [isMobile, setIsMobile] = useState(true);
@@ -109,7 +109,7 @@ export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { 
     // Manage Map Movement when active mobile property changes (only if mobile)
     useEffect(() => {
         if (!mapRef.current || !viewReady || !isMobile) return;
-        
+
         mapRef.current.easeTo({
             center: [activeMobileProperty.lng, activeMobileProperty.lat],
             padding: { top: 0, bottom: 200, left: 0, right: 0 },
@@ -169,10 +169,10 @@ export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { 
                 map.setPaintProperty(layer.id, "line-opacity", 0.15);
             }
             if (layer.id.includes("water") && layer.type === "fill") {
-                map.setPaintProperty(layer.id, "fill-color", "#080d17"); 
+                map.setPaintProperty(layer.id, "fill-color", "#080d17");
             }
             if ((layer.id.includes("landcover") || layer.id.includes("national-park") || layer.id.includes("pitch")) && layer.type === "fill") {
-                map.setPaintProperty(layer.id, "fill-color", "#132018"); 
+                map.setPaintProperty(layer.id, "fill-color", "#132018");
                 map.setPaintProperty(layer.id, "fill-opacity", 0.6);
             }
             if (layer.type === "symbol" && layer.layout && layer.layout["text-field"]) {
@@ -181,7 +181,7 @@ export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { 
                 map.setPaintProperty(layer.id, "text-halo-width", 1.5);
             }
         });
-        
+
         // Initial mobile positioning check
         if (window.innerWidth < 768) {
             mapRef.current.easeTo({
@@ -272,10 +272,10 @@ export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { 
             {/* Seamless Overlay Gradients */}
             <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-[#1A1A1A]/90 via-transparent to-[#1A1A1A]/90 md:block hidden" />
             <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#1A1A1A]/90 via-transparent to-transparent md:block hidden" />
-            
+
             <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-t from-[#1A1A1A] via-[#1A1A1A]/30 to-[#1A1A1A]/60 md:hidden block" />
             <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-x from-[#1A1A1A]/60 via-transparent to-[#1A1A1A]/60 md:hidden block" />
-            
+
             <div
                 className="absolute inset-0 z-10 pointer-events-none"
                 style={{
@@ -426,23 +426,23 @@ export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { 
 
                 {/* Navigation Buttons (Left/Right) */}
                 <div className="absolute inset-y-0 left-2 top-0 z-40 flex items-center pointer-events-none">
-                    <button 
-                        onClick={handlePrev} 
-                        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-none bg-[#1A1A1A]/60 border border-white/20 text-white/80 hover:bg-[#bba371]/90 hover:text-white hover:border-[#bba371] hover:scale-110 transition-all duration-300 backdrop-blur-md group"
+                    <button
+                        onClick={handlePrev}
+                        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-none d6cdb7 bg-[#1A1A1A]/60 border border-white/20 text-white/80 hover:bg-[#bba371]/90 hover:text-white hover:border-[#bba371] hover:scale-110 transition-all duration-300 backdrop-blur-md group"
                     >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform group-hover:-translate-x-1 transition-transform">
-                            <path d="m15 18-6-6 6-6"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform text-[#d6cdb7] group-hover:-translate-x-1 transition-transform">
+                            <path d="m15 18-6-6 6-6" />
                         </svg>
                     </button>
                 </div>
-                
+
                 <div className="absolute inset-y-0 right-2 top-0 z-40 flex items-center pointer-events-none">
-                    <button 
-                        onClick={handleNext} 
+                    <button
+                        onClick={handleNext}
                         className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-none bg-[#1A1A1A]/60 border border-white/20 text-white/80 hover:bg-[#bba371]/90 hover:text-white hover:border-[#bba371] hover:scale-110 transition-all duration-300 backdrop-blur-md group"
                     >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform group-hover:translate-x-1 transition-transform">
-                            <path d="m9 18 6-6-6-6"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform text-[#d6cdb7]  group-hover:translate-x-1 transition-transform">
+                            <path d="m9 18 6-6-6-6" />
                         </svg>
                     </button>
                 </div>
@@ -460,19 +460,19 @@ export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { 
                         >
                             {/* Picture */}
                             <div className="w-full h-48 relative overflow-hidden group">
-                               <Link href={`/properties/${activeMobileProperty.slug}`} className="absolute inset-0 z-20" />
-                               <img 
-                                   src={activeMobileProperty.images[0]} 
-                                   alt={activeMobileProperty.name}
-                                   className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[2000ms] ease-out z-0"
-                               />
-                               <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                                <Link href={`/properties/${activeMobileProperty.slug}`} className="absolute inset-0 z-20" />
+                                <img
+                                    src={activeMobileProperty.images[0]}
+                                    alt={activeMobileProperty.name}
+                                    className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[2000ms] ease-out z-0"
+                                />
+                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
                             </div>
-                            
+
                             {/* Information Details */}
                             <div className="w-full p-6 flex flex-col justify-center relative">
                                 <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#bba371] to-transparent opacity-80" />
-                                
+
                                 <h2 className="text-[#bba371] text-[10px] tracking-[0.3em] font-bold uppercase mb-2">
                                     Destination
                                 </h2>
@@ -480,10 +480,10 @@ export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { 
                                     {activeMobileProperty.name}
                                 </h3>
                                 <p className="text-white/60 text-xs tracking-widest uppercase mb-6 flex items-center gap-2">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#bba371]"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#bba371]"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
                                     {activeMobileProperty.location}
                                 </p>
-                                
+
                                 <Link href={`/properties/${activeMobileProperty.slug}`} className="inline-flex w-fit items-center gap-3 text-sm text-white hover:text-[#bba371] transition-colors border-b border-transparent hover:border-[#bba371] pb-1 group/link z-20 relative">
                                     Explore Property
                                     <span className="transform group-hover/link:translate-x-1 transition-transform">→</span>
@@ -492,10 +492,10 @@ export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { 
                                 {/* Property indicators */}
                                 <div className="absolute bottom-6 right-6 flex gap-1.5 z-20">
                                     {properties.map((_, idx) => (
-                                        <button 
-                                            key={idx} 
+                                        <button
+                                            key={idx}
                                             onClick={() => setActiveIndex(idx)}
-                                            className={`h-1 rounded-none transition-all duration-500 hover:bg-[#bba371]/80 ${idx === activeIndex ? 'w-6 bg-[#bba371]' : 'w-2 bg-white/20'}`} 
+                                            className={`h-1 rounded-none transition-all duration-500 hover:bg-[#bba371]/80 ${idx === activeIndex ? 'w-6 bg-[#bba371]' : 'w-2 bg-white/20'}`}
                                             aria-label={`Go to property ${idx + 1}`}
                                         />
                                     ))}
