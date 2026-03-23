@@ -348,15 +348,15 @@ export default function PropertyMapB({
                                         <>
                                             <div
                                                 className={`absolute rounded-full transition-all duration-300 ${isActive
-                                                        ? "w-10 h-10 -top-3 -left-3 bg-[#FFD700]/35 blur-md"
-                                                        : "w-5 h-5 -top-1.5 -left-1.5 bg-white/10 blur-sm"
+                                                    ? "w-10 h-10 -top-3 -left-3 bg-[#FFD700]/35 blur-md"
+                                                    : "w-5 h-5 -top-1.5 -left-1.5 bg-white/10 blur-sm"
                                                     }`}
                                             />
 
                                             <div
                                                 className={`relative rounded-full border border-white transition-all duration-300 ${isActive
-                                                        ? "w-4 h-4 bg-[#FFD700] scale-125 shadow-[0_0_20px_rgba(255,215,0,0.8)]"
-                                                        : "w-2.5 h-2.5 bg-white/70"
+                                                    ? "w-4 h-4 bg-[#FFD700] scale-125 shadow-[0_0_20px_rgba(255,215,0,0.8)]"
+                                                    : "w-2.5 h-2.5 bg-white/70"
                                                     }`}
                                             />
 
@@ -370,31 +370,31 @@ export default function PropertyMapB({
                                         <>
                                             <div
                                                 className={`absolute w-12 h-12 -top-4 -left-4 rounded-full blur-md transition duration-500 ${isActive
-                                                        ? "bg-[#FFD700]/60 scale-150"
-                                                        : "bg-[#FFD700]/30 animate-pulse"
+                                                    ? "bg-[#FFD700]/60 scale-150"
+                                                    : "bg-[#FFD700]/30 animate-pulse"
                                                     }`}
                                                 style={{ animationDuration: "4s" }}
                                             />
 
                                             <div
                                                 className={`absolute w-8 h-8 -top-2 -left-2 rounded-full transition duration-1000 ${isActive
-                                                        ? "bg-[#FFD700]/0"
-                                                        : "bg-[#FFD700]/60 animate-ping"
+                                                    ? "bg-[#FFD700]/0"
+                                                    : "bg-[#FFD700]/60 animate-ping"
                                                     }`}
                                                 style={{ animationDuration: "3s" }}
                                             />
 
                                             <div
                                                 className={`relative w-4 h-4 rounded-full border-2 border-white shadow-[0_0_15px_3px_rgba(255,215,0,0.6)] transition duration-300 ${isActive
-                                                        ? "bg-white shadow-[0_0_25px_8px_rgba(255,215,0,0.9)] scale-150"
-                                                        : "bg-[#FFD700] group-hover:scale-125"
+                                                    ? "bg-white shadow-[0_0_25px_8px_rgba(255,215,0,0.9)] scale-150"
+                                                    : "bg-[#FFD700] group-hover:scale-125"
                                                     }`}
                                             />
 
                                             <div
                                                 className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition duration-300 text-xs tracking-widest bg-[#1A1A1A]/95 backdrop-blur-md px-4 py-2 border whitespace-nowrap shadow-[0_5px_15px_rgba(255,215,0,0.15)] ${isActive
-                                                        ? "opacity-100 border-[#FFD700] text-[#FFD700]"
-                                                        : "opacity-0 border-[#333] text-[#f4f4f0] group-hover:opacity-100"
+                                                    ? "opacity-100 border-[#FFD700] text-[#FFD700]"
+                                                    : "opacity-0 border-[#333] text-[#f4f4f0] group-hover:opacity-100"
                                                     }`}
                                             >
                                                 {property.name}
@@ -519,16 +519,16 @@ export default function PropertyMapB({
                                     <div className="flex items-center justify-between">
                                         <span
                                             className={`text-xl tracking-wide transition-colors duration-300 ${hoveredProperty === property.id
-                                                    ? "text-[#bba371]"
-                                                    : "text-white group-hover:text-[#bba371]"
+                                                ? "text-[#bba371]"
+                                                : "text-white group-hover:text-[#bba371]"
                                                 }`}
                                         >
                                             {property.name}
                                         </span>
                                         <span
                                             className={`text-[#bba371] transition-all duration-300 transform ${hoveredProperty === property.id
-                                                    ? "opacity-100 translate-x-0"
-                                                    : "opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
+                                                ? "opacity-100 translate-x-0"
+                                                : "opacity-0 translate-x-4 group-hover:opacity-100 group-hover:translate-x-0"
                                                 }`}
                                         >
                                             →
@@ -546,7 +546,7 @@ export default function PropertyMapB({
 
             <div className="md:hidden block">
                 <div
-                    className="absolute left-4 z-40 pointer-events-none"
+                    className="absolute pt-20 left-4 z-40 pointer-events-none"
                     style={{ top: "max(1rem, env(safe-area-inset-top))" }}
                 >
                     <h2 className="text-[#bba371] text-[9px] tracking-[0.35em] font-bold uppercase mb-1.5">
