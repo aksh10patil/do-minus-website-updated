@@ -11,7 +11,7 @@ interface NavbarProps {
 
 export default function Navbar({ hidden = false }: NavbarProps) {
     const isPreloaderReady = usePreloaderGate();
-    const [isHovered, setIsHovered] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const iconRef = useRef<HTMLDivElement>(null);
 
     useLayoutEffect(() => {
@@ -120,23 +120,24 @@ export default function Navbar({ hidden = false }: NavbarProps) {
             <motion.div
                 className="absolute top-8 md:top-12 left-4 md:left-12 lg:left-32 flex flex-col pointer-events-auto bg-[#1A1A1A]/30 backdrop-blur-md border border-white/5 shadow-2xl rounded-sm overflow-hidden hover:bg-[#1A1A1A]/60 transition-colors duration-500"
                 initial="hidden"
-                animate={isHovered ? "visible" : "hidden"}
+                animate={isOpen ? "visible" : "hidden"}
                 variants={containerVariants}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
+                onMouseEnter={() => setIsOpen(true)}
+                onMouseLeave={() => setIsOpen(false)}
             >
                 {/* Header / Hamburger Icon (Fixed 48x48 bounds) */}
                 <div
                     ref={iconRef}
                     className="h-[48px] w-[48px] shrink-0 p-3 flex items-center justify-center cursor-pointer box-border relative z-10"
+                    onClick={() => setIsOpen(!isOpen)}
                 >
                     <div className="flex flex-col gap-[5px] w-6">
                         <span
-                            className={`h-[1px] bg-[#d6cdb7] transition-all duration-500 ease-[0.4,0,0.2,1] ${isHovered ? "w-6" : "w-4"
+                            className={`h-[1px] bg-[#d6cdb7] transition-all duration-500 ease-[0.4,0,0.2,1] ${isOpen ? "w-6" : "w-4"
                                 }`}
                         />
                         <span
-                            className={`h-[1px] bg-[#bba371] transition-all duration-500 ease-[0.4,0,0.2,1] ${isHovered ? "w-4" : "w-6"
+                            className={`h-[1px] bg-[#bba371] transition-all duration-500 ease-[0.4,0,0.2,1] ${isOpen ? "w-4" : "w-6"
                                 }`}
                         />
 

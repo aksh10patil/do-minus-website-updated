@@ -417,85 +417,149 @@ export default function PropertyMapB({ onHoverChange, preloaderDone = true }: { 
             {/* MOBILE UI (Hidden on Desktop) */}
             <div className="md:hidden block">
                 {/* Top Brand Name */}
-                <div className="absolute top-25 left-6 z-40 pointer-events-none">
-                    <h2 className="text-[#bba371] text-[10px] tracking-[0.4em] font-bold uppercase mb-2">Welcome to</h2>
-                    <h1 className="text-3xl tracking-widest font-light text-[#f4f4f0] drop-shadow-md">
+                <div
+                    className="absolute pt-25 left-4 z-40 pointer-events-none"
+                    style={{ top: "max(1rem, env(safe-area-inset-top))" }}
+                >
+                    <h2 className="text-[#bba371] text-[9px] tracking-[0.35em] font-bold uppercase mb-1.5">
+                        Welcome to
+                    </h2>
+                    <h1 className="text-[clamp(1.6rem,6vw,2rem)] tracking-[0.18em] font-light text-[#f4f4f0] drop-shadow-md">
                         Do-Minus
                     </h1>
                 </div>
 
-                {/* Navigation Buttons (Left/Right) */}
-                <div className="absolute inset-y-0 left-2 top-0 z-40 flex items-center pointer-events-none">
+                {/* Left Navigation Button */}
+                <div
+                    className="absolute left-2 z-40 pointer-events-none"
+                    style={{ top: "42%", transform: "translateY(-50%)" }}
+                >
                     <button
                         onClick={handlePrev}
-                        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-none d6cdb7 bg-[#1A1A1A]/60 border border-white/20 text-white/80 hover:bg-[#bba371]/90 hover:text-white hover:border-[#bba371] hover:scale-110 transition-all duration-300 backdrop-blur-md group"
+                        className="pointer-events-auto flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-none bg-[#1A1A1A]/60 border border-white/20 hover:bg-[#bba371]/90 hover:border-[#bba371] active:scale-95 transition-all duration-300 backdrop-blur-md group"
+                        aria-label="Previous property"
                     >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform text-[#d6cdb7] group-hover:-translate-x-1 transition-transform">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-[#d6cdb7] group-hover:text-white group-hover:-translate-x-1 transition-all duration-300"
+                        >
                             <path d="m15 18-6-6 6-6" />
                         </svg>
                     </button>
                 </div>
 
-                <div className="absolute inset-y-0 right-2 top-0 z-40 flex items-center pointer-events-none">
+                {/* Right Navigation Button */}
+                <div
+                    className="absolute right-2 z-40 pointer-events-none"
+                    style={{ top: "42%", transform: "translateY(-50%)" }}
+                >
                     <button
                         onClick={handleNext}
-                        className="pointer-events-auto flex items-center justify-center w-12 h-12 rounded-none bg-[#1A1A1A]/60 border border-white/20 text-white/80 hover:bg-[#bba371]/90 hover:text-white hover:border-[#bba371] hover:scale-110 transition-all duration-300 backdrop-blur-md group"
+                        className="pointer-events-auto flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-none bg-[#1A1A1A]/60 border border-white/20 hover:bg-[#bba371]/90 hover:border-[#bba371] active:scale-95 transition-all duration-300 backdrop-blur-md group"
+                        aria-label="Next property"
                     >
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transform text-[#d6cdb7]  group-hover:translate-x-1 transition-transform">
+                        <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="text-[#d6cdb7] group-hover:text-white group-hover:translate-x-1 transition-all duration-300"
+                        >
                             <path d="m9 18 6-6-6-6" />
                         </svg>
                     </button>
                 </div>
 
                 {/* Bottom Card for Active Property */}
-                <div className="absolute bottom-6 w-full max-w-[90%] left-1/2 -translate-x-1/2 px-2 z-50 pointer-events-none flex justify-center pb-4">
+                <div
+                    className="absolute w-full left-1/2 -translate-x-1/2 px-3 z-50 pointer-events-none flex justify-center"
+                    style={{ bottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
+                >
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeIndex}
-                            initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                            initial={{ opacity: 0, y: 24, filter: "blur(10px)" }}
                             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                            exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                            transition={{ duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] }}
-                            className="pointer-events-auto flex flex-col bg-[#1A1A1A]/80 backdrop-blur-2xl border border-white/15 rounded-none overflow-hidden shadow-2xl w-full"
+                            exit={{ opacity: 0, y: -16, filter: "blur(10px)" }}
+                            transition={{ duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] }}
+                            className="pointer-events-auto flex flex-col bg-[#1A1A1A]/80 backdrop-blur-2xl border border-white/15 rounded-none overflow-hidden shadow-2xl w-full max-w-[min(92vw,26rem)]"
                         >
                             {/* Picture */}
-                            <div className="w-full h-48 relative overflow-hidden group">
-                                <Link href={`/properties/${activeMobileProperty.slug}`} className="absolute inset-0 z-20" />
+                            <div
+                                className="w-full relative overflow-hidden group"
+                                style={{ height: "clamp(160px, 24vh, 192px)" }}
+                            >
+                                <Link
+                                    href={`/properties/${activeMobileProperty.slug}`}
+                                    className="absolute inset-0 z-20"
+                                />
                                 <img
                                     src={activeMobileProperty.images[0]}
                                     alt={activeMobileProperty.name}
-                                    className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[2000ms] ease-out z-0"
+                                    className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[1600ms] ease-out z-0"
                                 />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
+                                <div className="absolute inset-0 bg-black/25 group-hover:bg-black/10 transition-colors duration-500 z-10" />
                             </div>
 
                             {/* Information Details */}
-                            <div className="w-full p-6 flex flex-col justify-center relative">
+                            <div className="w-full px-5 py-4 flex flex-col justify-center relative">
                                 <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-[#bba371] to-transparent opacity-80" />
 
-                                <h2 className="text-[#bba371] text-[10px] tracking-[0.3em] font-bold uppercase mb-2">
+                                <h2 className="text-[#bba371] text-[9px] tracking-[0.28em] font-bold uppercase mb-1.5">
                                     Destination
                                 </h2>
-                                <h3 className="text-3xl tracking-tight font-light text-[#f4f4f0] mb-2">
+
+                                <h3 className="text-[clamp(1.6rem,6vw,2rem)] tracking-tight font-light text-[#f4f4f0] mb-2 leading-none">
                                     {activeMobileProperty.name}
                                 </h3>
-                                <p className="text-white/60 text-xs tracking-widest uppercase mb-6 flex items-center gap-2">
-                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#bba371]"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" /><circle cx="12" cy="10" r="3" /></svg>
-                                    {activeMobileProperty.location}
+
+                                <p className="text-white/60 text-[11px] tracking-[0.18em] uppercase mb-5 flex items-center gap-2">
+                                    <svg
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="text-[#bba371] shrink-0"
+                                    >
+                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                    <span>{activeMobileProperty.location}</span>
                                 </p>
 
-                                <Link href={`/properties/${activeMobileProperty.slug}`} className="inline-flex w-fit items-center gap-3 text-sm text-white hover:text-[#bba371] transition-colors border-b border-transparent hover:border-[#bba371] pb-1 group/link z-20 relative">
+                                <Link
+                                    href={`/properties/${activeMobileProperty.slug}`}
+                                    className="inline-flex w-fit items-center gap-3 text-sm text-white hover:text-[#bba371] transition-colors border-b border-transparent hover:border-[#bba371] pb-1 group/link z-20 relative"
+                                >
                                     Explore Property
-                                    <span className="transform group-hover/link:translate-x-1 transition-transform">→</span>
+                                    <span className="group-hover/link:translate-x-1 transition-transform duration-300">
+                                        →
+                                    </span>
                                 </Link>
 
                                 {/* Property indicators */}
-                                <div className="absolute bottom-6 right-6 flex gap-1.5 z-20">
+                                <div className="absolute bottom-4 right-5 flex gap-1.5 z-20">
                                     {properties.map((_, idx) => (
                                         <button
                                             key={idx}
                                             onClick={() => setActiveIndex(idx)}
-                                            className={`h-1 rounded-none transition-all duration-500 hover:bg-[#bba371]/80 ${idx === activeIndex ? 'w-6 bg-[#bba371]' : 'w-2 bg-white/20'}`}
+                                            className={`h-1 rounded-none transition-all duration-500 hover:bg-[#bba371]/80 ${idx === activeIndex ? "w-6 bg-[#bba371]" : "w-2 bg-white/20"
+                                                }`}
                                             aria-label={`Go to property ${idx + 1}`}
                                         />
                                     ))}
