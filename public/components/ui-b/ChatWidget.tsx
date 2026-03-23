@@ -78,7 +78,7 @@ export default function ChatWidget() {
     }
 
     return (
-        <div className="fixed bottom-8 right-16 z-50">
+        <div className="fixed z-60 bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 sm:right-4 md:right-8 lg:right-16">
             <motion.div
                 initial="closed"
                 animate={open ? "open" : "closed"}
