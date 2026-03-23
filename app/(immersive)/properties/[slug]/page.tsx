@@ -137,12 +137,53 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
             <div className="absolute top-0 w-full z-50 flex justify-center pointer-events-none">
                 <nav className="w-full max-w-[1920px] flex justify-between items-center py-8 px-8 lg:px-32 text-[#FFFFFF] pointer-events-auto">
 
-                    <Link
-                        href="/"
-                        className="uppercase font-bold text-xs sm:text-sm tracking-[0.15em] hover:opacity-70 transition-opacity text-white mix-blend-difference"
-                    >
-                        Do-Minus
-                    </Link>
+                    <div className="flex items-center">
+                        <div className="relative inline-flex items-center group">
+                            {/* Large invisible hover bridge */}
+                            <div className="absolute left-0 top-1/2 z-0 h-14 w-[34rem] -translate-y-1/2" />
+
+                            <Link
+                                href="/"
+                                className="relative z-10 uppercase font-bold text-xs sm:text-sm tracking-[0.15em] text-white mix-blend-difference transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-white/40"
+                            >
+                                <span className="inline-block origin-left transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-x-110">
+                                    Do-Minus
+                                </span>
+                            </Link>
+
+                            <div
+                                className="absolute left-full top-1/2 z-20 flex -translate-y-1/2 translate-x-2 items-center gap-5 whitespace-nowrap opacity-0 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-4 group-hover:opacity-100 group-hover:pointer-events-auto"
+                            >
+                                <Link
+                                    href="/"
+                                    className="text-xs sm:text-sm uppercase tracking-[0.15em] font-semibold text-white/75 hover:text-white transition-all duration-300"
+                                >
+                                    Home
+                                </Link>
+
+                                <Link
+                                    href="/philosophy"
+                                    className="text-xs sm:text-sm uppercase tracking-[0.15em] font-semibold text-white/75 hover:text-white transition-all duration-300"
+                                >
+                                    Philosophy
+                                </Link>
+
+                                <Link
+                                    href="/properties"
+                                    className="text-xs sm:text-sm uppercase tracking-[0.15em] font-semibold text-white/75 hover:text-white transition-all duration-300"
+                                >
+                                    Properties
+                                </Link>
+
+                                <Link
+                                    href="/contact"
+                                    className="text-xs sm:text-sm uppercase tracking-[0.15em] font-semibold text-white/75 hover:text-white transition-all duration-300"
+                                >
+                                    Contact Us
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
 
                     <span className="uppercase font-bold text-xs sm:text-sm tracking-[0.15em] opacity-70 text-white mix-blend-difference">
                         {propertyData.location}
@@ -170,7 +211,7 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                     className="absolute top-0 left-[8vw] z-10 w-full h-full flex items-center justify-start text-left"
                 >
                     <div
-                        className="text-[clamp(28px,3vw,56px)] text-[#ffffff]/70 relative mt-[10vh] z-40 w-max pointer-events-none"
+                        className="text-[clamp(28px,3vw,56px)] text-[#ffffff]/70 relative mt-[32vh] z-40 w-max pointer-events-none"
                     >
                         {propertyData.name}
                     </div>
@@ -179,7 +220,7 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
 
 
             {/* Description & Details Section */}
-            <section className="w-full py-24  bg-[#1A1A1A] flex justify-center">
+            <section className="w-full py-40  bg-[#1A1A1A] flex justify-center">
                 <div className="w-full max-w-[1920px] px-8 lg:px-32 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
                     <div className="lg:col-span-6 flex flex-col justify-center">
                         <LuxReveal delay={0.1}>
@@ -203,11 +244,11 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
             </section>
 
             {/* Image Gallery / The Space */}
-            <section className="w-full py-24 lg:py-40 bg-[#1A1A1A] flex justify-center">
+            <section className="w-full py-24 lg:py-16 bg-[#1A1A1A] flex justify-center">
                 <div className="w-full max-w-[1920px] px-8 lg:px-16">
-                    <div className="columns-1 md:columns-2 lg:columns-3 gap-4 lg:gap-8">
+                    <div className="columns-1 md:columns-2 lg:columns-3 gap-4 lg:gap-4">
                         {propertyData.images.map((img, index) => (
-                            <div key={index} className="relative w-full overflow-hidden group break-inside-avoid mb-4 lg:mb-8">
+                            <div key={index} className="relative w-full overflow-hidden group break-inside-avoid mb-4 lg:mb-4">
                                 <Image
                                     src={img.src}
                                     alt={img.alt}
@@ -226,6 +267,18 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                             </div>
                         ))}
                     </div>
+
+                    {/* <div className="mt-16 lg:mt-24 grid grid-cols-1">
+                        <div className="lg:pr-12">
+                            <p className="text-lg md:text-xl leading-relaxed text-[#FFFFFF] opacity-90">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc semper nibh vel nibh molestie pellentesque. Etiam velit purus, sagittis quis neque a, cursus lacinia augue. Vivamus bibendum dui id lacus pulvinar imperdiet. Suspendisse lobortis semper hendrerit. Nullam faucibus sollicitudin malesuada
+                            </p>
+
+                            <button className="w-full mt-8 py-5 lg:py-6 border border-[#FFFFFF] bg-transparent text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#0a0a0a] transition-all duration-700 uppercase tracking-[0.15em] text-sm">
+                                request booking
+                            </button>
+                        </div>
+                    </div> */}
                 </div>
             </section>
 

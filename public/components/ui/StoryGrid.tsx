@@ -38,7 +38,7 @@ export default function StoryGrid() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
                             viewport={{ once: true, margin: "-100px" }}
-                            className="w-[40%] h-full relative overflow-hidden group flex items-center justify-center shrink-0"
+                            className="flex-[4] h-full relative overflow-hidden group flex items-center justify-center shrink-0"
                         >
                             <div className="absolute inset-0 bg-black/20 md:bg-transparent group-hover:bg-[#050505]/40 z-10 transition-colors duration-[0.5s]" />
                             <img
@@ -58,7 +58,7 @@ export default function StoryGrid() {
                             whileInView={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                             viewport={{ once: true, margin: "-100px" }}
-                            className="w-[60%] h-full relative overflow-hidden group flex items-center justify-center shrink-0"
+                            className="flex-[6] h-full relative overflow-hidden group flex items-center justify-center shrink-0"
                         >
                             <div className="absolute inset-0 bg-black/20 md:bg-transparent group-hover:bg-[#050505]/40 z-10 transition-colors duration-[0.5s]" />
                             <img
