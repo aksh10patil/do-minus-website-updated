@@ -1,9 +1,10 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/public/components/ui/Footer";
 import LuxReveal from "@/public/components/ui/LuxReveal";
 import { motion } from "framer-motion";
+import ScrollQuote from "@/public/components/ui-b/ScrollQuote";
+import PropertyDetails from "@/public/components/ui-b/PropertyDetails";
 
 
 interface PropertyImage {
@@ -169,7 +170,7 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                                 </Link>
 
                                 <Link
-                                    href="/properties"
+                                    href="/properties/ca-spontoi"
                                     className="text-xs sm:text-sm uppercase tracking-[0.15em] font-semibold text-white/75 hover:text-white transition-all duration-300"
                                 >
                                     Properties
@@ -299,35 +300,7 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                 </div>
             </section>
 
-
-            {/* <section className="w-full bg-[#1A1A1A] py-20 sm:py-24 lg:py-32">
-                <div className="mx-auto w-full max-w-[1920px] px-6 sm:px-8 lg:px-16">
-
-                    <div className="relative w-full aspect-[16/9] overflow-hidden bg-white/5">
-                        <Image
-                            src="/Do-Minus/Ca_Spontoi/ca_spontoi.avif"
-                            alt="Editorial property view"
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
-
-
-                </div>
-            </section>  */}
-
-
-
-
-
-
-
-
-
-
-
-
+            <ScrollQuote />
 
 
 
@@ -359,6 +332,8 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
 
                 </div>
             </section>
+
+            <PropertyDetails />
 
             {/* Explore Other Properties */}
             <section className="w-full py-24 border-t border-[#6B6B6B]/30 bg-[#1A1A1A] flex flex-col items-center">

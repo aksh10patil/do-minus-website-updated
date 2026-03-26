@@ -48,7 +48,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
     }, []);
 
     const navLinks = [
-        { name: "Properties", href: "/properties/${property.slug}" },
+        { name: "Properties", href: "/properties/ca-spontoi" },
         { name: "Philosophy", href: "/philosophy" },
         { name: "Journal", href: "#" },
         { name: "Contact", href: "#" },
