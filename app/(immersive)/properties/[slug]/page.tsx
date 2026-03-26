@@ -1,9 +1,10 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import Footer from "@/public/components/ui/Footer";
 import LuxReveal from "@/public/components/ui/LuxReveal";
 import { motion } from "framer-motion";
+import ScrollQuote from "@/public/components/ui-b/ScrollQuote";
+import PropertyDetails from "@/public/components/ui-b/PropertyDetails";
 
 
 interface PropertyImage {
@@ -169,7 +170,7 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                                 </Link>
 
                                 <Link
-                                    href="/properties"
+                                    href="/properties/ca-spontoi"
                                     className="text-xs sm:text-sm uppercase tracking-[0.15em] font-semibold text-white/75 hover:text-white transition-all duration-300"
                                 >
                                     Properties
@@ -220,7 +221,7 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
 
 
             {/* Description & Details Section */}
-            <section className="w-full py-40  bg-[#1A1A1A] flex justify-center">
+            <section className="w-full py-50 bg-[#1A1A1A] flex justify-center">
                 <div className="w-full max-w-[1920px] px-8 lg:px-32 grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
                     <div className="lg:col-span-6 flex flex-col justify-center">
                         <LuxReveal delay={0.1}>
@@ -243,7 +244,67 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                 </div>
             </section>
 
-            {/* Image Gallery / The Space */}
+
+            <section className="w-full bg-[#1A1A1A] py-12 lg:py-28">
+                <div className="mx-auto w-full max-w-[1920px] px-6 sm:px-8 lg:px-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-8 items-start">
+
+                        {/* Left Large Media */}
+                        <div className="w-full">
+                            <div className="relative w-full h-[420px] sm:h-[520px] lg:h-[760px] overflow-hidden bg-white/5">
+                                <Image
+                                    src="/Do-Minus/Ca_Spontoi/ca_spontoi_2.avif"
+                                    alt="Ocean view"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+
+                            <p className="mt-4 text-sm text-white/75 tracking-[0.02em]">
+                                Dining View
+                            </p>
+                        </div>
+
+                        {/* Right Column */}
+                        <div className="flex flex-col">
+                            <div className="relative w-full h-[220px] sm:h-[280px] lg:h-[320px] overflow-hidden bg-white/5">
+                                <Image
+                                    src="/Do-Minus/Ca_Spontoi/ca_spontoi_v4.avif"
+                                    alt="Interior detail"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+
+                            <div className="pt-8 lg:pt-10 max-w-[540px]">
+                                <p className="text-base md:text-lg leading-relaxed tracking-wide text-[#A3A3A3]">
+                                    A restored Ticino stone house in the historic village of Gnosca. Blends traditional architecture with subtle contemporary interventions while preserving its historic character.
+                                </p>
+
+                                <p className="mt-8 text-base md:text-lg leading-relaxed tracking-wide text-[#A3A3A3]">
+                                    Nestled in the heart of Ticino, Switzerland, this restored stone house in the historic village of Gnosca offers a serene escape. The property seamlessly blends traditional architecture with subtle contemporary interventions, preserving its historic character while providing modern comforts.
+                                </p>
+
+                                <p className="mt-8 text-base md:text-lg leading-relaxed tracking-wide text-[#A3A3A3]">
+                                    From EUR 545/night
+                                </p>
+
+                                <div className="mt-12 lg:mt-16">
+                                    <button className="w-full sm:w-auto min-w-[220px] border border-white bg-white px-10 py-4 text-sm uppercase tracking-[0.15em] text-[#1A1A1A] transition-all duration-500 hover:bg-transparent hover:text-white">
+                                        Book now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <ScrollQuote />
+
+
+
+
             <section className="w-full py-24 lg:py-16 bg-[#1A1A1A] flex justify-center">
                 <div className="w-full max-w-[1920px] px-8 lg:px-16">
                     <div className="columns-1 md:columns-2 lg:columns-3 gap-4 lg:gap-4">
@@ -268,19 +329,11 @@ export default async function PropertyPage(props: { params: Promise<{ slug: stri
                         ))}
                     </div>
 
-                    {/* <div className="mt-16 lg:mt-24 grid grid-cols-1">
-                        <div className="lg:pr-12">
-                            <p className="text-lg md:text-xl leading-relaxed text-[#FFFFFF] opacity-90">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc semper nibh vel nibh molestie pellentesque. Etiam velit purus, sagittis quis neque a, cursus lacinia augue. Vivamus bibendum dui id lacus pulvinar imperdiet. Suspendisse lobortis semper hendrerit. Nullam faucibus sollicitudin malesuada
-                            </p>
 
-                            <button className="w-full mt-8 py-5 lg:py-6 border border-[#FFFFFF] bg-transparent text-[#FFFFFF] hover:bg-[#FFFFFF] hover:text-[#0a0a0a] transition-all duration-700 uppercase tracking-[0.15em] text-sm">
-                                request booking
-                            </button>
-                        </div>
-                    </div> */}
                 </div>
             </section>
+
+            <PropertyDetails />
 
             {/* Explore Other Properties */}
             <section className="w-full py-24 border-t border-[#6B6B6B]/30 bg-[#1A1A1A] flex flex-col items-center">
