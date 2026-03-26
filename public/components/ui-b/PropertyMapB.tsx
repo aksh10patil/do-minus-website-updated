@@ -34,6 +34,12 @@ const luxuryLetter: any = {
     },
 };
 
+const imagePositions = [
+    "top-[20%] left-[5%] w-[35vw] md:w-[16vw] aspect-[4/3] z-10 -rotate-3 hover:z-50 hover:scale-105 transition-all duration-300",
+    "top-[35%] left-[16%] w-[40vw] md:w-[15vw] aspect-[3/4] z-20 rotate-1 shadow-2xl shadow-black/90 hover:z-50 hover:scale-105 transition-all duration-300",
+    "bottom-[20%] left-[8%] w-[30vw] md:w-[12vw] aspect-square z-30 -rotate-3 shadow-2xl shadow-black/80 hover:z-50 hover:scale-105 transition-all duration-300"
+];
+
 const properties = [
     {
         id: "barca",
@@ -431,9 +437,7 @@ export default function PropertyMapB({
                         transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
                         className="pointer-events-auto flex flex-col items-start"
                     >
-                        <h2 className="text-[#bba371] text-sm tracking-[0.4em] font-bold uppercase mb-4">
-                            Welcome to
-                        </h2>
+
                         <motion.h1
                             variants={luxuryTypewriterContainer}
                             initial="hidden"
@@ -446,36 +450,40 @@ export default function PropertyMapB({
                                 </motion.span>
                             ))}
                         </motion.h1>
+                        <h2 className="text-[#bba371]/80 pl-3 text-md tracking-[0.6em] font-bold uppercase mb-4">
+                            Swiss Guesthouses Collection
+                        </h2>
                     </motion.div>
                 </div>
 
-                <div className="absolute left-16 top-0 bottom-0 z-50 w-[35%] lg:w-[30%] xl:w-[25%] pointer-events-none flex items-center justify-center">
-                    <AnimatePresence>
-                        {hoveredProperty && (
-                            <motion.div
-                                initial={{ opacity: 0, x: -30, filter: "blur(10px)" }}
-                                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                                exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
-                                transition={{ duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] }}
-                                className="w-full h-[85vh] flex gap-5"
-                                style={{
-                                    WebkitMaskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)",
-                                    maskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)"
-                                }}
-                            >
-                                <ScrollingColumn images={desktopActivePropertyImages} speed={80} />
-                                <ScrollingColumn images={[...desktopActivePropertyImages].reverse()} reverse speed={80} />
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                <div className="absolute inset-0 z-15 pointer-events-none overflow-hidden hidden md:block">
+                    <div className="relative w-full h-full pointer-events-auto">
+                        <AnimatePresence>
+                            {hoveredProperty && desktopActivePropertyImages.slice(0, 3).map((img, idx) => (
+                                <motion.img
+                                    key={`${hoveredProperty}-${idx}`}
+                                    src={img}
+                                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                                    exit={{ opacity: 0, scale: 0.95, y: -10 }}
+                                    transition={{
+                                        duration: 0.6,
+                                        delay: idx * 0.15,
+                                        ease: [0.2, 0.65, 0.3, 0.9]
+                                    }}
+                                    className={`absolute object-cover shadow-2xl shadow-black/80 rounded-sm border border-white/5 ${imagePositions[idx % imagePositions.length]}`}
+                                />
+                            ))}
+                        </AnimatePresence>
+                    </div>
                 </div>
 
-                <div className="absolute right-0 top-0 bottom-0 z-30 flex flex-col justify-center px-16 w-[450px] pointer-events-none">
+                <div className="absolute right-0 top-0 bottom-15 z-30 flex flex-col justify-center px-8 w-[240px] sm:w-[260px] md:w-[300px] lg:w-[340px] pointer-events-none">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        className="flex flex-col gap-6 pointer-events-auto bg-[#1A1A1A]/20 backdrop-blur-sm p-8 border border-white/5 shadow-2xl"
+                        className="flex flex-col gap-6 pointer-events-auto bg-[#1A1A1A]/20 backdrop-blur-sm p-8 border border-white/5 shadow-2xl items-start"
                     >
                         <motion.div
                             initial={{ opacity: 0, x: 50 }}
@@ -483,10 +491,10 @@ export default function PropertyMapB({
                             transition={{ duration: 0.8 }}
                             className="mb-6"
                         >
-                            <h2 className="text-[#bba371] text-sm tracking-[0.2em] font-bold uppercase mb-2">
+                            <h2 className="text-[#bba371] text-xs tracking-[0.2em] font-bold uppercase mb-2">
                                 Destinations
                             </h2>
-                            <h3 className="text-4xl tracking-tight font-light text-[#f4f4f0] mb-4">
+                            <h3 className="text-2xl tracking-tight font-light text-[#f4f4f0] mb-4">
                                 Our Domains
                             </h3>
                             <button
@@ -508,7 +516,7 @@ export default function PropertyMapB({
                                     duration: 0.8,
                                     ease: [0.2, 0.65, 0.3, 0.9]
                                 }}
-                                className="group flex flex-col gap-1 cursor-pointer border-b border-white/10 pb-4 hover:border-[#bba371]/50 transition-colors"
+                                className="group w-full flex flex-col gap-1 cursor-pointer border-b border-white/10 pb-4 hover:border-[#bba371]/50 transition-colors"
                                 onMouseEnter={() => {
                                     handleSetHoveredProperty(property.id);
                                     moveToProperty(property, i, false);
