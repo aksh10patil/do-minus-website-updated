@@ -54,7 +54,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
         { name: "Contact", href: "#" },
     ];
 
-    // Animates both width and height simultaneously for a diagonal pull
+    
     const containerVariants: Variants = {
         hidden: {
             width: "48px",
@@ -62,12 +62,12 @@ export default function Navbar({ hidden = false }: NavbarProps) {
             transition: {
                 duration: 0.5,
                 ease: [0.4, 0, 0.2, 1],
-                delay: 0.3 // Waits for the text to zip up before shrinking diagonally
+                delay: 0.3 
             }
         },
         visible: {
             width: "180px",
-            height: "auto", // Framer Motion natively handles "auto" height perfectly
+            height: "auto", 
             transition: {
                 duration: 0.5,
                 ease: [0.4, 0, 0.2, 1]
@@ -75,7 +75,7 @@ export default function Navbar({ hidden = false }: NavbarProps) {
         }
     };
 
-    // Handles ONLY the opacity and staggered timing of the links now
+    
     const menuVariants: Variants = {
         hidden: {
             opacity: 0,
@@ -87,13 +87,13 @@ export default function Navbar({ hidden = false }: NavbarProps) {
         visible: {
             opacity: 1,
             transition: {
-                delayChildren: 0.15, // Links start melting in just as the box opens
+                delayChildren: 0.15, 
                 staggerChildren: 0.1,
             },
         },
     };
 
-    // The individual link animations
+    
     const itemVariants: Variants = {
         hidden: { opacity: 0, y: -8, filter: "blur(4px)" },
         visible: {

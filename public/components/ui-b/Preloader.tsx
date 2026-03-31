@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { blockPreloaderGate, releasePreloaderGate } from "./usePreloaderGate";
 
-// Key images to preload — covers StoryGrid hero images + representative property images
+
 const IMAGES_TO_PRELOAD: string[] = [
     "/Do-Minus/Ca_Pedrot/ca_pedrot_5.avif",
     "/Do-Minus/Ca_Negra/ca_negra_v1.avif",

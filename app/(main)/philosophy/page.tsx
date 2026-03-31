@@ -4,7 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useSpring, useTransform, Variants } from "framer-motion";
 
-// --- Types & Data ---
+
 type PhilosophyBlock = {
     id: string;
     title: string;
@@ -54,7 +54,7 @@ const philosophyData: PhilosophyBlock[] = [
     },
 ];
 
-// --- Sub-component: Parallax & Drifting Image ---
+
 const ParallaxImage = ({ src, alt }: { src: string; alt: string }) => {
     const imageRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
@@ -81,7 +81,7 @@ const ParallaxImage = ({ src, alt }: { src: string; alt: string }) => {
     );
 };
 
-// --- Sub-component: Blur & Fade Text Reveal ---
+
 const BlurRevealText = ({ children }: { children: React.ReactNode }) => {
     const textRef = useRef<HTMLParagraphElement>(null);
     const { scrollYProgress } = useScroll({
@@ -104,7 +104,7 @@ const BlurRevealText = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-// --- Sub-component: Individual Philosophy Block ---
+
 const PhilosophyBlockEl = ({ block, index }: { block: PhilosophyBlock; index: number }) => {
     const blockRef = useRef<HTMLDivElement>(null);
 
@@ -121,7 +121,7 @@ const PhilosophyBlockEl = ({ block, index }: { block: PhilosophyBlock; index: nu
     );
     const lineScaleX = useTransform(scrollYProgress, [0, 0.05, 0.95, 1], [0, 1, 1, 0]);
 
-    // Tightened the gap to 60px so they stack nicely like a menu
+    
     const stickyTop = `calc(12vh + ${index * 60}px)`;
 
     const scrollToSection = () => {
@@ -135,7 +135,7 @@ const PhilosophyBlockEl = ({ block, index }: { block: PhilosophyBlock; index: nu
         <div
             id={`section-${block.id}`}
             ref={blockRef}
-            // Added scroll-mt-[35vh] so the browser leaves space for the stacked headers when auto-scrolling
+            
             className="relative min-h-[120vh] flex flex-col z-10 mb-32 md:mb-48 last:mb-0 scroll-mt-[35vh]"
         >
             <div
@@ -143,7 +143,7 @@ const PhilosophyBlockEl = ({ block, index }: { block: PhilosophyBlock; index: nu
                 style={{
                     top: stickyTop,
                     paddingTop: "1rem",
-                    paddingBottom: "1.5rem", // Reduced padding to prevent background overlapping the next header
+                    paddingBottom: "1.5rem", 
                 }}
             >
                 <div className="absolute inset-0 bg-gradient-to-b from-[#1A1A1A] via-[#1A1A1A]/95 to-transparent -z-10" />
@@ -177,7 +177,7 @@ const PhilosophyBlockEl = ({ block, index }: { block: PhilosophyBlock; index: nu
     );
 };
 
-// --- Main Layout Component ---
+
 export default function InteractivePhilosophySection() {
     const contentRef = useRef<HTMLDivElement>(null);
 

@@ -13,7 +13,7 @@ const defaultText =
 export default function ScrollQuote({ text = defaultText }: ScrollQuoteProps) {
     const containerRef = useRef<HTMLElement>(null);
 
-    // Slower, more cinematic scroll control
+    
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start 85%", "end 25%"]
@@ -35,7 +35,7 @@ export default function ScrollQuote({ text = defaultText }: ScrollQuoteProps) {
             >
                 <p className="flex flex-wrap justify-center text-center max-w-[48rem]">
                     {words.map((word, i) => {
-                        // Premium staggered timing
+                        
                         const stagger = 0.025;
                         const duration = 0.12;
 
@@ -61,12 +61,12 @@ interface WordProps {
 }
 
 const Word = ({ children, progress, range }: WordProps) => {
-    // Smooth, subtle animation (luxury feel)
+    
     const opacity = useTransform(progress, range, [0.25, 1]);
     const y = useTransform(progress, range, [6, 0]);
     const scale = useTransform(progress, range, [0.98, 1]);
 
-    // Subtle color transition (premium touch)
+    
     const color = useTransform(progress, range, ["#a8a29e", "#e5ded0"]);
 
     return (

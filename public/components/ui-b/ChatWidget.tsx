@@ -7,7 +7,7 @@ import { usePreloaderGate } from "./usePreloaderGate";
 export default function ChatWidget() {
     const isPreloaderReady = usePreloaderGate();
     const [open, setOpen] = useState(false);
-    const [unreadCount, setUnreadCount] = useState(1); // Track unread messages
+    const [unreadCount, setUnreadCount] = useState(1); 
     const [messages, setMessages] = useState<string[]>([
         "Welcome to Do-Minus. How may I assist you?"
     ]);
@@ -29,14 +29,14 @@ export default function ChatWidget() {
         },
     };
 
-    // Auto scroll
+    
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages, loading]);
 
     const handleToggle = () => {
         setOpen(!open);
-        if (!open) setUnreadCount(0); // Clear badge when opened
+        if (!open) setUnreadCount(0); 
     };
 
     const sendMessage = async () => {
@@ -61,7 +61,7 @@ export default function ChatWidget() {
 
             setMessages((prev) => [...prev, data.reply]);
 
-            // If the user closed the widget while loading, show a notification
+            
             if (!open) setUnreadCount((prev) => prev + 1);
         } catch {
             setMessages((prev) => [
@@ -119,7 +119,7 @@ export default function ChatWidget() {
                                             initial={{ opacity: 0 }}
                                             animate={{ opacity: 0.8 }}
                                             exit={{ opacity: 0 }}
-                                            transition={{ delay: 5 }} // ⬅️ delay here
+                                            transition={{ delay: 5 }} 
                                             className="absolute -top-1.5 -right-1.5 bg-[#E63946] w-3.5 h-3.5 rounded-full animate-ping"
                                         />
 
@@ -128,7 +128,7 @@ export default function ChatWidget() {
                                             initial={{ scale: 0, opacity: 0 }}
                                             animate={{ scale: 1, opacity: 1 }}
                                             exit={{ scale: 0, opacity: 0 }}
-                                            transition={{ delay: 5 }} // ⬅️ delay here
+                                            transition={{ delay: 5 }} 
                                             className="absolute -top-1.5 -right-1.5 bg-[#E63946] text-white text-[9px] font-bold w-3.5 h-3.5 rounded-full flex items-center justify-center"
                                         >
                                             {unreadCount}

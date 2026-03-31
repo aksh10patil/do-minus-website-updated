@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { resortKnowledge } from "@/lib/knowledge"; // Import your knowledge base here
+import { resortKnowledge } from "@/lib/knowledge"; 
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
